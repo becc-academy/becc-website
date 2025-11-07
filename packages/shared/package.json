@@ -1,0 +1,24 @@
+{
+  "name": "@becc/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared utilities and types for BECC monorepo",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint . --ext ts,tsx",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules .turbo"
+  },
+  "dependencies": {
+    "zod": "^3.22.4",
+    "date-fns": "^3.0.0",
+    "localforage": "^1.10.0",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/react": "^19.0.0"
+  }
+}

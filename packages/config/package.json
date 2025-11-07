@@ -1,0 +1,11 @@
+{
+  "name": "@becc/config",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shared configuration files for BECC monorepo",
+  "main": "index.js",
+  "files": [
+    "eslint",
+    "typescript"
+  ]
+}
