@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import HomePage from '@/pages/HomePage';
 
-const App = (): JSX.Element => {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>

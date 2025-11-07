@@ -135,5 +135,5 @@ module.exports = {
     'no-console': ['warn', { allow: ['warn', 'error'] }],
     'no-debugger': 'warn',
   },
-  ignorePatterns: ['dist', 'node_modules', '.turbo', 'coverage', 'build'],
+  ignorePatterns: ['dist', 'node_modules', '.turbo', 'coverage', 'build', '**/*.config.js', '**/*.config.ts', '**/tsconfig.json'],
 };
