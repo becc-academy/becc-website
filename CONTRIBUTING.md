@@ -30,7 +30,7 @@ git clone https://github.com/YOUR_USERNAME/becc-website.git
 cd becc-website
 
 # Add upstream remote
-git remote add upstream https://github.com/ORIGINAL_OWNER/becc-website.git
+git remote add upstream https://github.com/becc-academy/becc-website.git
 ```
 
 ### 2. Install Dependencies
