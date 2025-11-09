@@ -45,11 +45,11 @@ jobs:
             echo "✅ PR has $TOTAL_REVIEWERS reviewer(s) requested"
           fi
       
-      - name: Check PR is not from main/master branch
+      - name: Check PR is not from main/dev branch
         run: |
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
-          if [ "$HEAD_REF" = "main" ] || [ "$HEAD_REF" = "master" ]; then
-            echo "❌ Please do not create PRs from the main/master branch."
+          if [ "$HEAD_REF" = "main" ] || [ "$HEAD_REF" = "dev" ]; then
+            echo "❌ Please do not create PRs from the main/dev branch."
             echo "Create a feature branch instead (e.g., feat/your-feature)."
             exit 1
           fi

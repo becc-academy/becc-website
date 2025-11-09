@@ -1,0 +1,506 @@
+name: Website Quality Checks
+
+on:
+  pull_request:
+    branches: [main, dev]
+    paths:
+      - 'apps/website/**'
+      - 'packages/**'
+      - 'pnpm-lock.yaml'
+  push:
+    branches: [main, dev]
+    paths:
+      - 'apps/website/**'
+      - 'packages/**'
+      - 'pnpm-lock.yaml'
+  workflow_dispatch:
+
+jobs:
+  code-conventions:
+    name: Code Conventions Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Check naming conventions
+        run: |
+          echo "Checking naming conventions..."
+          
+          # Check for PascalCase in component files
+          BAD_COMPONENTS=$(find apps/website/src/components -name "*.tsx" -o -name "*.ts" | grep -v "index.tsx" | grep -E '[a-z_-]' || true)
+          if [ ! -z "$BAD_COMPONENTS" ]; then
+            echo "❌ Component files must use PascalCase:"
+            echo "$BAD_COMPONENTS"
+            exit 1
+          fi
+          
+          # Check for camelCase in utility files
+          BAD_UTILS=$(find apps/website/src/utils -name "*.ts" -o -name "*.tsx" 2>/dev/null | grep -E '[A-Z]' | grep -v "types" || true)
+          if [ ! -z "$BAD_UTILS" ]; then
+            echo "⚠️ Warning: Utility files should use camelCase"
+            echo "$BAD_UTILS"
+          fi
+          
+          echo "✅ Naming conventions check passed"
+      
+      - name: Check for arrow functions
+        run: |
+          echo "Checking for arrow function usage..."
+          
+          # Search for regular function declarations in src files
+          REGULAR_FUNCTIONS=$(grep -r "^function " apps/website/src --include="*.ts" --include="*.tsx" || true)
+          if [ ! -z "$REGULAR_FUNCTIONS" ]; then
+            echo "❌ Found regular function declarations. Use arrow functions instead:"
+            echo "$REGULAR_FUNCTIONS"
+            exit 1
+          fi
+          
+          echo "✅ Arrow function check passed"
+      
+      - name: Check for any types
+        run: |
+          echo "Checking for 'any' types..."
+          
+          # Search for any types in TypeScript files
+          ANY_TYPES=$(grep -r ": any" apps/website/src --include="*.ts" --include="*.tsx" || true)
+          if [ ! -z "$ANY_TYPES" ]; then
+            echo "❌ Found 'any' types. Use proper typing instead:"
+            echo "$ANY_TYPES"
+            exit 1
+          fi
+          
+          echo "✅ No 'any' types found"
+      
+      - name: Check interface naming
+        run: |
+          echo "Checking interface naming conventions..."
+          
+          # Check for interfaces without I prefix
+          BAD_INTERFACES=$(grep -r "^interface [^I]" apps/website/src --include="*.ts" --include="*.tsx" || true)
+          if [ ! -z "$BAD_INTERFACES" ]; then
+            echo "❌ Interfaces must be prefixed with 'I':"
+            echo "$BAD_INTERFACES"
+            exit 1
+          fi
+          
+          echo "✅ Interface naming check passed"
+      
+      - name: Check for proper comments
+        run: |
+          echo "Checking for proper documentation..."
+          
+          # Count files and functions
+          TOTAL_FILES=$(find apps/website/src -name "*.ts" -o -name "*.tsx" | wc -l)
+          COMMENTED_FUNCTIONS=$(grep -r "^\s*\/\*\*" apps/website/src --include="*.ts" --include="*.tsx" | wc -l)
+          
+          echo "📊 Found $COMMENTED_FUNCTIONS documented functions in $TOTAL_FILES files"
+          echo "✅ Comment check completed"
+      
+      - name: ESLint validation
+        run: pnpm --filter @becc/website lint
+      
+      - name: Prettier format check
+        run: pnpm format:check
+      
+      - name: TypeScript strict check
+        run: pnpm --filter @becc/website type-check
+
+  route-validation:
+    name: Route Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Extract and validate routes
+        run: |
+          echo "Extracting routes from App.tsx..."
+          
+          # Extract route paths
+          ROUTES=$(grep -o 'path="[^"]*"' apps/website/src/App.tsx | sed 's/path="//g' | sed 's/"//g')
+          
+          echo "Found routes:"
+          echo "$ROUTES"
+          
+          # Check if routes have corresponding page components
+          for route in $ROUTES; do
+            if [ "$route" = "/" ]; then
+              PAGE="HomePage"
+            else
+              # Convert route to PascalCase page name
+              PAGE=$(echo "$route" | sed 's/^\///' | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}1' | sed 's/ //g')Page
+            fi
+            
+            # Check if page file exists
+            if [ -f "apps/website/src/pages/${PAGE}.tsx" ]; then
+              echo "✅ Route '$route' -> ${PAGE}.tsx exists"
+            else
+              echo "⚠️ Warning: Route '$route' may not have corresponding page file ${PAGE}.tsx"
+            fi
+          done
+          
+          echo "✅ Route validation completed"
+      
+      - name: Build website
+        run: pnpm --filter @becc/website build
+      
+      - name: Check for build errors
+        run: |
+          if [ -d "apps/website/dist" ]; then
+            echo "✅ Build successful - dist folder created"
+          else
+            echo "❌ Build failed - dist folder not found"
+            exit 1
+          fi
+
+  memory-leak-detection:
+    name: Memory Leak Detection
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Check for common memory leak patterns
+        run: |
+          echo "Checking for common memory leak patterns..."
+          
+          # Check for missing cleanup in useEffect
+          echo "Checking useEffect cleanup..."
+          USEEFFECT_COUNT=$(grep -r "useEffect" apps/website/src --include="*.tsx" --include="*.ts" | wc -l)
+          CLEANUP_COUNT=$(grep -r "return () =>" apps/website/src --include="*.tsx" --include="*.ts" | wc -l)
+          
+          echo "Found $USEEFFECT_COUNT useEffect hooks and $CLEANUP_COUNT cleanup functions"
+          
+          # Check for event listener additions without removal
+          EVENT_ADDITIONS=$(grep -r "addEventListener" apps/website/src --include="*.tsx" --include="*.ts" || true)
+          if [ ! -z "$EVENT_ADDITIONS" ]; then
+            echo "⚠️ Found addEventListener calls. Ensure removeEventListener is called:"
+            echo "$EVENT_ADDITIONS"
+            
+            EVENT_REMOVALS=$(grep -r "removeEventListener" apps/website/src --include="*.tsx" --include="*.ts" || true)
+            if [ -z "$EVENT_REMOVALS" ]; then
+              echo "❌ Found addEventListener without removeEventListener - potential memory leak!"
+              exit 1
+            fi
+          fi
+          
+          # Check for setInterval without clearInterval
+          INTERVAL_SET=$(grep -r "setInterval" apps/website/src --include="*.tsx" --include="*.ts" || true)
+          if [ ! -z "$INTERVAL_SET" ]; then
+            echo "⚠️ Found setInterval calls. Ensure clearInterval is called:"
+            echo "$INTERVAL_SET"
+            
+            INTERVAL_CLEAR=$(grep -r "clearInterval" apps/website/src --include="*.tsx" --include="*.ts" || true)
+            if [ -z "$INTERVAL_CLEAR" ]; then
+              echo "❌ Found setInterval without clearInterval - potential memory leak!"
+              exit 1
+            fi
+          fi
+          
+          # Check for setTimeout without clearTimeout
+          TIMEOUT_SET=$(grep -r "setTimeout" apps/website/src --include="*.tsx" --include="*.ts" || true)
+          if [ ! -z "$TIMEOUT_SET" ]; then
+            echo "⚠️ Found setTimeout calls. Consider clearTimeout for cleanup"
+            echo "$TIMEOUT_SET"
+          fi
+          
+          echo "✅ Memory leak pattern check completed"
+      
+      - name: Build with source maps for analysis
+        run: pnpm --filter @becc/website build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+      
+      - name: Analyze bundle size
+        run: |
+          echo "Analyzing bundle size..."
+          
+          if [ -d "apps/website/dist/assets" ]; then
+            echo "📦 Bundle sizes:"
+            ls -lh apps/website/dist/assets/*.js 2>/dev/null || echo "No JS bundles found"
+            
+            # Check for large bundles
+            LARGE_BUNDLES=$(find apps/website/dist/assets -name "*.js" -size +500k || true)
+            if [ ! -z "$LARGE_BUNDLES" ]; then
+              echo "⚠️ Warning: Large bundle files detected (>500KB):"
+              echo "$LARGE_BUNDLES"
+            fi
+          fi
+          
+          echo "✅ Bundle analysis completed"
+
+  error-detection:
+    name: Error & Bug Detection
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Check for console.log statements
+        run: |
+          echo "Checking for console.log statements..."
+          
+          CONSOLE_LOGS=$(grep -r "console\.log" apps/website/src --include="*.ts" --include="*.tsx" || true)
+          if [ ! -z "$CONSOLE_LOGS" ]; then
+            echo "⚠️ Warning: Found console.log statements (should be removed before production):"
+            echo "$CONSOLE_LOGS"
+          else
+            echo "✅ No console.log statements found"
+          fi
+      
+      - name: Check for debugger statements
+        run: |
+          echo "Checking for debugger statements..."
+          
+          DEBUGGERS=$(grep -r "debugger" apps/website/src --include="*.ts" --include="*.tsx" || true)
+          if [ ! -z "$DEBUGGERS" ]; then
+            echo "❌ Found debugger statements (must be removed):"
+            echo "$DEBUGGERS"
+            exit 1
+          fi
+          
+          echo "✅ No debugger statements found"
+      
+      - name: Check for TODO/FIXME comments
+        run: |
+          echo "Checking for TODO/FIXME comments..."
+          
+          TODOS=$(grep -r "TODO\|FIXME" apps/website/src --include="*.ts" --include="*.tsx" || true)
+          if [ ! -z "$TODOS" ]; then
+            echo "⚠️ Found TODO/FIXME comments:"
+            echo "$TODOS"
+            echo "Consider addressing these before merging"
+          else
+            echo "✅ No TODO/FIXME comments found"
+          fi
+      
+      - name: TypeScript error check
+        run: |
+          echo "Running TypeScript compiler..."
+          pnpm --filter @becc/website type-check
+      
+      - name: ESLint error check
+        run: |
+          echo "Running ESLint..."
+          pnpm --filter @becc/website lint
+      
+      - name: Check for unused dependencies
+        run: |
+          echo "Checking for unused dependencies..."
+          
+          # Install depcheck
+          pnpm add -g depcheck
+          
+          # Run depcheck
+          cd apps/website
+          depcheck --ignores="@types/*,eslint-*,@typescript-eslint/*,vite,typescript" || echo "⚠️ Found unused dependencies"
+          
+          echo "✅ Dependency check completed"
+        continue-on-error: true
+      
+      - name: Build error check
+        run: |
+          echo "Building project to check for errors..."
+          pnpm --filter @becc/website build
+          
+          if [ $? -eq 0 ]; then
+            echo "✅ Build completed successfully"
+          else
+            echo "❌ Build failed - check errors above"
+            exit 1
+          fi
+
+  security-scan:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Run pnpm audit
+        run: |
+          echo "Running security audit..."
+          pnpm audit --audit-level=high || echo "⚠️ Found vulnerabilities"
+        continue-on-error: true
+      
+      - name: Check for hardcoded secrets
+        run: |
+          echo "Checking for hardcoded secrets..."
+          
+          # Check for API keys
+          API_KEYS=$(grep -r "api[_-]key\s*=\|apiKey\s*=" apps/website/src --include="*.ts" --include="*.tsx" || true)
+          if [ ! -z "$API_KEYS" ]; then
+            echo "❌ Found potential hardcoded API keys:"
+            echo "$API_KEYS"
+            exit 1
+          fi
+          
+          # Check for passwords
+          PASSWORDS=$(grep -r "password\s*=\s*['\"]" apps/website/src --include="*.ts" --include="*.tsx" || true)
+          if [ ! -z "$PASSWORDS" ]; then
+            echo "❌ Found potential hardcoded passwords:"
+            echo "$PASSWORDS"
+            exit 1
+          fi
+          
+          echo "✅ No hardcoded secrets found"
+
+  comprehensive-report:
+    name: Generate Quality Report
+    runs-on: ubuntu-latest
+    needs: [code-conventions, route-validation, memory-leak-detection, error-detection, security-scan]
+    if: always()
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Generate summary
+        run: |
+          echo "# Quality Check Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "- Code Conventions: ${{ needs.code-conventions.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Route Validation: ${{ needs.route-validation.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Memory Leak Detection: ${{ needs.memory-leak-detection.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Error Detection: ${{ needs.error-detection.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Security Scan: ${{ needs.security-scan.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ needs.code-conventions.result }}" = "success" ] && \
+             [ "${{ needs.route-validation.result }}" = "success" ] && \
+             [ "${{ needs.memory-leak-detection.result }}" = "success" ] && \
+             [ "${{ needs.error-detection.result }}" = "success" ] && \
+             [ "${{ needs.security-scan.result }}" = "success" ]; then
+            echo "## ✅ All Quality Checks Passed!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ❌ Some Quality Checks Failed" >> $GITHUB_STEP_SUMMARY
+            echo "Please review the failed checks above." >> $GITHUB_STEP_SUMMARY
+          fi
