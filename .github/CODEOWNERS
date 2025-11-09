@@ -1,0 +1,32 @@
+# CODEOWNERS file
+# This file defines the individuals or teams that are responsible for code in this repository.
+# Each line is a file pattern followed by one or more owners.
+
+# Default owners for everything in the repo
+# These owners will be requested for review when someone opens a pull request.
+* @becc-academy/maintainers
+
+# Documentation
+*.md @becc-academy/maintainers
+/docs/ @becc-academy/maintainers
+
+# Configuration files
+*.json @becc-academy/maintainers
+*.yml @becc-academy/maintainers
+*.yaml @becc-academy/maintainers
+*.config.* @becc-academy/maintainers
+
+# Website app
+/apps/website/ @becc-academy/frontend-team
+
+# School Management System
+/apps/school-management/ @becc-academy/frontend-team
+
+# Learning Management System
+/apps/learning-management/ @becc-academy/frontend-team
+
+# Shared packages
+/packages/ @becc-academy/maintainers
+
+# CI/CD
+/.github/ @becc-academy/maintainers
