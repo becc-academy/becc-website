@@ -65,6 +65,12 @@ export type { CTASectionProps } from './website/CTASection';
 export { ContactForm } from './website/ContactForm';
 export type { ContactFormProps, FormData } from './website/ContactForm';
 
+export { OptimizedImage } from './website/OptimizedImage';
+export type { IOptimizedImageProps } from './website/OptimizedImage';
+
+export { LazyImage } from './website/LazyImage';
+export type { ILazyImageProps } from './website/LazyImage';
+
 // Utilities
 export { cn } from './lib/utils';
 

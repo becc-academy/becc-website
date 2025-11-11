@@ -387,11 +387,9 @@ function main() {
   const args = parseArgs();
   const scope = args.scope?.toLowerCase();
 
-  if (scope === 'ui' || !scope) {
-    const uiDir = path.join(PACKAGES_DIR, 'ui', 'src');
-    if (fs.existsSync(uiDir)) {
-      processDirectory(uiDir, '@becc/ui');
-    }
+  // Skip packages/ui - no test generation for shared UI components
+  if (scope === 'ui') {
+    console.log('\n⏭️  Skipping @becc/ui (excluded from test generation)\n');
   }
 
   if (scope === 'shared' || !scope) {

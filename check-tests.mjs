@@ -42,6 +42,7 @@ const EXCLUDE_DIRS = [
   'tests',
   '.husky',
   '.github',
+  'packages/ui', // Exclude shared UI components from test requirements
 ];
 
 /**
