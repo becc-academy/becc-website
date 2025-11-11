@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import NotFoundPage from '@/pages/404Page';
@@ -7,7 +8,7 @@ import EventsPage from '@/pages/EventsPage';
 import HomePage from '@/pages/HomePage';
 import ProgramsPage from '@/pages/ProgramsPage';
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Routes>
