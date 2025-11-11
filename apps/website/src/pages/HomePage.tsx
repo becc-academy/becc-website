@@ -1,4 +1,6 @@
-const HomePage = () => {
+import type { JSX } from 'react';
+
+const HomePage = (): JSX.Element => {
   return (
     <div className="container">
       <h1>Welcome to BECC</h1>
