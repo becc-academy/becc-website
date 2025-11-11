@@ -5,6 +5,7 @@ A professional full-stack monorepo for BECC's web applications including the mai
 ## 🏗️ Architecture Overview
 
 This monorepo contains:
+
 - **Frontend**: TypeScript + React + Vite applications
 - **Backend**: Django REST Framework APIs (separate repository/services)
 - **Shared Packages**: Common utilities, types, and configurations
@@ -36,7 +37,7 @@ becc-monorepo/
 - ✅ **Prettier** for consistent code formatting
 - ✅ **Conventional Commits** with Commitlint
 - ✅ **Husky** for Git hooks
-- ✅ **Import aliases** (@/*) configured
+- ✅ **Import aliases** (@/\*) configured
 - ✅ **Import sorting** automatically enforced
 - ✅ **Arrow functions** enforced via ESLint
 - ✅ **camelCase** naming conventions
@@ -261,6 +262,7 @@ The backend services are built with Django and Django REST Framework. When integ
 4. **Authentication**: Implement token-based auth (JWT recommended)
 
 Example `.env` configuration:
+
 ```env
 VITE_API_URL=http://localhost:8000/api
 VITE_API_TIMEOUT=30000
@@ -293,6 +295,7 @@ VITE_API_TIMEOUT=30000
 ### Import Order
 
 Imports are automatically sorted in the following order:
+
 1. Built-in Node modules
 2. External dependencies
 3. Internal packages
@@ -313,6 +316,7 @@ Follow conventional commits format:
 ```
 
 Types:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -325,6 +329,7 @@ Types:
 - `chore`: Other changes
 
 Examples:
+
 ```bash
 git commit -m "feat(website): add homepage hero section"
 git commit -m "fix(auth): resolve login validation issue"
@@ -383,6 +388,7 @@ export default AboutPage;
 ```
 
 Then add route in `App.tsx`:
+
 ```typescript
 import AboutPage from '@/pages/AboutPage';
 
@@ -471,6 +477,7 @@ See [LICENSE](LICENSE) file for details.
 ### Common Issues
 
 #### Dependencies Not Installing
+
 ```bash
 rm -rf node_modules pnpm-lock.yaml apps/*/node_modules packages/*/node_modules
 unset NODE_ENV
@@ -478,6 +485,7 @@ pnpm install
 ```
 
 #### Port Already in Use
+
 ```bash
 # Find process using port 3000
 lsof -i :3000
@@ -485,6 +493,7 @@ lsof -i :3000
 ```
 
 #### Type Errors
+
 ```bash
 # Rebuild TypeScript
 pnpm type-check
@@ -493,6 +502,7 @@ pnpm --filter @becc/website type-check
 ```
 
 #### Git Hooks Not Working
+
 ```bash
 # Reinstall husky
 rm -rf .husky
@@ -502,6 +512,7 @@ pnpm exec husky install
 ```
 
 #### ESLint/Prettier Conflicts
+
 ```bash
 # Format first, then lint
 pnpm format
@@ -511,12 +522,14 @@ pnpm lint --fix
 ## 👥 Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on:
+
 - Code style and conventions
 - Commit message format
 - Pull request process
 - Development workflow
 
 Quick contribution steps:
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feat/amazing-feature`)
 3. Make your changes following our coding standards

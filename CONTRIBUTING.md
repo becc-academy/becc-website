@@ -165,12 +165,16 @@ interface User {
 // ✅ Good
 const userName = 'John Doe';
 const isUserActive = true;
-const getUserById = (id: string): IUser => { /* ... */ };
+const getUserById = (id: string): IUser => {
+  /* ... */
+};
 
 // ❌ Bad
 const UserName = 'John Doe';
 const is_user_active = true;
-const GetUserById = (id: string): IUser => { /* ... */ };
+const GetUserById = (id: string): IUser => {
+  /* ... */
+};
 ```
 
 #### 2. Constants - UPPER_CASE
@@ -189,12 +193,20 @@ const apiBaseUrl = 'https://api.becc.com';
 
 ```typescript
 // ✅ Good
-const UserProfile = (): JSX.Element => { /* ... */ };
-const NavigationBar = (): JSX.Element => { /* ... */ };
+const UserProfile = (): JSX.Element => {
+  /* ... */
+};
+const NavigationBar = (): JSX.Element => {
+  /* ... */
+};
 
 // ❌ Bad
-const userProfile = (): JSX.Element => { /* ... */ };
-const navigation_bar = (): JSX.Element => { /* ... */ };
+const userProfile = (): JSX.Element => {
+  /* ... */
+};
+const navigation_bar = (): JSX.Element => {
+  /* ... */
+};
 ```
 
 #### 4. Files and Folders
@@ -377,6 +389,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/) format. All 
 ### Scope
 
 Scope should be the app or package name:
+
 - `website`
 - `school-management`
 - `shared`
@@ -479,32 +492,39 @@ docs: update installation guide
 
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Breaking change
 - [ ] Documentation update
 
 ## Changes Made
+
 - Added user authentication
 - Updated login page UI
 - Added JWT token handling
 
 ## Testing
+
 - [ ] Tested locally
 - [ ] Added/updated tests
 - [ ] Tested on different browsers
 
 ## Related Issues
+
 Closes #123
 Fixes #456
 
 ## Screenshots (if applicable)
+
 [Add screenshots here]
 
 ## Checklist
+
 - [ ] Code follows project conventions
 - [ ] Self-reviewed the code
 - [ ] Added/updated comments for complex logic
@@ -553,7 +573,7 @@ describe('UserProfile', () => {
   it('should handle edit click', () => {
     const handleEdit = jest.fn();
     render(<UserProfile userId="123" onEdit={handleEdit} />);
-    
+
     fireEvent.click(screen.getByText('Edit'));
     expect(handleEdit).toHaveBeenCalled();
   });
@@ -587,14 +607,14 @@ pnpm test --coverage
 
 ### JSDoc Example
 
-```typescript
+````typescript
 /**
  * Formats a date according to the specified format
- * 
+ *
  * @param date - The date to format
  * @param format - The format string (default: 'yyyy-MM-dd')
  * @returns Formatted date string
- * 
+ *
  * @example
  * ```typescript
  * formatDate(new Date(), 'MM/dd/yyyy')
@@ -604,7 +624,7 @@ pnpm test --coverage
 export const formatDate = (date: Date, format = 'yyyy-MM-dd'): string => {
   // Implementation
 };
-```
+````
 
 ## 🔒 Security
 
