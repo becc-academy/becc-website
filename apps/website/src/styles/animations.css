@@ -1,0 +1,246 @@
+/* AOS-like Animation Styles */
+
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-out;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+}
+
+/* Fade animations */
+[data-aos="fade-up"] {
+  transform: translateY(30px);
+}
+
+[data-aos="fade-up"].aos-animate {
+  transform: translateY(0);
+}
+
+[data-aos="fade-down"] {
+  transform: translateY(-30px);
+}
+
+[data-aos="fade-down"].aos-animate {
+  transform: translateY(0);
+}
+
+[data-aos="fade-left"] {
+  transform: translateX(30px);
+}
+
+[data-aos="fade-left"].aos-animate {
+  transform: translateX(0);
+}
+
+[data-aos="fade-right"] {
+  transform: translateX(-30px);
+}
+
+[data-aos="fade-right"].aos-animate {
+  transform: translateX(0);
+}
+
+/* Zoom animations */
+[data-aos="zoom-in"] {
+  transform: scale(0.95);
+}
+
+[data-aos="zoom-in"].aos-animate {
+  transform: scale(1);
+}
+
+[data-aos="zoom-out"] {
+  transform: scale(1.05);
+}
+
+[data-aos="zoom-out"].aos-animate {
+  transform: scale(1);
+}
+
+/* Flip animations */
+[data-aos="flip-left"] {
+  transform: perspective(600px) rotateY(-30deg);
+}
+
+[data-aos="flip-left"].aos-animate {
+  transform: perspective(600px) rotateY(0);
+}
+
+[data-aos="flip-right"] {
+  transform: perspective(600px) rotateY(30deg);
+}
+
+[data-aos="flip-right"].aos-animate {
+  transform: perspective(600px) rotateY(0);
+}
+
+/* Slide animations */
+[data-aos="slide-up"] {
+  transform: translateY(100%);
+}
+
+[data-aos="slide-up"].aos-animate {
+  transform: translateY(0);
+}
+
+[data-aos="slide-down"] {
+  transform: translateY(-100%);
+}
+
+[data-aos="slide-down"].aos-animate {
+  transform: translateY(0);
+}
+
+/* Custom durations */
+[data-aos][data-aos-duration="400"] {
+  transition-duration: 0.4s;
+}
+
+[data-aos][data-aos-duration="600"] {
+  transition-duration: 0.6s;
+}
+
+[data-aos][data-aos-duration="800"] {
+  transition-duration: 0.8s;
+}
+
+[data-aos][data-aos-duration="1000"] {
+  transition-duration: 1s;
+}
+
+[data-aos][data-aos-duration="1200"] {
+  transition-duration: 1.2s;
+}
+
+/* Easing options */
+[data-aos][data-aos-easing="ease"] {
+  transition-timing-function: ease;
+}
+
+[data-aos][data-aos-easing="ease-in"] {
+  transition-timing-function: ease-in;
+}
+
+[data-aos][data-aos-easing="ease-out"] {
+  transition-timing-function: ease-out;
+}
+
+[data-aos][data-aos-easing="ease-in-out"] {
+  transition-timing-function: ease-in-out;
+}
+
+[data-aos][data-aos-easing="linear"] {
+  transition-timing-function: linear;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Additional professional animations */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Loading animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* Fade in on page load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Slide in from bottom */
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-up {
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Stagger animation delays for lists */
+.stagger-animation > * {
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-animation > *:nth-child(6) { animation-delay: 0.6s; }

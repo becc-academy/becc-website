@@ -12,9 +12,10 @@ jobs:
     
     steps:
       - name: Check PR has description
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: |
-          DESCRIPTION="${{ github.event.pull_request.body }}"
-          if [ -z "$DESCRIPTION" ] || [ ${#DESCRIPTION} -lt 10 ]; then
+          if [ -z "$PR_BODY" ] || [ ${#PR_BODY} -lt 10 ]; then
             echo "❌ PR description is too short or empty. Please provide a meaningful description."
             exit 1
           fi

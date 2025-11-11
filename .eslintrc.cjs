@@ -27,7 +27,7 @@ module.exports = {
     project: ['./tsconfig.json', './apps/*/tsconfig.json', './packages/*/tsconfig.json'],
     tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y', 'import'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y', 'import', 'simple-import-sort'],
   settings: {
     react: {
       version: 'detect',
@@ -71,41 +71,31 @@ module.exports = {
       },
     ],
     
-    // Import order
-    'import/order': [
+    // Import order with simple-import-sort
+    'simple-import-sort/imports': [
       'error',
       {
         groups: [
-          'builtin',
-          'external',
-          'internal',
-          ['parent', 'sibling'],
-          'index',
-          'object',
-          'type',
+          // Side effect imports
+          ['^\\u0000'],
+          // React and packages
+          ['^react', '^@?\\w'],
+          // Internal packages
+          ['^@becc'],
+          // Parent imports
+          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+          // Sibling imports
+          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+          // Type imports
+          ['^.+\\.?(css|scss)$'],
         ],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
-        pathGroups: [
-          {
-            pattern: 'react',
-            group: 'external',
-            position: 'before',
-          },
-          {
-            pattern: '@/**',
-            group: 'internal',
-            position: 'before',
-          },
-        ],
-        pathGroupsExcludedImportTypes: ['react'],
       },
     ],
+    'simple-import-sort/exports': 'error',
     'import/no-unresolved': 'error',
     'import/no-duplicates': 'error',
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
     
     // TypeScript strict rules
     '@typescript-eslint/no-explicit-any': 'error',
