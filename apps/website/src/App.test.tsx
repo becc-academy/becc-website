@@ -1,5 +1,7 @@
+import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import App from './App';
 
 describe('App', () => {
@@ -19,6 +21,16 @@ describe('App', () => {
     render(<App />);
     // Check for HomePage specific content
     expect(screen.getByText(/BECC Academy/i)).toBeInTheDocument();
+  });
+
+  it('should render ServicesPage on /services route', () => {
+    render(
+      <MemoryRouter initialEntries={['/services']}>
+        <App />
+      </MemoryRouter>,
+    );
+    // Check for ServicesPage specific content
+    expect(screen.getByText(/Empowering Growth Through Digital Education/i)).toBeInTheDocument();
   });
 
   it('should have proper document structure', () => {

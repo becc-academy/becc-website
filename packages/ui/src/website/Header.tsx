@@ -1,70 +1,53 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { cn } from '../lib/utils';
 
-export interface NavLink {
+export interface INavLink {
   label: string;
   href: string;
   active?: boolean;
 }
 
-export interface HeaderProps {
+export interface IHeaderProps {
   logo?: {
     src: string;
     alt: string;
   };
   siteName: string;
-  navLinks: NavLink[];
+  navLinks: INavLink[];
   className?: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  logo,
-  siteName,
-  navLinks,
-  className = '',
-}) => {
+export const Header: React.FC<IHeaderProps> = ({ logo, siteName, navLinks, className = '' }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header
       id="header"
-      className={cn(
-        'sticky top-0 z-50 bg-white shadow-sm transition-all duration-300',
-        className
-      )}
+      className={cn('sticky top-0 z-50 bg-white shadow-sm transition-all duration-300', className)}
     >
       <div className="container mx-auto px-4 xl:px-6">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <a
-            href="/"
-            className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
-          >
-            {logo && (
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                className="h-10 w-auto"
-              />
-            )}
+          <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+            {logo && <img src={logo.src} alt={logo.alt} className="h-10 w-auto" />}
             <h1 className="text-xl font-bold text-gray-900">{siteName}</h1>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex items-center space-x-8">
             {navLinks.map((link, index) => (
-              <a
+              <Link
                 key={index}
-                href={link.href}
+                to={link.href}
                 className={cn(
                   'text-base font-medium transition-colors hover:text-[#e95001]',
-                  link.active
-                    ? 'text-[#e95001]'
-                    : 'text-gray-700'
+                  link.active ? 'text-[#e95001]' : 'text-gray-700',
                 )}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -84,17 +67,16 @@ export const Header: React.FC<HeaderProps> = ({
             <ul className="space-y-2">
               {navLinks.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className={cn(
                       'block py-2 px-4 rounded-lg transition-colors',
-                      link.active
-                        ? 'bg-[#e95001] text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
+                      link.active ? 'bg-[#e95001] text-white' : 'text-gray-700 hover:bg-gray-100',
                     )}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

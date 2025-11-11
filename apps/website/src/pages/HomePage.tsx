@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 
 import {
   AboutSection,
+  BeccFooter,
   EventBanner,
   FeatureCard,
-  Footer,
   Header,
   Hero,
   ProgramCard,
@@ -340,54 +340,7 @@ const HomePage = (): JSX.Element => {
       </main>
 
       {/* Footer */}
-      <Footer
-        logo={{ src: '/assets/img/logo.png', alt: 'BECC Academy' }}
-        contact={{
-          location: 'Accra, Ghana',
-          phone: '+233 (0)20 123 3215',
-          email: 'info@beccacademy.com',
-        }}
-        socialLinks={[
-          {
-            icon: 'bi bi-twitter-x',
-            href: 'https://x.com/BECCAcademy',
-            label: 'Twitter',
-          },
-          { icon: 'bi bi-facebook', href: '#', label: 'Facebook' },
-          {
-            icon: 'bi bi-instagram',
-            href: 'https://www.instagram.com/beccacademy/',
-            label: 'Instagram',
-          },
-          {
-            icon: 'bi bi-linkedin',
-            href: 'https://www.linkedin.com/company/beccacademy/',
-            label: 'LinkedIn',
-          },
-        ]}
-        sections={[
-          {
-            title: 'Useful Links',
-            links: [
-              { label: 'Home', href: '/' },
-              { label: 'About us', href: '/about' },
-              { label: 'Services', href: '/services' },
-              { label: 'Programs', href: '/programs' },
-            ],
-          },
-          {
-            title: 'Our Services',
-            links: [
-              { label: 'Digital Skills Training', href: '/services' },
-              { label: 'Corporate Training', href: '/services' },
-              { label: 'Mentorship Programs', href: '/services' },
-              { label: 'Youth Programs', href: '/services' },
-            ],
-          },
-        ]}
-        copyright={{ text: 'BECC Academy' }}
-        credits={{ text: 'BECC Academy' }}
-      />
+      <BeccFooter />
 
       <ScrollToTop />
     </>

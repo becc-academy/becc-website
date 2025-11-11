@@ -1,19 +1,20 @@
 import React from 'react';
+
 import { cn } from '../lib/utils';
 
-export interface TestimonialCardProps {
+export interface ITestimonialCardProps {
   image: string;
   name: string;
-  role: string;
+  position: string;
   rating: number;
   testimonial: string;
   className?: string;
 }
 
-export const TestimonialCard: React.FC<TestimonialCardProps> = ({
+export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
   image,
   name,
-  role,
+  position,
   rating,
   testimonial,
   className = '',
@@ -22,7 +23,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
     <div
       className={cn(
         'bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300',
-        className
+        className,
       )}
     >
       {/* Header with Image and Rating */}
@@ -39,7 +40,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
               key={index}
               className={cn(
                 'bi bi-star-fill text-sm',
-                index < rating ? 'text-yellow-400' : 'text-gray-300'
+                index < rating ? 'text-yellow-400' : 'text-gray-300',
               )}
             ></i>
           ))}
@@ -48,14 +49,14 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       {/* Testimonial Text */}
       <p className="text-gray-700 text-sm leading-relaxed mb-6 italic">
-        "{testimonial}"
+        &ldquo;{testimonial}&rdquo;
       </p>
 
       {/* Footer with Name and Role */}
       <div className="flex items-center justify-between border-t border-gray-200 pt-4">
         <div>
           <h5 className="font-bold text-gray-900 text-base">{name}</h5>
-          <span className="text-sm text-gray-500">{role}</span>
+          <span className="text-sm text-gray-500">{position}</span>
         </div>
         <div className="w-10 h-10 bg-[#e95001]/10 rounded-full flex items-center justify-center">
           <i className="bi bi-chat-quote-fill text-[#e95001]"></i>

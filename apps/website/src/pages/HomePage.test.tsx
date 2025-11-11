@@ -1,5 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import HomePage from './HomePage';
 
 // Mock framer-motion to avoid animation issues in tests
@@ -43,7 +44,9 @@ describe('HomePage', () => {
   describe('Hero Section', () => {
     it('should render hero title', () => {
       render(<HomePage />);
-      expect(screen.getByText(/Launching Futures Through Experiential Learning/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Launching Futures Through Experiential Learning/i),
+      ).toBeInTheDocument();
     });
 
     it('should render hero description', () => {
@@ -216,7 +219,7 @@ describe('HomePage', () => {
       const { container } = render(<HomePage />);
       const main = container.querySelector('main');
       const footer = container.querySelector('footer');
-      
+
       expect(main).toBeInTheDocument();
       expect(footer).toBeInTheDocument();
     });

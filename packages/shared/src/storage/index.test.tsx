@@ -1,11 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { index } from './index';
 
 describe('index', () => {
-  const defaultProps = {
-
-  };
+  const defaultProps = {};
 
   it('should render without crashing', () => {
     const { container } = render(<index {...defaultProps} />);
@@ -28,5 +27,4 @@ describe('index', () => {
     const { container } = render(<index {...defaultProps} />);
     expect(container).toMatchSnapshot();
   });
-
 });

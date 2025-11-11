@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { APP_NAME, APP_VERSION, API_TIMEOUT, MAX_FILE_SIZE } from './index';
+import { describe, expect, it } from 'vitest';
+
+import { API_TIMEOUT, APP_NAME, APP_VERSION, MAX_FILE_SIZE } from './index';
 
 describe('APP_NAME', () => {
   it('should be defined', () => {

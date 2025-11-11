@@ -1,11 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { authStorage } from './authStorage';
 
 describe('authStorage', () => {
-  const defaultProps = {
-
-  };
+  const defaultProps = {};
 
   it('should render without crashing', () => {
     const { container } = render(<authStorage {...defaultProps} />);
@@ -28,5 +27,4 @@ describe('authStorage', () => {
     const { container } = render(<authStorage {...defaultProps} />);
     expect(container).toMatchSnapshot();
   });
-
 });

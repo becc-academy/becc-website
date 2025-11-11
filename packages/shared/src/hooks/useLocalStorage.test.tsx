@@ -1,11 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { useLocalStorage } from './useLocalStorage';
 
 describe('useLocalStorage', () => {
-  const defaultProps = {
-
-  };
+  const defaultProps = {};
 
   it('should render without crashing', () => {
     const { container } = render(<useLocalStorage {...defaultProps} />);
@@ -39,5 +38,4 @@ describe('useLocalStorage', () => {
     const { container } = render(<useLocalStorage {...defaultProps} />);
     expect(container).toMatchSnapshot();
   });
-
 });
