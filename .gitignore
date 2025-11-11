@@ -49,3 +49,6 @@ lerna-debug.log*
 
 # OS
 Thumbs.db
+
+# HTML reference files
+becc-website-html/

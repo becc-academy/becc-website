@@ -1,0 +1,43 @@
+## Description
+This PR implements a complete CI/CD pipeline with automated PR checks and review workflow. It includes GitHub Actions workflows for continuous integration, PR validation, automatic code owner assignment, and a comprehensive PR template to ensure quality contributions.
+
+## Type of Change
+- [x] 📝 Documentation update
+- [x] ⚙️ CI/CD configuration
+
+## Changes Made
+- Add ci.yml workflow for automated linting, type-checking, and build verification on all PRs and pushes to main/dev branches
+- Add pr-checks.yml for PR validation (title format, description quality, branch validation) and auto-labeling
+- Add comprehensive PR template with sections for description, type of change, testing, and checklist
+- Add CODEOWNERS file for automatic reviewer assignment based on changed files
+- Update README.md to ensure correct repository URL references throughout documentation
+
+## Related Issues
+Part of CI/CD setup initiative
+
+## Testing
+- [x] Tested locally
+- [x] Verified workflow syntax is valid
+- [x] Confirmed CODEOWNERS syntax
+- [x] Validated PR template structure
+
+### Test Environment
+- **Node version**: 18.x
+- **pnpm version**: 8.12.0
+- **OS**: Windows
+
+## Screenshots (if applicable)
+N/A - CI/CD configuration files
+
+## Checklist
+- [x] My code follows the project's coding conventions
+- [x] I have performed a self-review of my own code
+- [x] I have commented my code, particularly in hard-to-understand areas
+- [x] I have made corresponding changes to the documentation
+- [x] My changes generate no new warnings or errors
+- [x] I have added tests that prove my fix is effective or that my feature works
+- [x] New and existing unit tests pass locally with my changes
+- [x] Any dependent changes have been merged and published
+
+## Additional Notes
+This PR sets up the foundation for automated quality checks on all future PRs. After merge, please configure branch protection rules in GitHub repository settings to enforce these checks before merging.
