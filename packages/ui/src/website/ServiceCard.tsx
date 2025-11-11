@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { cn } from '../lib/utils';
 
-export interface ServiceCardProps {
+export interface IServiceCardProps {
   icon: string;
   title: string;
   description: string;
@@ -13,7 +14,7 @@ export interface ServiceCardProps {
   className?: string;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({
+export const ServiceCard: React.FC<IServiceCardProps> = ({
   icon,
   title,
   description,
@@ -25,7 +26,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
     <div
       className={cn(
         'bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group',
-        className
+        className,
       )}
     >
       {/* Icon */}

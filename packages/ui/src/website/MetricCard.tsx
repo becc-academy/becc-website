@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { cn } from '../lib/utils';
 
-export interface MetricCardProps {
+export interface IMetricCardProps {
   icon: string;
   value: string | number;
   label: string;
@@ -12,7 +13,7 @@ export interface MetricCardProps {
   className?: string;
 }
 
-export const MetricCard: React.FC<MetricCardProps> = ({
+export const MetricCard: React.FC<IMetricCardProps> = ({
   icon,
   value,
   label,
@@ -26,7 +27,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
     <div
       className={cn(
         'bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1',
-        className
+        className,
       )}
       data-aos={animated ? 'flip-left' : undefined}
     >
@@ -58,9 +59,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       {/* Info Section */}
       <div>
         <h4 className="text-lg font-bold text-gray-900 mb-1">{label}</h4>
-        {description && (
-          <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
-        )}
+        {description && <p className="text-sm text-gray-600 leading-relaxed">{description}</p>}
       </div>
     </div>
   );

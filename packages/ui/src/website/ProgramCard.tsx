@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { cn } from '../lib/utils';
 
-export interface ProgramCardProps {
+export interface IProgramCardProps {
   image: string;
   title: string;
   description: string;
@@ -16,7 +17,7 @@ export interface ProgramCardProps {
   className?: string;
 }
 
-export const ProgramCard: React.FC<ProgramCardProps> = ({
+export const ProgramCard: React.FC<IProgramCardProps> = ({
   image,
   title,
   description,
@@ -31,17 +32,12 @@ export const ProgramCard: React.FC<ProgramCardProps> = ({
     <div
       className={cn(
         'bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden',
-        className
+        className,
       )}
     >
       {/* Image Section */}
       <div className="relative">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-48 object-cover"
-          loading="lazy"
-        />
+        <img src={image} alt={title} className="w-full h-48 object-cover" loading="lazy" />
         {badge && (
           <div className="absolute top-4 right-4 bg-[#e95001] text-white px-3 py-1 rounded-full text-xs font-semibold">
             {badge}
@@ -71,9 +67,7 @@ export const ProgramCard: React.FC<ProgramCardProps> = ({
         </div>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 leading-relaxed mb-4">
-          {description}
-        </p>
+        <p className="text-sm text-gray-600 leading-relaxed mb-4">{description}</p>
 
         {/* Meta Information */}
         <div className="flex items-center space-x-4 text-xs text-gray-500 mb-4">
@@ -102,7 +96,7 @@ export const ProgramCard: React.FC<ProgramCardProps> = ({
   );
 };
 
-export interface ProgramItemProps {
+export interface IProgramItemProps {
   image: string;
   title: string;
   description: string;
@@ -111,7 +105,7 @@ export interface ProgramItemProps {
   className?: string;
 }
 
-export const ProgramItem: React.FC<ProgramItemProps> = ({
+export const ProgramItem: React.FC<IProgramItemProps> = ({
   image,
   title,
   description,
@@ -123,25 +117,18 @@ export const ProgramItem: React.FC<ProgramItemProps> = ({
     <div
       className={cn(
         'bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center space-x-4',
-        className
+        className,
       )}
     >
       {/* Icon/Image */}
       <div className="flex-shrink-0">
-        <img
-          src={image}
-          alt={title}
-          className="w-20 h-20 object-cover rounded-lg"
-          loading="lazy"
-        />
+        <img src={image} alt={title} className="w-20 h-20 object-cover rounded-lg" loading="lazy" />
       </div>
 
       {/* Content */}
       <div className="flex-1">
         <h4 className="text-base font-bold text-gray-900 mb-1">{title}</h4>
-        <p className="text-xs text-gray-600 leading-relaxed mb-2">
-          {description}
-        </p>
+        <p className="text-xs text-gray-600 leading-relaxed mb-2">{description}</p>
         <div className="flex items-center space-x-3 text-xs text-gray-500">
           <span>{duration}</span>
           <span>•</span>

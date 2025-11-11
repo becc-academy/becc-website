@@ -1,14 +1,15 @@
 import React from 'react';
+
 import { cn } from '../lib/utils';
 
-export interface ValueCardProps {
+export interface IValueCardProps {
   icon: string;
   title: string;
   description: string;
   className?: string;
 }
 
-export const ValueCard: React.FC<ValueCardProps> = ({
+export const ValueCard: React.FC<IValueCardProps> = ({
   icon,
   title,
   description,
@@ -18,7 +19,7 @@ export const ValueCard: React.FC<ValueCardProps> = ({
     <div
       className={cn(
         'bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2',
-        className
+        className,
       )}
     >
       <div className="w-14 h-14 bg-[#e95001]/10 rounded-full flex items-center justify-center mb-4">

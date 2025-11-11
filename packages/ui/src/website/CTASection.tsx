@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { cn } from '../lib/utils';
 
-export interface CTASectionProps {
+export interface ICTASectionProps {
   title: string;
   description?: string;
   primaryButton?: {
@@ -18,7 +19,7 @@ export interface CTASectionProps {
   className?: string;
 }
 
-export const CTASection: React.FC<CTASectionProps> = ({
+export const CTASection: React.FC<ICTASectionProps> = ({
   title,
   description,
   primaryButton,
@@ -27,20 +28,11 @@ export const CTASection: React.FC<CTASectionProps> = ({
   className = '',
 }) => {
   return (
-    <section
-      className={cn(
-        'relative py-20 overflow-hidden',
-        className
-      )}
-    >
+    <section className={cn('relative py-20 overflow-hidden', className)}>
       {/* Background */}
       {backgroundImage ? (
         <div className="absolute inset-0">
-          <img
-            src={backgroundImage}
-            alt="Background"
-            className="w-full h-full object-cover"
-          />
+          <img src={backgroundImage} alt="Background" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#e95001]/95 to-[#d14801]/95"></div>
         </div>
       ) : (
@@ -56,7 +48,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
           >
             {title}
           </h2>
-          
+
           {description && (
             <p
               className="text-lg text-white/90 mb-8 leading-relaxed"
@@ -67,7 +59,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
             </p>
           )}
 
-          {(primaryButton || secondaryButton) && (
+          {(primaryButton ?? secondaryButton) && (
             <div
               className="flex flex-wrap justify-center gap-4"
               data-aos="fade-up"
@@ -82,7 +74,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
                   {primaryButton.label}
                 </a>
               )}
-              
+
               {secondaryButton && (
                 <a
                   href={secondaryButton.href}

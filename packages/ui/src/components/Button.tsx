@@ -1,4 +1,4 @@
-import { FC, ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline';

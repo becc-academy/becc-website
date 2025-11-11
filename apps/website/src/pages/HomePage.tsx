@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 
 import {
   AboutSection,
+  BeccFooter,
   EventBanner,
   FeatureCard,
-  Footer,
   Header,
   Hero,
   ProgramCard,
@@ -42,7 +42,6 @@ const staggerContainer = {
 };
 
 const HomePage = (): JSX.Element => {
-
   return (
     <>
       {/* Header */}
@@ -166,10 +165,7 @@ const HomePage = (): JSX.Element => {
           variants={staggerContainer}
         >
           <div className="container mx-auto px-4">
-            <motion.h3
-              className="text-3xl font-bold text-center mb-12"
-              variants={fadeInUp}
-            >
+            <motion.h3 className="text-3xl font-bold text-center mb-12" variants={fadeInUp}>
               The B.E.C.C. Code
             </motion.h3>
             <motion.div
@@ -244,10 +240,7 @@ const HomePage = (): JSX.Element => {
               </motion.div>
 
               {/* Program List */}
-              <motion.div
-                className="space-y-4"
-                variants={staggerContainer}
-              >
+              <motion.div className="space-y-4" variants={staggerContainer}>
                 <motion.div variants={fadeInRight}>
                   <ProgramItem
                     image="/assets/img/education/education-4.webp"
@@ -309,7 +302,7 @@ const HomePage = (): JSX.Element => {
                 <TestimonialCard
                   image="/assets/img/person/sq.jpg"
                   name="Sandra Yemoley Quarshie"
-                  role="Alumni"
+                  position="Alumni"
                   rating={5}
                   testimonial="I had a good time learning. I learned what it takes to be a good designer, the course stressed on the need for making use of the design principles to achieve great designs. I liked my tutor, he was very professional. Yes! I would 100% recommend BECC Academy."
                 />
@@ -322,7 +315,7 @@ const HomePage = (): JSX.Element => {
                 <TestimonialCard
                   image="/assets/img/person/ll.jpg"
                   name="Lartey Lois Lartebea"
-                  role="Alumni"
+                  position="Alumni"
                   rating={5}
                   testimonial="It was a great experience. Our tutor was the best. His knowledge on the course, his humility and friendliness made the class always interesting. I will always recommend BECC Academy to others. Thank you for this opportunity."
                 />
@@ -335,7 +328,7 @@ const HomePage = (): JSX.Element => {
                 <TestimonialCard
                   image="/assets/img/person/fe.jpg"
                   name="Agyepong Felix Okoree"
-                  role="Alumni"
+                  position="Alumni"
                   rating={5}
                   testimonial="It was an insightful training program; I had the opportunity to learn the basics of graphic design and implement what I learned in my designs."
                 />
@@ -346,54 +339,7 @@ const HomePage = (): JSX.Element => {
       </main>
 
       {/* Footer */}
-      <Footer
-        logo={{ src: '/assets/img/logo.png', alt: 'BECC Academy' }}
-        contact={{
-          location: 'Accra, Ghana',
-          phone: '+233 (0)20 123 3215',
-          email: 'info@beccacademy.com',
-        }}
-        socialLinks={[
-          {
-            icon: 'bi bi-twitter-x',
-            href: 'https://x.com/BECCAcademy',
-            label: 'Twitter',
-          },
-          { icon: 'bi bi-facebook', href: '#', label: 'Facebook' },
-          {
-            icon: 'bi bi-instagram',
-            href: 'https://www.instagram.com/beccacademy/',
-            label: 'Instagram',
-          },
-          {
-            icon: 'bi bi-linkedin',
-            href: 'https://www.linkedin.com/company/beccacademy/',
-            label: 'LinkedIn',
-          },
-        ]}
-        sections={[
-          {
-            title: 'Useful Links',
-            links: [
-              { label: 'Home', href: '/' },
-              { label: 'About us', href: '/about' },
-              { label: 'Services', href: '/services' },
-              { label: 'Programs', href: '/programs' },
-            ],
-          },
-          {
-            title: 'Our Services',
-            links: [
-              { label: 'Digital Skills Training', href: '/services' },
-              { label: 'Corporate Training', href: '/services' },
-              { label: 'Mentorship Programs', href: '/services' },
-              { label: 'Youth Programs', href: '/services' },
-            ],
-          },
-        ]}
-        copyright={{ text: 'BECC Academy' }}
-        credits={{ text: 'BECC Academy' }}
-      />
+      <BeccFooter />
 
       <ScrollToTop />
     </>

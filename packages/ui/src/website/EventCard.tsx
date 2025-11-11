@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { cn } from '../lib/utils';
 
-export interface EventCardProps {
+export interface IEventCardProps {
   image: string;
   date: {
     day: string;
@@ -20,7 +21,7 @@ export interface EventCardProps {
   className?: string;
 }
 
-export const EventCard: React.FC<EventCardProps> = ({
+export const EventCard: React.FC<IEventCardProps> = ({
   image,
   date,
   category,
@@ -43,7 +44,7 @@ export const EventCard: React.FC<EventCardProps> = ({
     <div
       className={cn(
         'bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group',
-        className
+        className,
       )}
       data-aos="zoom-in"
     >
@@ -55,13 +56,11 @@ export const EventCard: React.FC<EventCardProps> = ({
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           loading="lazy"
         />
-        
+
         {/* Date Overlay */}
         <div className="absolute top-4 left-4 bg-white rounded-lg p-3 text-center shadow-lg">
           <div className="text-2xl font-bold text-[#e95001]">{date.day}</div>
-          <div className="text-xs font-semibold text-gray-600 uppercase">
-            {date.month}
-          </div>
+          <div className="text-xs font-semibold text-gray-600 uppercase">{date.month}</div>
         </div>
       </div>
 
@@ -72,7 +71,7 @@ export const EventCard: React.FC<EventCardProps> = ({
           <span
             className={cn(
               'px-3 py-1 rounded-full text-white text-xs font-semibold',
-              categoryColors[category.type]
+              categoryColors[category.type],
             )}
           >
             {category.label}
@@ -84,9 +83,7 @@ export const EventCard: React.FC<EventCardProps> = ({
         <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#e95001] transition-colors">
           {title}
         </h3>
-        <p className="text-sm text-gray-600 leading-relaxed mb-4">
-          {description}
-        </p>
+        <p className="text-sm text-gray-600 leading-relaxed mb-4">{description}</p>
 
         {/* Event Info */}
         <div className="space-y-2 mb-4 text-sm text-gray-700">

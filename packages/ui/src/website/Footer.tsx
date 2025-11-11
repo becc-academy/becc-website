@@ -1,23 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { cn } from '../lib/utils';
 
-export interface SocialLink {
+export interface ISocialLink {
   icon: string;
   href: string;
   label: string;
 }
 
-export interface FooterLink {
+export interface IFooterLink {
   label: string;
   href: string;
 }
 
-export interface FooterSection {
+export interface IFooterSection {
   title: string;
-  links: FooterLink[];
+  links: IFooterLink[];
 }
 
-export interface FooterProps {
+export interface IFooterProps {
   logo?: {
     src: string;
     alt: string;
@@ -27,8 +29,8 @@ export interface FooterProps {
     phone?: string;
     email?: string;
   };
-  socialLinks: SocialLink[];
-  sections: FooterSection[];
+  socialLinks: ISocialLink[];
+  sections: IFooterSection[];
   copyright: {
     text: string;
     year?: number;
@@ -38,9 +40,10 @@ export interface FooterProps {
     link?: string;
   };
   className?: string;
+  withGlasmorphism?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({
+export const Footer: React.FC<IFooterProps> = ({
   logo,
   contact,
   socialLinks,
@@ -48,44 +51,95 @@ export const Footer: React.FC<FooterProps> = ({
   copyright,
   credits,
   className = '',
+  withGlasmorphism = false,
 }) => {
-  const currentYear = copyright.year || new Date().getFullYear();
+  const currentYear = copyright.year ?? new Date().getFullYear();
+
+  const footerBgClass = withGlasmorphism
+    ? 'bg-gradient-to-br from-[#e95001] via-[#d14801] to-[#b83d01] text-white relative overflow-hidden'
+    : 'bg-gray-50 border-t border-gray-200';
 
   return (
-    <footer
-      id="footer"
-      className={cn('bg-gray-50 border-t border-gray-200', className)}
-    >
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* About Section */}
-          <div>
+    <footer id="footer" className={cn(footerBgClass, className)}>
+      {/* Glasmorphism overlay for scroll button area */}
+      {withGlasmorphism && (
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 backdrop-blur-lg rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      )}
+
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* About Section - Takes up 4 columns */}
+          <div className="lg:col-span-4">
             {logo && (
-              <a href="/" className="inline-block mb-4">
+              <Link to="/" className="inline-block mb-6">
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-10 w-auto"
+                  className="h-12 w-auto brightness-0 invert"
+                  style={{ filter: withGlasmorphism ? 'brightness(0) invert(1)' : 'none' }}
                 />
-              </a>
+              </Link>
             )}
-            
-            <div className="space-y-2 text-sm text-gray-600">
-              {contact.location && <p>{contact.location}</p>}
+
+            <div className="space-y-3 mb-6">
+              {contact.location && (
+                <div className="flex items-start space-x-3">
+                  <i
+                    className={cn(
+                      'bi bi-geo-alt-fill text-sm mt-0.5 flex-shrink-0',
+                      withGlasmorphism ? 'text-white/80' : 'text-gray-600',
+                    )}
+                  ></i>
+                  <p
+                    className={cn(
+                      'text-sm leading-relaxed',
+                      withGlasmorphism ? 'text-white/90' : 'text-gray-600',
+                    )}
+                  >
+                    {contact.location}
+                  </p>
+                </div>
+              )}
               {contact.phone && (
-                <p>
-                  <strong>Phone:</strong> {contact.phone}
-                </p>
+                <div className="flex items-start space-x-3">
+                  <i
+                    className={cn(
+                      'bi bi-telephone-fill text-sm mt-0.5 flex-shrink-0',
+                      withGlasmorphism ? 'text-white/80' : 'text-gray-600',
+                    )}
+                  ></i>
+                  <p
+                    className={cn(
+                      'text-sm leading-relaxed',
+                      withGlasmorphism ? 'text-white/90' : 'text-gray-600',
+                    )}
+                  >
+                    {contact.phone}
+                  </p>
+                </div>
               )}
               {contact.email && (
-                <p>
-                  <strong>Email:</strong> {contact.email}
-                </p>
+                <div className="flex items-start space-x-3">
+                  <i
+                    className={cn(
+                      'bi bi-envelope-fill text-sm mt-0.5 flex-shrink-0',
+                      withGlasmorphism ? 'text-white/80' : 'text-gray-600',
+                    )}
+                  ></i>
+                  <p
+                    className={cn(
+                      'text-sm leading-relaxed',
+                      withGlasmorphism ? 'text-white/90' : 'text-gray-600',
+                    )}
+                  >
+                    {contact.email}
+                  </p>
+                </div>
               )}
             </div>
 
             {/* Social Links */}
-            <div className="flex space-x-3 mt-4">
+            <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
@@ -93,7 +147,12 @@ export const Footer: React.FC<FooterProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-[#e95001] text-white hover:bg-[#d14801] transition-colors"
+                  className={cn(
+                    'w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 text-lg',
+                    withGlasmorphism
+                      ? 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 hover:scale-110 hover:shadow-lg'
+                      : 'bg-[#e95001] text-white hover:bg-[#d14801] hover:shadow-lg',
+                  )}
                 >
                   <i className={social.icon}></i>
                 </a>
@@ -101,43 +160,94 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
-          {/* Footer Sections */}
-          {sections.map((section, index) => (
-            <div key={index}>
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                {section.title}
-              </h4>
-              <ul className="space-y-2">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-gray-600 hover:text-[#e95001] transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {/* Vertical Separator */}
+          <div
+            className={cn(
+              'hidden lg:block lg:col-span-1 relative',
+              withGlasmorphism ? 'opacity-30' : 'opacity-20',
+            )}
+          >
+            <div
+              className={cn(
+                'absolute left-1/2 top-0 bottom-0 w-px',
+                withGlasmorphism
+                  ? 'bg-gradient-to-b from-transparent via-white to-transparent'
+                  : 'bg-gradient-to-b from-transparent via-gray-400 to-transparent',
+              )}
+            />
+          </div>
+
+          {/* Footer Sections - Takes up remaining columns */}
+          <div className="lg:col-span-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {sections.map((section, index) => (
+                <div key={index}>
+                  <h4
+                    className={cn(
+                      'text-lg font-bold mb-6 relative inline-block',
+                      withGlasmorphism ? 'text-white' : 'text-gray-900',
+                    )}
+                  >
+                    {section.title}
+                    <div
+                      className={cn(
+                        'absolute bottom-0 left-0 w-12 h-0.5 -mb-2',
+                        withGlasmorphism ? 'bg-white/50' : 'bg-[#e95001]',
+                      )}
+                    />
+                  </h4>
+                  <ul className="space-y-3 mt-4">
+                    {section.links.map((link, linkIndex) => (
+                      <li key={linkIndex}>
+                        <Link
+                          to={link.href}
+                          className={cn(
+                            'text-sm transition-all duration-200 flex items-center space-x-2 group',
+                            withGlasmorphism
+                              ? 'text-white/80 hover:text-white hover:pl-2'
+                              : 'text-gray-600 hover:text-[#e95001] hover:pl-2',
+                          )}
+                        >
+                          <i
+                            className={cn(
+                              'bi bi-chevron-right text-xs transition-transform group-hover:translate-x-1',
+                              withGlasmorphism ? 'text-white/60' : 'text-gray-400',
+                            )}
+                          ></i>
+                          <span>{link.label}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-gray-200 py-6">
+      <div
+        className={cn(
+          'py-6 relative z-10',
+          withGlasmorphism ? 'border-t border-white/20' : 'border-t border-gray-200',
+        )}
+      >
         <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-gray-600">
+          <p className={cn('text-sm', withGlasmorphism ? 'text-white/90' : 'text-gray-600')}>
             © {currentYear} <strong>{copyright.text}</strong> All Rights Reserved
           </p>
           {credits && (
-            <p className="text-sm text-gray-500 mt-2">
+            <p className={cn('text-sm mt-2', withGlasmorphism ? 'text-white/70' : 'text-gray-500')}>
               {credits.link ? (
                 <>
                   Designed by{' '}
                   <a
                     href={credits.link}
-                    className="text-[#e95001] hover:underline"
+                    className={cn(
+                      'hover:underline',
+                      withGlasmorphism ? 'text-white' : 'text-[#e95001]',
+                    )}
                   >
                     {credits.text}
                   </a>
