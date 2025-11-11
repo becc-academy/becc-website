@@ -16,18 +16,21 @@
     "@becc/ui": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^6.20.1",
-    "zustand": "^4.5.0",
-    "axios": "^1.6.0",
-    "@tanstack/react-query": "^5.17.0",
+    "react-router-dom": "^7.1.1",
+    "framer-motion": "^11.14.4",
+    "zustand": "^5.0.2",
+    "axios": "^1.7.9",
+    "@tanstack/react-query": "^5.62.7",
     "localforage": "^1.10.0",
     "idb-keyval": "^6.2.1"
   },
   "devDependencies": {
     "@becc/config": "workspace:*",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.0.8"
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.3",
+    "vite-plugin-image-optimizer": "^1.1.8",
+    "vite-imagetools": "^7.0.4"
   }
 }
