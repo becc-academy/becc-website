@@ -52,3 +52,7 @@ Thumbs.db
 
 # HTML reference files
 becc-website-html/
+
+# PR and temporary files
+pr_body.txt
+pr-body.md
