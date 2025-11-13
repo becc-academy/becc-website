@@ -1,4 +1,4 @@
-import { storage, sessionStorage } from '../storage';
+import { sessionStorage, storage } from '../storage';
 import { IUser } from '../types';
 
 export interface IAuthTokens {

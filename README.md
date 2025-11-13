@@ -268,7 +268,7 @@ VITE_API_URL=http://localhost:8000/api
 VITE_API_TIMEOUT=30000
 ```
 
-## 📝 Coding Standards
+- 📝 Coding Standards
 
 ### TypeScript Rules
 

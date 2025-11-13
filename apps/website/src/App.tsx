@@ -7,6 +7,7 @@ import ContactPage from '@/pages/ContactPage';
 import EventsPage from '@/pages/EventsPage';
 import HomePage from '@/pages/HomePage';
 import ProgramsPage from '@/pages/ProgramsPage';
+import ServicesPage from '@/pages/ServicesPage';
 
 const App = (): JSX.Element => {
   return (
@@ -17,6 +18,7 @@ const App = (): JSX.Element => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/programs" element={<ProgramsPage />} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
