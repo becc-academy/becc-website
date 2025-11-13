@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Eye, Target } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -38,7 +39,7 @@ export const AboutSection: React.FC<IAboutSectionProps> = ({
     tabs.push({
       id: 'mission',
       label: 'Mission',
-      icon: 'bi bi-bullseye',
+      icon: Target,
       title: mission.title,
       description: mission.description,
     });
@@ -47,7 +48,7 @@ export const AboutSection: React.FC<IAboutSectionProps> = ({
     tabs.push({
       id: 'vision',
       label: 'Vision',
-      icon: 'bi bi-eye',
+      icon: Eye,
       title: vision.title,
       description: vision.description,
     });

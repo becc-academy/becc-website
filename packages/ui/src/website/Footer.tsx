@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ChevronRight, LucideIcon, Mail, MapPin, Phone } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
 export interface ISocialLink {
-  icon: string;
+  icon: LucideIcon;
   href: string;
   label: string;
 }
@@ -84,12 +85,12 @@ export const Footer: React.FC<IFooterProps> = ({
             <div className="space-y-3 mb-6">
               {contact.location && (
                 <div className="flex items-start space-x-3">
-                  <i
+                  <MapPin
                     className={cn(
-                      'bi bi-geo-alt-fill text-sm mt-0.5 flex-shrink-0',
+                      'w-4 h-4 mt-0.5 flex-shrink-0',
                       withGlasmorphism ? 'text-white/80' : 'text-gray-600',
                     )}
-                  ></i>
+                  />
                   <p
                     className={cn(
                       'text-sm leading-relaxed',
@@ -102,12 +103,12 @@ export const Footer: React.FC<IFooterProps> = ({
               )}
               {contact.phone && (
                 <div className="flex items-start space-x-3">
-                  <i
+                  <Phone
                     className={cn(
-                      'bi bi-telephone-fill text-sm mt-0.5 flex-shrink-0',
+                      'w-4 h-4 mt-0.5 flex-shrink-0',
                       withGlasmorphism ? 'text-white/80' : 'text-gray-600',
                     )}
-                  ></i>
+                  />
                   <p
                     className={cn(
                       'text-sm leading-relaxed',
@@ -120,12 +121,12 @@ export const Footer: React.FC<IFooterProps> = ({
               )}
               {contact.email && (
                 <div className="flex items-start space-x-3">
-                  <i
+                  <Mail
                     className={cn(
-                      'bi bi-envelope-fill text-sm mt-0.5 flex-shrink-0',
+                      'w-4 h-4 mt-0.5 flex-shrink-0',
                       withGlasmorphism ? 'text-white/80' : 'text-gray-600',
                     )}
-                  ></i>
+                  />
                   <p
                     className={cn(
                       'text-sm leading-relaxed',
@@ -140,23 +141,26 @@ export const Footer: React.FC<IFooterProps> = ({
 
             {/* Social Links */}
             <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className={cn(
-                    'w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 text-lg',
-                    withGlasmorphism
-                      ? 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 hover:scale-110 hover:shadow-lg'
-                      : 'bg-[#e95001] text-white hover:bg-[#d14801] hover:shadow-lg',
-                  )}
-                >
-                  <i className={social.icon}></i>
-                </a>
-              ))}
+              {socialLinks.map((social, index) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className={cn(
+                      'w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 text-lg',
+                      withGlasmorphism
+                        ? 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 hover:scale-110 hover:shadow-lg'
+                        : 'bg-[#e95001] text-white hover:bg-[#d14801] hover:shadow-lg',
+                    )}
+                  >
+                    <IconComponent className="w-5 h-5" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -208,12 +212,12 @@ export const Footer: React.FC<IFooterProps> = ({
                               : 'text-gray-600 hover:text-[#e95001] hover:pl-2',
                           )}
                         >
-                          <i
+                          <ChevronRight
                             className={cn(
-                              'bi bi-chevron-right text-xs transition-transform group-hover:translate-x-1',
+                              'w-3 h-3 transition-transform group-hover:translate-x-1',
                               withGlasmorphism ? 'text-white/60' : 'text-gray-400',
                             )}
-                          ></i>
+                          />
                           <span>{link.label}</span>
                         </Link>
                       </li>

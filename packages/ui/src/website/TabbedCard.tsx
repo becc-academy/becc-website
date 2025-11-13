@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { LucideIcon } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
 export interface ITab {
   id: string;
   label: string;
-  icon?: string;
+  icon?: LucideIcon;
   title: string;
   description: string;
 }
@@ -38,7 +39,7 @@ export const TabbedCard: React.FC<ITabbedCardProps> = ({ tabs, className = '' })
             )}
           >
             <div className="flex items-center justify-center space-x-2">
-              {tab.icon && <i className={cn(tab.icon, 'text-lg')}></i>}
+              {tab.icon && <tab.icon className="w-5 h-5" />}
               <span>{tab.label}</span>
             </div>
 

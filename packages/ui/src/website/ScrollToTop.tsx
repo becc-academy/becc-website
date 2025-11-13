@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -50,7 +51,7 @@ export const ScrollToTop: React.FC<IScrollToTopProps> = ({
       )}
       aria-label="Scroll to top"
     >
-      <i className="bi bi-arrow-up-short text-3xl relative z-10 drop-shadow-sm"></i>
+      <ArrowUp className="w-8 h-8 relative z-10 drop-shadow-sm" />
     </button>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 import { Footer, IFooterProps } from './Footer';
 
@@ -16,22 +17,22 @@ export const BeccFooter: React.FC<Partial<IFooterProps>> = (props) => {
     },
     socialLinks: [
       {
-        icon: 'bi bi-twitter-x',
+        icon: Twitter,
         href: 'https://x.com/BECCAcademy',
         label: 'Twitter',
       },
       {
-        icon: 'bi bi-facebook',
+        icon: Facebook,
         href: '#',
         label: 'Facebook',
       },
       {
-        icon: 'bi bi-instagram',
+        icon: Instagram,
         href: 'https://www.instagram.com/beccacademy/',
         label: 'Instagram',
       },
       {
-        icon: 'bi bi-linkedin',
+        icon: Linkedin,
         href: 'https://www.linkedin.com/company/beccacademy/',
         label: 'LinkedIn',
       },

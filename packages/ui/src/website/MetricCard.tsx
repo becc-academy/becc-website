@@ -1,9 +1,10 @@
 import React from 'react';
+import { LucideIcon } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
 export interface IMetricCardProps {
-  icon: string;
+  icon: LucideIcon;
   value: string | number;
   label: string;
   description?: string;
@@ -14,7 +15,7 @@ export interface IMetricCardProps {
 }
 
 export const MetricCard: React.FC<IMetricCardProps> = ({
-  icon,
+  icon: Icon,
   value,
   label,
   description,
@@ -34,7 +35,7 @@ export const MetricCard: React.FC<IMetricCardProps> = ({
       {/* Header Section */}
       <div className="flex items-center justify-between mb-4">
         <div className="w-14 h-14 bg-[#e95001]/10 rounded-full flex items-center justify-center">
-          <i className={cn('text-2xl text-[#e95001]', icon)}></i>
+          <Icon className="w-6 h-6 text-[#e95001]" />
         </div>
         <div className="text-right">
           <div className="text-3xl font-bold text-gray-900">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -137,7 +138,7 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center">
-              <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
+              <Loader2 className="w-5 h-5 animate-spin mr-2" />
               Sending...
             </span>
           ) : (
@@ -148,15 +149,15 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
 
       {/* Status Messages */}
       {submitStatus === 'success' && (
-        <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm">
-          <i className="bi bi-check-circle-fill mr-2"></i>
+        <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm flex items-center">
+          <CheckCircle className="w-5 h-5 mr-2" />
           Your message has been sent successfully!
         </div>
       )}
 
       {submitStatus === 'error' && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
-          <i className="bi bi-exclamation-circle-fill mr-2"></i>
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm flex items-center">
+          <AlertCircle className="w-5 h-5 mr-2" />
           There was an error sending your message. Please try again.
         </div>
       )}

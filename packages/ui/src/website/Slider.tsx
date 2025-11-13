@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -136,14 +137,14 @@ export const Slider: React.FC<ISliderProps> = ({
             className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300 opacity-0 group-hover:opacity-100"
             aria-label="Previous slide"
           >
-            <i className="bi bi-chevron-left text-2xl"></i>
+            <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={goToNext}
             className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300 opacity-0 group-hover:opacity-100"
             aria-label="Next slide"
           >
-            <i className="bi bi-chevron-right text-2xl"></i>
+            <ChevronRight className="w-6 h-6" />
           </button>
         </>
       )}

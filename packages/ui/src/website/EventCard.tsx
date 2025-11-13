@@ -1,4 +1,5 @@
 import React from 'react';
+import { Heart, MapPin, Share2, Users } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -88,11 +89,11 @@ export const EventCard: React.FC<IEventCardProps> = ({
         {/* Event Info */}
         <div className="space-y-2 mb-4 text-sm text-gray-700">
           <div className="flex items-center">
-            <i className="bi bi-geo-alt text-[#e95001] mr-2"></i>
+            <MapPin className="w-4 h-4 text-[#e95001] mr-2" />
             <span>{location}</span>
           </div>
           <div className="flex items-center">
-            <i className="bi bi-people text-[#e95001] mr-2"></i>
+            <Users className="w-4 h-4 text-[#e95001] mr-2" />
             <span>{participants}</span>
           </div>
         </div>
@@ -112,13 +113,13 @@ export const EventCard: React.FC<IEventCardProps> = ({
               className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
               aria-label="Share event"
             >
-              <i className="bi bi-share text-gray-600"></i>
+              <Share2 className="w-4 h-4 text-gray-600" />
             </button>
             <button
               className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
               aria-label="Save event"
             >
-              <i className="bi bi-heart text-gray-600"></i>
+              <Heart className="w-4 h-4 text-gray-600" />
             </button>
           </div>
         </div>

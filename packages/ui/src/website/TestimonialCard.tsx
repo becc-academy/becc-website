@@ -1,4 +1,5 @@
 import React from 'react';
+import { Quote, Star } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -36,13 +37,13 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
         />
         <div className="flex space-x-1">
           {Array.from({ length: 5 }).map((_, index) => (
-            <i
+            <Star
               key={index}
               className={cn(
-                'bi bi-star-fill text-sm',
-                index < rating ? 'text-yellow-400' : 'text-gray-300',
+                'w-4 h-4',
+                index < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300 fill-gray-300',
               )}
-            ></i>
+            />
           ))}
         </div>
       </div>
@@ -59,7 +60,7 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
           <span className="text-sm text-gray-500">{position}</span>
         </div>
         <div className="w-10 h-10 bg-[#e95001]/10 rounded-full flex items-center justify-center">
-          <i className="bi bi-chat-quote-fill text-[#e95001]"></i>
+          <Quote className="w-5 h-5 text-[#e95001]" />
         </div>
       </div>
     </div>

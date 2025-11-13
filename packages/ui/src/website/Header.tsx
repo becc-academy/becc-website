@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -57,7 +58,7 @@ export const Header: React.FC<IHeaderProps> = ({ logo, siteName, navLinks, class
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
-            <i className={`bi ${mobileMenuOpen ? 'bi-x' : 'bi-list'}`}></i>
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 

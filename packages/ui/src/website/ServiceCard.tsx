@@ -1,9 +1,10 @@
 import React from 'react';
+import { ArrowRight, CheckCircle, LucideIcon } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
 export interface IServiceCardProps {
-  icon: string;
+  icon: LucideIcon;
   title: string;
   description: string;
   features?: string[];
@@ -15,7 +16,7 @@ export interface IServiceCardProps {
 }
 
 export const ServiceCard: React.FC<IServiceCardProps> = ({
-  icon,
+  icon: Icon,
   title,
   description,
   features,
@@ -31,7 +32,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
     >
       {/* Icon */}
       <div className="w-16 h-16 bg-gradient-to-br from-[#e95001] to-[#d14801] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-        <i className={cn('text-3xl text-white', icon)}></i>
+        <Icon className="w-8 h-8 text-white" />
       </div>
 
       {/* Content */}
@@ -43,7 +44,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
         <ul className="space-y-2 mb-6">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start text-sm text-gray-700">
-              <i className="bi bi-check-circle-fill text-[#e95001] mr-2 mt-0.5 flex-shrink-0"></i>
+              <CheckCircle className="w-4 h-4 text-[#e95001] mr-2 mt-0.5 flex-shrink-0" />
               <span>{feature}</span>
             </li>
           ))}
@@ -57,7 +58,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
           className="inline-flex items-center text-[#e95001] font-semibold hover:text-[#d14801] transition-colors group"
         >
           {link.label}
-          <i className="bi bi-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
         </a>
       )}
     </div>

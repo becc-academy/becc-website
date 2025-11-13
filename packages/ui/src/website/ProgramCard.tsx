@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowRight, Award, Calendar, GraduationCap, Users } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -54,12 +55,12 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
             <div className="flex items-center space-x-4 text-xs text-gray-600">
               {stats.students && (
                 <span className="flex items-center">
-                  <i className="bi bi-people-fill mr-1"></i> {stats.students}
+                  <Users className="w-3 h-3 mr-1" /> {stats.students}
                 </span>
               )}
               {stats.successRate && (
                 <span className="flex items-center">
-                  <i className="bi bi-award-fill mr-1"></i> {stats.successRate}
+                  <Award className="w-3 h-3 mr-1" /> {stats.successRate}
                 </span>
               )}
             </div>
@@ -72,11 +73,11 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
         {/* Meta Information */}
         <div className="flex items-center space-x-4 text-xs text-gray-500 mb-4">
           <div className="flex items-center">
-            <i className="bi bi-calendar-check mr-1"></i>
+            <Calendar className="w-3 h-3 mr-1" />
             <span>{duration}</span>
           </div>
           <div className="flex items-center">
-            <i className="bi bi-mortarboard-fill mr-1"></i>
+            <GraduationCap className="w-3 h-3 mr-1" />
             <span>{level}</span>
           </div>
         </div>
@@ -88,7 +89,7 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
             className="w-full py-3 px-4 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors flex items-center justify-center"
           >
             Discover Program
-            <i className="bi bi-arrow-right ml-2"></i>
+            <ArrowRight className="w-4 h-4 ml-2" />
           </button>
         )}
       </div>
@@ -138,7 +139,7 @@ export const ProgramItem: React.FC<IProgramItemProps> = ({
 
       {/* Arrow */}
       <div className="flex-shrink-0">
-        <i className="bi bi-arrow-right text-[#e95001] text-xl"></i>
+        <ArrowRight className="w-5 h-5 text-[#e95001]" />
       </div>
     </div>
   );

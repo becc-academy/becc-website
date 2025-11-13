@@ -1,9 +1,10 @@
 import React from 'react';
+import { LucideIcon } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
 export interface IFeatureCardProps {
-  icon: string;
+  icon: LucideIcon;
   title: string;
   description: string;
   active?: boolean;
@@ -11,7 +12,7 @@ export interface IFeatureCardProps {
 }
 
 export const FeatureCard: React.FC<IFeatureCardProps> = ({
-  icon,
+  icon: Icon,
   title,
   description,
   active = false,
@@ -33,7 +34,7 @@ export const FeatureCard: React.FC<IFeatureCardProps> = ({
           active ? 'bg-white/20' : 'bg-[#e95001]/10',
         )}
       >
-        <i className={cn('text-3xl', icon, active ? 'text-white' : 'text-[#e95001]')}></i>
+        <Icon className={cn('w-8 h-8', active ? 'text-white' : 'text-[#e95001]')} />
       </div>
       <div>
         <h3 className="text-xl font-bold mb-3">{title}</h3>
