@@ -8,7 +8,7 @@
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
+:root {
   --background-color: #f1f5f7; /* Background color for the entire website, including individual sections */
   --default-color: #010608; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #6a3136; /* Color for headings, subheadings and title throughout the website */
@@ -1910,13 +1910,7 @@ section,
   .students-life-block .activities-list .activity-item {
     flex-direction: column;
     text-align: center;
-  }
     margin-top: 1rem;
-  }
-
-  .students-life-block .activities-list .activity-item {
-    flex-direction: column;
-    text-align: center;
   }
 
   .students-life-block .activities-list .activity-item .activity-thumb {

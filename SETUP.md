@@ -5,18 +5,21 @@
 Your professional TypeScript React Vite monorepo is now ready! Here's what's been configured:
 
 ### 1. **Monorepo Structure**
+
 - ✅ pnpm workspace configuration
 - ✅ Turbo for build optimization
 - ✅ Organized apps/ and packages/ structure
 - ✅ Ready for multiple applications
 
 ### 2. **TypeScript Configuration**
+
 - ✅ Strict mode enabled
-- ✅ Path aliases (@/*) configured
+- ✅ Path aliases (@/\*) configured
 - ✅ Shared base configuration
 - ✅ Individual configs per package
 
 ### 3. **Code Quality Tools**
+
 - ✅ ESLint with professional rules
   - Arrow functions enforced
   - camelCase naming conventions
@@ -27,6 +30,7 @@ Your professional TypeScript React Vite monorepo is now ready! Here's what's bee
 - ✅ Import sorting configured
 
 ### 4. **Git Hooks & Commit Standards**
+
 - ✅ Husky for Git hooks
 - ✅ Commitlint for conventional commits
 - ✅ Lint-staged for pre-commit linting
@@ -34,11 +38,13 @@ Your professional TypeScript React Vite monorepo is now ready! Here's what's bee
 - ✅ Commit-msg hook (validates commits)
 
 ### 5. **Development Tools**
+
 - ✅ VSCode settings configured
 - ✅ Recommended extensions list
 - ✅ EditorConfig for consistency
 
 ### 6. **Website App (Main Application)**
+
 - ✅ React 18 + Vite 5 configured
 - ✅ React Router setup
 - ✅ Sample homepage created
@@ -46,6 +52,7 @@ Your professional TypeScript React Vite monorepo is now ready! Here's what's bee
 - ✅ Ready for development
 
 ### 7. **Shared Packages**
+
 - ✅ @becc/shared - Common utilities and types
 - ✅ @becc/config - Shared configurations
 - ✅ Ready for cross-app code sharing
@@ -129,6 +136,7 @@ pnpm add [your-dependencies]
 ## 📋 Available Commands
 
 ### Root Level
+
 - `pnpm dev` - Run all apps in dev mode
 - `pnpm build` - Build all apps
 - `pnpm lint` - Lint all code
@@ -139,6 +147,7 @@ pnpm add [your-dependencies]
 - `pnpm clean` - Clean all build artifacts
 
 ### Per-App Commands
+
 ```bash
 # Run commands in specific apps
 pnpm --filter @becc/website dev
@@ -150,6 +159,7 @@ pnpm --filter @becc/website type-check
 ## 🎯 Coding Standards Reminder
 
 ### Function Style (Enforced by ESLint)
+
 ```typescript
 // ✅ Good - Arrow function
 const myFunction = (param: string): string => {
@@ -163,34 +173,41 @@ function myFunction(param: string): string {
 ```
 
 ### Naming Conventions (Enforced by ESLint)
+
 ```typescript
 // ✅ Good
 const userName = 'John';
 const USER_ROLE = 'admin';
-interface IUser { name: string; }
+interface IUser {
+  name: string;
+}
 type TStatus = 'active' | 'inactive';
 
 // ❌ Bad
-const UserName = 'John';  // PascalCase for variable
+const UserName = 'John'; // PascalCase for variable
 const user_role = 'admin'; // snake_case
-interface User { name: string; } // Missing I prefix
+interface User {
+  name: string;
+} // Missing I prefix
 ```
 
 ### Import Order (Automatic)
+
 ```typescript
 // Imports are automatically sorted in this order:
-import React from 'react';  // 1. External (React first)
+import React from 'react'; // 1. External (React first)
 
-import { someUtil } from 'lodash';  // 2. Other external
+import { someUtil } from 'lodash'; // 2. Other external
 
-import { helper } from '@/utils';  // 3. Internal (@/ aliases)
+import { helper } from '@/utils'; // 3. Internal (@/ aliases)
 
-import { Component } from '../Component';  // 4. Parent/sibling
+import { Component } from '../Component'; // 4. Parent/sibling
 
-import type { IUser } from './types';  // 5. Type imports
+import type { IUser } from './types'; // 5. Type imports
 ```
 
 ### Commit Message Format
+
 ```bash
 # Format: <type>(<scope>): <subject>
 
@@ -229,6 +246,7 @@ git commit -m "WIP"
 ## 🐛 Troubleshooting
 
 ### Dependencies Not Installing
+
 ```bash
 # Clear cache and reinstall
 rm -rf node_modules pnpm-lock.yaml
@@ -237,6 +255,7 @@ pnpm install
 ```
 
 ### Husky Hooks Not Working
+
 ```bash
 # Reinstall husky
 pnpm add -D husky
@@ -244,6 +263,7 @@ pnpm exec husky install
 ```
 
 ### ESLint Errors
+
 ```bash
 # Auto-fix what can be fixed
 pnpm lint --fix
@@ -253,6 +273,7 @@ pnpm --filter @becc/website lint --fix
 ```
 
 ### Type Errors
+
 ```bash
 # Check types
 pnpm type-check
@@ -264,6 +285,7 @@ pnpm build
 ## ✨ You're All Set!
 
 Your monorepo is ready for professional development. Start coding with confidence knowing that:
+
 - Code quality is automatically enforced
 - Imports are automatically organized
 - Commits follow professional standards

@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { motion } from 'framer-motion';
 
 import {
@@ -42,7 +43,6 @@ const staggerContainer = {
 };
 
 const HomePage = (): JSX.Element => {
-
   return (
     <>
       {/* Header */}
@@ -166,10 +166,7 @@ const HomePage = (): JSX.Element => {
           variants={staggerContainer}
         >
           <div className="container mx-auto px-4">
-            <motion.h3
-              className="text-3xl font-bold text-center mb-12"
-              variants={fadeInUp}
-            >
+            <motion.h3 className="text-3xl font-bold text-center mb-12" variants={fadeInUp}>
               The B.E.C.C. Code
             </motion.h3>
             <motion.div
@@ -244,10 +241,7 @@ const HomePage = (): JSX.Element => {
               </motion.div>
 
               {/* Program List */}
-              <motion.div
-                className="space-y-4"
-                variants={staggerContainer}
-              >
+              <motion.div className="space-y-4" variants={staggerContainer}>
                 <motion.div variants={fadeInRight}>
                   <ProgramItem
                     image="/assets/img/education/education-4.webp"
@@ -309,7 +303,7 @@ const HomePage = (): JSX.Element => {
                 <TestimonialCard
                   image="/assets/img/person/sq.jpg"
                   name="Sandra Yemoley Quarshie"
-                  role="Alumni"
+                  role="Alumni" // eslint-disable-line jsx-a11y/aria-role
                   rating={5}
                   testimonial="I had a good time learning. I learned what it takes to be a good designer, the course stressed on the need for making use of the design principles to achieve great designs. I liked my tutor, he was very professional. Yes! I would 100% recommend BECC Academy."
                 />
@@ -322,7 +316,7 @@ const HomePage = (): JSX.Element => {
                 <TestimonialCard
                   image="/assets/img/person/ll.jpg"
                   name="Lartey Lois Lartebea"
-                  role="Alumni"
+                  role="Alumni" // eslint-disable-line jsx-a11y/aria-role
                   rating={5}
                   testimonial="It was a great experience. Our tutor was the best. His knowledge on the course, his humility and friendliness made the class always interesting. I will always recommend BECC Academy to others. Thank you for this opportunity."
                 />
@@ -335,7 +329,7 @@ const HomePage = (): JSX.Element => {
                 <TestimonialCard
                   image="/assets/img/person/fe.jpg"
                   name="Agyepong Felix Okoree"
-                  role="Alumni"
+                  role="Alumni" // eslint-disable-line jsx-a11y/aria-role
                   rating={5}
                   testimonial="It was an insightful training program; I had the opportunity to learn the basics of graphic design and implement what I learned in my designs."
                 />
