@@ -1,5 +1,6 @@
 import type { JSX } from 'react';
 import { motion } from 'framer-motion';
+import { Book, BookOpen, Globe, Laptop, Lightbulb, Users } from 'lucide-react';
 
 import {
   AboutSection,
@@ -91,14 +92,14 @@ const HomePage = (): JSX.Element => {
             <motion.div className="grid lg:grid-cols-3 gap-6" variants={staggerContainer}>
               <motion.div variants={fadeInUp}>
                 <FeatureCard
-                  icon="bi bi-people-fill"
+                  icon={Users}
                   title="Think"
                   description="We foster critical thinking and collaborative problem solving through team projects and mentorship."
                 />
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <FeatureCard
-                  icon="bi bi-laptop-fill"
+                  icon={Laptop}
                   title="Learn"
                   description="Practical, skill-focused courses in coding, design, analytics and entrepreneurship prepare learners for real world challenges."
                   active
@@ -106,7 +107,7 @@ const HomePage = (): JSX.Element => {
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <FeatureCard
-                  icon="bi bi-book-fill"
+                  icon={BookOpen}
                   title="Evolve"
                   description="Continuous growth through project showcases, industry partnerships and career support."
                 />
@@ -175,28 +176,28 @@ const HomePage = (): JSX.Element => {
             >
               <motion.div variants={fadeInUp}>
                 <ValueCard
-                  icon="bi bi-book"
+                  icon={Book}
                   title="Build"
                   description="Hands-on projects and portfolio work that demonstrate real skills to employers."
                 />
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <ValueCard
-                  icon="bi bi-people"
+                  icon={Users}
                   title="Evolve"
                   description="Lifelong learning pathways and mentorship to support continuous growth."
                 />
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <ValueCard
-                  icon="bi bi-lightbulb"
+                  icon={Lightbulb}
                   title="Create"
                   description="Encourage creative problem solving and original solutions across disciplines."
                 />
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <ValueCard
-                  icon="bi bi-globe"
+                  icon={Globe}
                   title="Change"
                   description="Empower communities with skills that generate social and economic impact."
                 />

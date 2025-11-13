@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Briefcase, Code, Lightbulb, Palette, Sparkles, Users } from 'lucide-react';
 
 import { BeccFooter, Header, PageTitle, ScrollToTop, ServiceCard, Slider } from '@becc/ui';
 
@@ -67,7 +68,7 @@ const ServicesPage = (): JSX.Element => {
 
   const services = [
     {
-      icon: 'bi bi-code-square',
+      icon: Code,
       title: 'Digital Skills Training',
       description:
         'Comprehensive programs covering coding, web development, digital literacy, and essential tech skills for the modern workforce.',
@@ -84,7 +85,7 @@ const ServicesPage = (): JSX.Element => {
       },
     },
     {
-      icon: 'bi bi-briefcase',
+      icon: Briefcase,
       title: 'Corporate Training',
       description:
         'Customized learning solutions for organizations seeking to upskill their teams in digital technologies and creative problem-solving.',
@@ -101,7 +102,7 @@ const ServicesPage = (): JSX.Element => {
       },
     },
     {
-      icon: 'bi bi-people',
+      icon: Users,
       title: 'Mentorship Programs',
       description:
         'One-on-one guidance from industry professionals to help you navigate your career path and achieve your goals.',
@@ -118,7 +119,7 @@ const ServicesPage = (): JSX.Element => {
       },
     },
     {
-      icon: 'bi bi-stars',
+      icon: Sparkles,
       title: 'Youth Programs',
       description:
         'Engaging programs designed specifically for young learners (ages 6-18) to explore technology and creativity in a fun, supportive environment.',
@@ -135,7 +136,7 @@ const ServicesPage = (): JSX.Element => {
       },
     },
     {
-      icon: 'bi bi-palette',
+      icon: Palette,
       title: 'Creative Workshops',
       description:
         'Hands-on workshops that blend creativity with technology, including graphic design, video editing, and content creation.',
@@ -152,7 +153,7 @@ const ServicesPage = (): JSX.Element => {
       },
     },
     {
-      icon: 'bi bi-lightbulb',
+      icon: Lightbulb,
       title: 'Innovation & Entrepreneurship',
       description:
         'Programs focused on developing entrepreneurial mindset, innovation thinking, and business skills for aspiring tech entrepreneurs.',
