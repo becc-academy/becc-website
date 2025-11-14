@@ -3,16 +3,16 @@ import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
-export interface IContactFormProps {
-  onSubmit?: (data: FormData) => void | Promise<void>;
-  className?: string;
-}
-
 export interface IFormData {
   name: string;
   email: string;
   subject: string;
   message: string;
+}
+
+export interface IContactFormProps {
+  onSubmit?: (data: IFormData) => void | Promise<void>;
+  className?: string;
 }
 
 export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className = '' }) => {
@@ -26,12 +26,12 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');

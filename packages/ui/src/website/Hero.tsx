@@ -32,7 +32,7 @@ export const Hero: React.FC<IHeroProps> = ({
   secondaryButton,
   images,
   className = '',
-}): JSX.Element => {
+}) => {
   return (
     <section className={cn('py-20 bg-gradient-to-br from-gray-50 to-white', className)}>
       <div className="container mx-auto px-4">

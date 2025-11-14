@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight, Award, Calendar, GraduationCap, Users } from 'lucide-react';
 
+import { fadeInUp, glowHover, hoverScale } from '../lib/animations';
 import { cn } from '../lib/utils';
 
 export interface IProgramCardProps {
@@ -16,6 +18,7 @@ export interface IProgramCardProps {
   };
   onLearnMore?: () => void;
   className?: string;
+  delay?: number;
 }
 
 export const ProgramCard: React.FC<IProgramCardProps> = ({
@@ -28,21 +31,41 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
   stats,
   onLearnMore,
   className = '',
+  delay = 0,
 }) => {
   return (
-    <div
-      className={cn(
-        'bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden',
-        className,
-      )}
+    <motion.div
+      className={cn('bg-white rounded-2xl shadow-lg overflow-hidden', className)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeInUp}
+      transition={{ delay }}
+      whileHover={{
+        ...hoverScale.hover,
+        ...glowHover.hover,
+        y: -8,
+      }}
     >
       {/* Image Section */}
-      <div className="relative">
-        <img src={image} alt={title} className="w-full h-48 object-cover" loading="lazy" />
+      <div className="relative overflow-hidden">
+        <motion.img
+          src={image}
+          alt={title}
+          className="w-full h-48 object-cover"
+          loading="lazy"
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.3 }}
+        />
         {badge && (
-          <div className="absolute top-4 right-4 bg-[#e95001] text-white px-3 py-1 rounded-full text-xs font-semibold">
+          <motion.div
+            className="absolute top-4 right-4 bg-[#e95001] text-white px-3 py-1 rounded-full text-xs font-semibold"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: delay + 0.3, type: 'spring' }}
+          >
             {badge}
-          </div>
+          </motion.div>
         )}
       </div>
 
@@ -84,16 +107,20 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
 
         {/* Action Button */}
         {onLearnMore && (
-          <button
+          <motion.button
             onClick={onLearnMore}
             className="w-full py-3 px-4 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors flex items-center justify-center"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             Discover Program
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </button>
+            <motion.div animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </motion.div>
+          </motion.button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -104,6 +131,7 @@ export interface IProgramItemProps {
   duration: string;
   level: string;
   className?: string;
+  delay?: number;
 }
 
 export const ProgramItem: React.FC<IProgramItemProps> = ({
@@ -113,13 +141,17 @@ export const ProgramItem: React.FC<IProgramItemProps> = ({
   duration,
   level,
   className = '',
+  delay = 0,
 }) => {
   return (
-    <div
-      className={cn(
-        'bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center space-x-4',
-        className,
-      )}
+    <motion.div
+      className={cn('bg-white p-4 rounded-xl shadow-md flex items-center space-x-4', className)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeInUp}
+      transition={{ delay }}
+      whileHover={{ y: -4, ...glowHover.hover }}
     >
       {/* Icon/Image */}
       <div className="flex-shrink-0">
@@ -138,9 +170,13 @@ export const ProgramItem: React.FC<IProgramItemProps> = ({
       </div>
 
       {/* Arrow */}
-      <div className="flex-shrink-0">
+      <motion.div
+        className="flex-shrink-0"
+        animate={{ x: [0, 5, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
+      >
         <ArrowRight className="w-5 h-5 text-[#e95001]" />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
