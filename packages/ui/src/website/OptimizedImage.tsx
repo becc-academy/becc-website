@@ -12,14 +12,14 @@ export interface IOptimizedImageProps extends ImgHTMLAttributes<HTMLImageElement
 
 /**
  * Optimized Image Component with lazy loading and blur placeholder
- * 
+ *
  * Features:
  * - Lazy loading by default
  * - Blur placeholder while loading
  * - WebP support with fallback
  * - Responsive sizing
  * - Error handling
- * 
+ *
  * @example
  * <OptimizedImage
  *   src="/images/hero.jpg"
@@ -38,7 +38,7 @@ export const OptimizedImage = ({
   className = '',
   fallback = '/images/placeholder.png',
   ...props
-}: IOptimizedImageProps): JSX.Element => {
+}: IOptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
@@ -57,9 +57,7 @@ export const OptimizedImage = ({
   return (
     <picture className={className}>
       {/* WebP source for browsers that support it */}
-      {!isWebP && (
-        <source srcSet={webpSrc} type="image/webp" />
-      )}
+      {!isWebP && <source srcSet={webpSrc} type="image/webp" />}
 
       {/* Original format fallback */}
       <img

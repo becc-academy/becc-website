@@ -60,3 +60,6 @@ export { ValueCard } from './website/ValueCard';
 
 // Utilities
 export { cn } from './lib/utils';
+
+// Animations
+export * from './lib/animations';

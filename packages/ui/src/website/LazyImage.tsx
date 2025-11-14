@@ -10,13 +10,13 @@ export interface ILazyImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 
 /**
  * Lazy Loading Image Component using Intersection Observer
- * 
+ *
  * Features:
  * - Only loads when in viewport
  * - Blur placeholder
  * - Smooth fade-in transition
  * - Configurable intersection threshold
- * 
+ *
  * @example
  * <LazyImage
  *   src="/images/photo.jpg"
@@ -32,7 +32,7 @@ export const LazyImage = ({
   threshold = 0.1,
   className = '',
   ...props
-}: ILazyImageProps): JSX.Element => {
+}: ILazyImageProps) => {
   const [imageSrc, setImageSrc] = useState(placeholder);
   const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -50,7 +50,7 @@ export const LazyImage = ({
       {
         threshold,
         rootMargin: '50px',
-      }
+      },
     );
 
     if (imgRef.current) {
