@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
 
 import { cn } from '../lib/utils';
@@ -8,10 +9,7 @@ export interface IScrollToTopProps {
   className?: string;
 }
 
-export const ScrollToTop: React.FC<IScrollToTopProps> = ({
-  threshold = 100,
-  className = '',
-}): JSX.Element => {
+export const ScrollToTop: React.FC<IScrollToTopProps> = ({ threshold = 100, className = '' }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect((): (() => void) => {
@@ -35,23 +33,61 @@ export const ScrollToTop: React.FC<IScrollToTopProps> = ({
   };
 
   return (
-    <button
-      onClick={scrollToTop}
-      className={cn(
-        'fixed bottom-8 right-8 z-50 w-14 h-14 flex items-center justify-center',
-        'bg-gradient-to-br from-[#ff6b35] via-[#e95001] to-[#d14801] text-white rounded-full',
-        'shadow-[0_8px_16px_rgba(233,80,1,0.3),0_4px_8px_rgba(233,80,1,0.2),inset_0_2px_4px_rgba(255,255,255,0.3)]',
-        'hover:shadow-[0_12px_24px_rgba(233,80,1,0.4),0_6px_12px_rgba(233,80,1,0.3),inset_0_2px_4px_rgba(255,255,255,0.4)]',
-        'hover:scale-110 active:scale-95',
-        'transition-all duration-300 ease-out',
-        'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#e95001]',
-        'before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity',
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none',
-        className,
+    <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          onClick={scrollToTop}
+          className={cn(
+            'fixed bottom-8 right-8 z-50 w-14 h-14 flex items-center justify-center',
+            'bg-gradient-to-br from-[#ff6b35] via-[#e95001] to-[#d14801] text-white rounded-full',
+            'shadow-[0_8px_16px_rgba(233,80,1,0.3),0_4px_8px_rgba(233,80,1,0.2),inset_0_2px_4px_rgba(255,255,255,0.3)]',
+            'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#e95001]',
+            'before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-white/20 before:to-transparent',
+            className,
+          )}
+          initial={{ opacity: 0, scale: 0, y: 100 }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            boxShadow: [
+              '0 8px 16px rgba(233,80,1,0.3), 0 4px 8px rgba(233,80,1,0.2)',
+              '0 12px 24px rgba(233,80,1,0.5), 0 6px 12px rgba(233,80,1,0.3)',
+              '0 8px 16px rgba(233,80,1,0.3), 0 4px 8px rgba(233,80,1,0.2)',
+            ],
+          }}
+          exit={{ opacity: 0, scale: 0, y: 100 }}
+          transition={{
+            type: 'spring',
+            stiffness: 260,
+            damping: 20,
+            boxShadow: {
+              duration: 2,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            },
+          }}
+          whileHover={{
+            scale: 1.15,
+            boxShadow: '0 16px 32px rgba(233,80,1,0.6), 0 8px 16px rgba(233,80,1,0.4)',
+          }}
+          whileTap={{ scale: 0.9 }}
+          aria-label="Scroll to top"
+        >
+          <motion.div
+            animate={{
+              y: [-2, 2, -2],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          >
+            <ArrowUp className="w-8 h-8 relative z-10 drop-shadow-sm" />
+          </motion.div>
+        </motion.button>
       )}
-      aria-label="Scroll to top"
-    >
-      <ArrowUp className="w-8 h-8 relative z-10 drop-shadow-sm" />
-    </button>
+    </AnimatePresence>
   );
 };

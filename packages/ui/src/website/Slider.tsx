@@ -31,7 +31,7 @@ export const Slider: React.FC<ISliderProps> = ({
   showIndicators = true,
   showNavigation = true,
   className = '',
-}): JSX.Element => {
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-play functionality
@@ -60,6 +60,7 @@ export const Slider: React.FC<ISliderProps> = ({
   if (slides.length === 0) return null;
 
   const currentSlide = slides[currentIndex];
+  if (!currentSlide) return null;
 
   return (
     <div className={cn('relative w-full overflow-hidden rounded-2xl group', className)}>

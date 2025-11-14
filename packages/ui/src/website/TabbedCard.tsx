@@ -17,7 +17,7 @@ export interface ITabbedCardProps {
   className?: string;
 }
 
-export const TabbedCard: React.FC<ITabbedCardProps> = ({ tabs, className = '' }): JSX.Element => {
+export const TabbedCard: React.FC<ITabbedCardProps> = ({ tabs, className = '' }) => {
   const [activeTab, setActiveTab] = useState(tabs[0]?.id ?? '');
 
   const activeTabData = tabs.find((tab) => tab.id === activeTab);
