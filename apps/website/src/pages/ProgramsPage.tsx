@@ -270,13 +270,7 @@ const ProgramsPage = (): JSX.Element => {
       </main>
 
       {/* Footer */}
-      <BeccFooter
-        companyInfo={{
-          name: 'BECC Academy',
-          logo: '/assets/img/logo.png',
-          year: new Date().getFullYear(),
-        }}
-      />
+      <BeccFooter />
     </>
   );
 };
