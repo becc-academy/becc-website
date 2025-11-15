@@ -1,6 +1,6 @@
 import { Button } from '@becc/ui';
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <div className="app">
       <h1>BECC Learning Management System</h1>

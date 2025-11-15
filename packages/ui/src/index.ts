@@ -4,6 +4,10 @@ import './styles.css';
 
 export { Button } from './components/Button';
 
+// Common Components
+export type { ICustomSelectProps, ISelectOption } from './common/CustomSelect';
+export { CustomSelect } from './common/CustomSelect';
+
 // Website Components
 export type { IAboutSectionProps } from './website/AboutSection';
 export { AboutSection } from './website/AboutSection';
@@ -17,6 +21,11 @@ export type { IEventBannerProps } from './website/EventBanner';
 export { EventBanner } from './website/EventBanner';
 export type { IEventCardProps } from './website/EventCard';
 export { EventCard } from './website/EventCard';
+export type {
+  IEventRegistrationFormData,
+  IEventRegistrationModalProps,
+} from './website/EventRegistrationModal';
+export { EventRegistrationModal } from './website/EventRegistrationModal';
 export type { IFeatureCardProps } from './website/FeatureCard';
 export { FeatureCard } from './website/FeatureCard';
 export type { IFooterLink, IFooterProps, IFooterSection, ISocialLink } from './website/Footer';

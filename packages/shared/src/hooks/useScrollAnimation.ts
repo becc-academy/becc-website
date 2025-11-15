@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export interface ScrollAnimationOptions {
+export interface IScrollAnimationOptions {
   duration?: number;
   delay?: number;
   offset?: number;
@@ -10,19 +10,19 @@ export interface ScrollAnimationOptions {
 /**
  * Hook to trigger animations on scroll
  */
-export const useScrollAnimation = (options: ScrollAnimationOptions = {}): void => {
+export const useScrollAnimation = (options: IScrollAnimationOptions = {}): void => {
   const { duration = 1000, delay = 0, offset = 100, once = true } = options;
 
   useEffect(() => {
     const elements = document.querySelectorAll('[data-aos]');
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const element = entry.target as HTMLElement;
-            const animationDelay = element.getAttribute('data-aos-delay') || delay.toString();
-            
+            const animationDelay = element.getAttribute('data-aos-delay') ?? delay.toString();
+
             setTimeout(() => {
               element.classList.add('aos-animate');
             }, parseInt(animationDelay));
@@ -38,7 +38,7 @@ export const useScrollAnimation = (options: ScrollAnimationOptions = {}): void =
       {
         rootMargin: `0px 0px -${offset}px 0px`,
         threshold: 0.1,
-      }
+      },
     );
 
     elements.forEach((element) => {

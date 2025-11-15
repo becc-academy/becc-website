@@ -29,7 +29,7 @@ const staggerContainer = {
   },
 };
 
-const ServicesPage = () => {
+const ServicesPage = (): JSX.Element => {
   const sliderData = [
     {
       id: 1,

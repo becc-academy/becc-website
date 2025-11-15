@@ -82,11 +82,11 @@ export const generateCSRFToken = (): string => {
  * Rate limiting for frontend actions
  */
 class RateLimiter {
-  private requests: Map<string, number[]> = new Map();
+  private requests = new Map<string, number[]>();
 
   public isAllowed(key: string, maxRequests: number, windowMs: number): boolean {
     const now = Date.now();
-    const timestamps = this.requests.get(key) || [];
+    const timestamps = this.requests.get(key) ?? [];
 
     // Filter out old timestamps
     const recentTimestamps = timestamps.filter((time) => now - time < windowMs);
@@ -100,7 +100,7 @@ class RateLimiter {
     return true;
   }
 
-  public reset(key: string): void => {
+  public reset(key: string): void {
     this.requests.delete(key);
   }
 }
@@ -112,7 +112,7 @@ export const rateLimiter = new RateLimiter();
  */
 export const debounce = <T extends (...args: Parameters<T>) => ReturnType<T>>(
   func: T,
-  wait: number
+  wait: number,
 ): ((...args: Parameters<T>) => void) => {
   let timeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -127,7 +127,7 @@ export const debounce = <T extends (...args: Parameters<T>) => ReturnType<T>>(
  */
 export const throttle = <T extends (...args: Parameters<T>) => ReturnType<T>>(
   func: T,
-  limit: number
+  limit: number,
 ): ((...args: Parameters<T>) => void) => {
   let inThrottle: boolean;
 
