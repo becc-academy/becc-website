@@ -1,8 +1,12 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle, LucideIcon } from 'lucide-react';
+
+import { fadeInUp, glowHover, staggerItem } from '../lib/animations';
 import { cn } from '../lib/utils';
 
-export interface ServiceCardProps {
-  icon: string;
+export interface IServiceCardProps {
+  icon: LucideIcon;
   title: string;
   description: string;
   features?: string[];
@@ -11,54 +15,82 @@ export interface ServiceCardProps {
     href: string;
   };
   className?: string;
+  delay?: number;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({
-  icon,
+export const ServiceCard: React.FC<IServiceCardProps> = ({
+  icon: Icon,
   title,
   description,
   features,
   link,
   className = '',
+  delay = 0,
 }) => {
   return (
-    <div
-      className={cn(
-        'bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group',
-        className
-      )}
+    <motion.div
+      className={cn('bg-white p-8 rounded-2xl shadow-lg group', className)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeInUp}
+      transition={{ delay }}
+      whileHover={{
+        y: -8,
+        ...glowHover.hover,
+      }}
     >
       {/* Icon */}
-      <div className="w-16 h-16 bg-gradient-to-br from-[#e95001] to-[#d14801] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-        <i className={cn('text-3xl text-white', icon)}></i>
-      </div>
+      <motion.div
+        className="w-16 h-16 bg-gradient-to-br from-[#e95001] to-[#d14801] rounded-2xl flex items-center justify-center mb-6"
+        whileHover={{ rotate: 360, scale: 1.1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <Icon className="w-8 h-8 text-white" />
+      </motion.div>
 
       {/* Content */}
-      <h3 className="text-2xl font-bold text-gray-900 mb-3">{title}</h3>
-      <p className="text-gray-600 leading-relaxed mb-4">{description}</p>
+      <motion.h3 className="text-2xl font-bold text-gray-900 mb-3" variants={staggerItem}>
+        {title}
+      </motion.h3>
+      <motion.p className="text-gray-600 leading-relaxed mb-4" variants={staggerItem}>
+        {description}
+      </motion.p>
 
       {/* Features List */}
       {features && features.length > 0 && (
-        <ul className="space-y-2 mb-6">
+        <motion.ul
+          className="space-y-2 mb-6"
+          initial="hidden"
+          whileInView="visible"
+          variants={{
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+        >
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start text-sm text-gray-700">
-              <i className="bi bi-check-circle-fill text-[#e95001] mr-2 mt-0.5 flex-shrink-0"></i>
+            <motion.li
+              key={index}
+              className="flex items-start text-sm text-gray-700"
+              variants={staggerItem}
+            >
+              <CheckCircle className="w-4 h-4 text-[#e95001] mr-2 mt-0.5 flex-shrink-0" />
               <span>{feature}</span>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       )}
 
       {/* Link */}
       {link && (
-        <a
+        <motion.a
           href={link.href}
           className="inline-flex items-center text-[#e95001] font-semibold hover:text-[#d14801] transition-colors group"
+          whileHover={{ x: 5 }}
         >
           {link.label}
-          <i className="bi bi-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-        </a>
+          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+        </motion.a>
       )}
-    </div>
+    </motion.div>
   );
 };

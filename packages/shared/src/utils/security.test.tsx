@@ -1,5 +1,18 @@
-import { describe, it, expect } from 'vitest';
-import { sanitizeInput, sanitizeHTML, isValidURL, safeNavigate, generateCSRFToken, rateLimiter, debounce, throttle, isValidEmail, isValidPhone, removeDangerousChars } from './security';
+import { describe, expect, it } from 'vitest';
+
+import {
+  debounce,
+  generateCSRFToken,
+  isValidEmail,
+  isValidPhone,
+  isValidURL,
+  rateLimiter,
+  removeDangerousChars,
+  safeNavigate,
+  sanitizeHTML,
+  sanitizeInput,
+  throttle,
+} from './security';
 
 describe('sanitizeInput', () => {
   it('should be defined', () => {

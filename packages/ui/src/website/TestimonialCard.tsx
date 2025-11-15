@@ -1,66 +1,113 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Quote, Star } from 'lucide-react';
+
+import { fadeInUp, scaleIn } from '../lib/animations';
 import { cn } from '../lib/utils';
 
-export interface TestimonialCardProps {
+export interface ITestimonialCardProps {
   image: string;
   name: string;
-  role: string;
+  position: string;
   rating: number;
   testimonial: string;
   className?: string;
+  delay?: number;
 }
 
-export const TestimonialCard: React.FC<TestimonialCardProps> = ({
+export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
   image,
   name,
-  role,
+  position,
   rating,
   testimonial,
   className = '',
+  delay = 0,
 }) => {
   return (
-    <div
-      className={cn(
-        'bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300',
-        className
-      )}
+    <motion.div
+      className={cn('bg-white p-8 rounded-2xl shadow-lg', className)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={scaleIn}
+      transition={{ delay }}
+      whileHover={{
+        y: -8,
+        boxShadow: '0 20px 40px rgba(233, 80, 1, 0.2)',
+      }}
     >
       {/* Header with Image and Rating */}
       <div className="flex items-center justify-between mb-6">
-        <img
+        <motion.img
           src={image}
           alt={name}
-          className="w-16 h-16 rounded-full object-cover"
+          className="w-16 h-16 rounded-full object-cover border-2 border-[#e95001]/20"
           loading="lazy"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ type: 'spring', stiffness: 300 }}
         />
-        <div className="flex space-x-1">
+        <motion.div
+          className="flex space-x-1"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: delay + 0.2 }}
+        >
           {Array.from({ length: 5 }).map((_, index) => (
-            <i
+            <motion.div
               key={index}
-              className={cn(
-                'bi bi-star-fill text-sm',
-                index < rating ? 'text-yellow-400' : 'text-gray-300'
-              )}
-            ></i>
+              initial={{ scale: 0, rotate: -180 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: delay + 0.3 + index * 0.1, type: 'spring' }}
+            >
+              <Star
+                className={cn(
+                  'w-4 h-4',
+                  index < rating
+                    ? 'text-yellow-400 fill-yellow-400'
+                    : 'text-gray-300 fill-gray-300',
+                )}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Testimonial Text */}
-      <p className="text-gray-700 text-sm leading-relaxed mb-6 italic">
-        "{testimonial}"
-      </p>
+      <motion.p
+        className="text-gray-700 text-sm leading-relaxed mb-6 italic"
+        variants={fadeInUp}
+        transition={{ delay: delay + 0.3 }}
+      >
+        &ldquo;{testimonial}&rdquo;
+      </motion.p>
 
       {/* Footer with Name and Role */}
-      <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+      <motion.div
+        className="flex items-center justify-between border-t border-gray-200 pt-4"
+        variants={fadeInUp}
+        transition={{ delay: delay + 0.4 }}
+      >
         <div>
           <h5 className="font-bold text-gray-900 text-base">{name}</h5>
-          <span className="text-sm text-gray-500">{role}</span>
+          <span className="text-sm text-gray-500">{position}</span>
         </div>
-        <div className="w-10 h-10 bg-[#e95001]/10 rounded-full flex items-center justify-center">
-          <i className="bi bi-chat-quote-fill text-[#e95001]"></i>
-        </div>
-      </div>
-    </div>
+        <motion.div
+          className="w-10 h-10 bg-[#e95001]/10 rounded-full flex items-center justify-center"
+          animate={{
+            rotate: [0, 10, -10, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <Quote className="w-5 h-5 text-[#e95001]" />
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };

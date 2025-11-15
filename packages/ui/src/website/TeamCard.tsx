@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
+
 import { cn } from '../lib/utils';
 
-export interface SocialLink {
+export interface ISocialLink {
   icon: string;
   href: string;
   label?: string;
 }
 
-export interface TeamCardProps {
+export interface ITeamCardProps {
   image: string;
   name: string;
   position: string;
   bio?: string;
-  socialLinks?: SocialLink[];
+  socialLinks?: ISocialLink[];
   className?: string;
 }
 
-export const TeamCard: React.FC<TeamCardProps> = ({
+export const TeamCard: React.FC<ITeamCardProps> = ({
   image,
   name,
   position,
@@ -35,7 +36,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
       <div
         className={cn(
           'relative w-full h-[400px] transition-transform duration-500 transform-style-3d',
-          isFlipped && 'rotate-y-180'
+          isFlipped && 'rotate-y-180',
         )}
       >
         {/* Front of Card */}
@@ -61,11 +62,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
           <div className="bg-gradient-to-br from-[#e95001] to-[#d14801] rounded-2xl shadow-lg p-6 h-full flex flex-col justify-center text-white">
             <h4 className="text-xl font-bold mb-2">{name}</h4>
             <p className="text-sm opacity-90 mb-4">{position}</p>
-            {bio && (
-              <p className="text-sm leading-relaxed mb-6 opacity-90">
-                {bio}
-              </p>
-            )}
+            {bio && <p className="text-sm leading-relaxed mb-6 opacity-90">{bio}</p>}
             {socialLinks && socialLinks.length > 0 && (
               <div className="flex justify-center space-x-3">
                 {socialLinks.map((social, index) => (
@@ -74,7 +71,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={social.label || 'Social link'}
+                    aria-label={social.label ?? 'Social link'}
                     className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
                   >
                     <i className={social.icon}></i>

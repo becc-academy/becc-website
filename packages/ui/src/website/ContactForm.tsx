@@ -1,40 +1,37 @@
 import React, { useState } from 'react';
+import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
+
 import { cn } from '../lib/utils';
 
-export interface ContactFormProps {
-  onSubmit?: (data: FormData) => void | Promise<void>;
-  className?: string;
-}
-
-export interface FormData {
+export interface IFormData {
   name: string;
   email: string;
   subject: string;
   message: string;
 }
 
-export const ContactForm: React.FC<ContactFormProps> = ({
-  onSubmit,
-  className = '',
-}) => {
-  const [formData, setFormData] = useState<FormData>({
+export interface IContactFormProps {
+  onSubmit?: (data: IFormData) => void | Promise<void>;
+  className?: string;
+}
+
+export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className = '' }) => {
+  const [formData, setFormData] = useState<IFormData>({
     name: '',
     email: '',
     subject: '',
     message: '',
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
@@ -45,25 +42,23 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       }
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const onFormSubmit = (e: React.FormEvent): void => {
+    void handleSubmit(e);
+  };
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={cn('space-y-6', className)}
-    >
+    <form onSubmit={onFormSubmit} className={cn('space-y-6', className)}>
       {/* Name and Email Row */}
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-semibold text-gray-700 mb-2"
-          >
+          <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
             Your Name
           </label>
           <input
@@ -79,10 +74,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         </div>
 
         <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-semibold text-gray-700 mb-2"
-          >
+          <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
             Your Email
           </label>
           <input
@@ -100,10 +92,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
       {/* Subject */}
       <div>
-        <label
-          htmlFor="subject"
-          className="block text-sm font-semibold text-gray-700 mb-2"
-        >
+        <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
           Subject
         </label>
         <input
@@ -120,10 +109,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
       {/* Message */}
       <div>
-        <label
-          htmlFor="message"
-          className="block text-sm font-semibold text-gray-700 mb-2"
-        >
+        <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
           Message
         </label>
         <textarea
@@ -147,12 +133,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             'w-full px-8 py-4 bg-[#e95001] text-white rounded-lg font-semibold transition-all duration-300',
             isSubmitting
               ? 'opacity-70 cursor-not-allowed'
-              : 'hover:bg-[#d14801] shadow-lg hover:shadow-xl hover:-translate-y-1'
+              : 'hover:bg-[#d14801] shadow-lg hover:shadow-xl hover:-translate-y-1',
           )}
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center">
-              <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
+              <Loader2 className="w-5 h-5 animate-spin mr-2" />
               Sending...
             </span>
           ) : (
@@ -163,15 +149,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
       {/* Status Messages */}
       {submitStatus === 'success' && (
-        <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm">
-          <i className="bi bi-check-circle-fill mr-2"></i>
+        <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm flex items-center">
+          <CheckCircle className="w-5 h-5 mr-2" />
           Your message has been sent successfully!
         </div>
       )}
-      
+
       {submitStatus === 'error' && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
-          <i className="bi bi-exclamation-circle-fill mr-2"></i>
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm flex items-center">
+          <AlertCircle className="w-5 h-5 mr-2" />
           There was an error sending your message. Please try again.
         </div>
       )}

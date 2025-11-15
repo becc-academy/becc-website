@@ -1,21 +1,19 @@
 import React from 'react';
+
 import { cn } from '../lib/utils';
 
-export interface TimelineItem {
+export interface ITimelineItem {
   year: string;
   title?: string;
   description: string;
 }
 
-export interface TimelineProps {
-  items: TimelineItem[];
+export interface ITimelineProps {
+  items: ITimelineItem[];
   className?: string;
 }
 
-export const Timeline: React.FC<TimelineProps> = ({
-  items,
-  className = '',
-}) => {
+export const Timeline: React.FC<ITimelineProps> = ({ items, className = '' }) => {
   return (
     <div className={cn('space-y-6', className)}>
       {items.map((item, index) => (
@@ -32,12 +30,8 @@ export const Timeline: React.FC<TimelineProps> = ({
           <div className="flex-1 pb-8">
             <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h4 className="text-lg font-bold text-[#e95001] mb-1">{item.year}</h4>
-              {item.title && (
-                <h5 className="font-semibold text-gray-900 mb-2">{item.title}</h5>
-              )}
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {item.description}
-              </p>
+              {item.title && <h5 className="font-semibold text-gray-900 mb-2">{item.title}</h5>}
+              <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
             </div>
           </div>
         </div>

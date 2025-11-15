@@ -1,11 +1,12 @@
 import type { JSX } from 'react';
 import { motion } from 'framer-motion';
+import { Book, BookOpen, Globe, Laptop, Lightbulb, Users } from 'lucide-react';
 
 import {
   AboutSection,
+  BeccFooter,
   EventBanner,
   FeatureCard,
-  Footer,
   Header,
   Hero,
   ProgramCard,
@@ -91,14 +92,14 @@ const HomePage = (): JSX.Element => {
             <motion.div className="grid lg:grid-cols-3 gap-6" variants={staggerContainer}>
               <motion.div variants={fadeInUp}>
                 <FeatureCard
-                  icon="bi bi-people-fill"
+                  icon={Users}
                   title="Think"
                   description="We foster critical thinking and collaborative problem solving through team projects and mentorship."
                 />
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <FeatureCard
-                  icon="bi bi-laptop-fill"
+                  icon={Laptop}
                   title="Learn"
                   description="Practical, skill-focused courses in coding, design, analytics and entrepreneurship prepare learners for real world challenges."
                   active
@@ -106,7 +107,7 @@ const HomePage = (): JSX.Element => {
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <FeatureCard
-                  icon="bi bi-book-fill"
+                  icon={BookOpen}
                   title="Evolve"
                   description="Continuous growth through project showcases, industry partnerships and career support."
                 />
@@ -175,28 +176,28 @@ const HomePage = (): JSX.Element => {
             >
               <motion.div variants={fadeInUp}>
                 <ValueCard
-                  icon="bi bi-book"
+                  icon={Book}
                   title="Build"
                   description="Hands-on projects and portfolio work that demonstrate real skills to employers."
                 />
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <ValueCard
-                  icon="bi bi-people"
+                  icon={Users}
                   title="Evolve"
                   description="Lifelong learning pathways and mentorship to support continuous growth."
                 />
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <ValueCard
-                  icon="bi bi-lightbulb"
+                  icon={Lightbulb}
                   title="Create"
                   description="Encourage creative problem solving and original solutions across disciplines."
                 />
               </motion.div>
               <motion.div variants={fadeInUp}>
                 <ValueCard
-                  icon="bi bi-globe"
+                  icon={Globe}
                   title="Change"
                   description="Empower communities with skills that generate social and economic impact."
                 />
@@ -340,54 +341,7 @@ const HomePage = (): JSX.Element => {
       </main>
 
       {/* Footer */}
-      <Footer
-        logo={{ src: '/assets/img/logo.png', alt: 'BECC Academy' }}
-        contact={{
-          location: 'Accra, Ghana',
-          phone: '+233 (0)20 123 3215',
-          email: 'info@beccacademy.com',
-        }}
-        socialLinks={[
-          {
-            icon: 'bi bi-twitter-x',
-            href: 'https://x.com/BECCAcademy',
-            label: 'Twitter',
-          },
-          { icon: 'bi bi-facebook', href: '#', label: 'Facebook' },
-          {
-            icon: 'bi bi-instagram',
-            href: 'https://www.instagram.com/beccacademy/',
-            label: 'Instagram',
-          },
-          {
-            icon: 'bi bi-linkedin',
-            href: 'https://www.linkedin.com/company/beccacademy/',
-            label: 'LinkedIn',
-          },
-        ]}
-        sections={[
-          {
-            title: 'Useful Links',
-            links: [
-              { label: 'Home', href: '/' },
-              { label: 'About us', href: '/about' },
-              { label: 'Services', href: '/services' },
-              { label: 'Programs', href: '/programs' },
-            ],
-          },
-          {
-            title: 'Our Services',
-            links: [
-              { label: 'Digital Skills Training', href: '/services' },
-              { label: 'Corporate Training', href: '/services' },
-              { label: 'Mentorship Programs', href: '/services' },
-              { label: 'Youth Programs', href: '/services' },
-            ],
-          },
-        ]}
-        copyright={{ text: 'BECC Academy' }}
-        credits={{ text: 'BECC Academy' }}
-      />
+      <BeccFooter />
 
       <ScrollToTop />
     </>

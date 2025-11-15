@@ -1,7 +1,11 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Award, Calendar, GraduationCap, Users } from 'lucide-react';
+
+import { fadeInUp, glowHover, hoverScale } from '../lib/animations';
 import { cn } from '../lib/utils';
 
-export interface ProgramCardProps {
+export interface IProgramCardProps {
   image: string;
   title: string;
   description: string;
@@ -14,9 +18,10 @@ export interface ProgramCardProps {
   };
   onLearnMore?: () => void;
   className?: string;
+  delay?: number;
 }
 
-export const ProgramCard: React.FC<ProgramCardProps> = ({
+export const ProgramCard: React.FC<IProgramCardProps> = ({
   image,
   title,
   description,
@@ -26,26 +31,41 @@ export const ProgramCard: React.FC<ProgramCardProps> = ({
   stats,
   onLearnMore,
   className = '',
+  delay = 0,
 }) => {
   return (
-    <div
-      className={cn(
-        'bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden',
-        className
-      )}
+    <motion.div
+      className={cn('bg-white rounded-2xl shadow-lg overflow-hidden', className)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeInUp}
+      transition={{ delay }}
+      whileHover={{
+        ...hoverScale.hover,
+        ...glowHover.hover,
+        y: -8,
+      }}
     >
       {/* Image Section */}
-      <div className="relative">
-        <img
+      <div className="relative overflow-hidden">
+        <motion.img
           src={image}
           alt={title}
           className="w-full h-48 object-cover"
           loading="lazy"
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.3 }}
         />
         {badge && (
-          <div className="absolute top-4 right-4 bg-[#e95001] text-white px-3 py-1 rounded-full text-xs font-semibold">
+          <motion.div
+            className="absolute top-4 right-4 bg-[#e95001] text-white px-3 py-1 rounded-full text-xs font-semibold"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: delay + 0.3, type: 'spring' }}
+          >
             {badge}
-          </div>
+          </motion.div>
         )}
       </div>
 
@@ -58,12 +78,12 @@ export const ProgramCard: React.FC<ProgramCardProps> = ({
             <div className="flex items-center space-x-4 text-xs text-gray-600">
               {stats.students && (
                 <span className="flex items-center">
-                  <i className="bi bi-people-fill mr-1"></i> {stats.students}
+                  <Users className="w-3 h-3 mr-1" /> {stats.students}
                 </span>
               )}
               {stats.successRate && (
                 <span className="flex items-center">
-                  <i className="bi bi-award-fill mr-1"></i> {stats.successRate}
+                  <Award className="w-3 h-3 mr-1" /> {stats.successRate}
                 </span>
               )}
             </div>
@@ -71,77 +91,77 @@ export const ProgramCard: React.FC<ProgramCardProps> = ({
         </div>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 leading-relaxed mb-4">
-          {description}
-        </p>
+        <p className="text-sm text-gray-600 leading-relaxed mb-4">{description}</p>
 
         {/* Meta Information */}
         <div className="flex items-center space-x-4 text-xs text-gray-500 mb-4">
           <div className="flex items-center">
-            <i className="bi bi-calendar-check mr-1"></i>
+            <Calendar className="w-3 h-3 mr-1" />
             <span>{duration}</span>
           </div>
           <div className="flex items-center">
-            <i className="bi bi-mortarboard-fill mr-1"></i>
+            <GraduationCap className="w-3 h-3 mr-1" />
             <span>{level}</span>
           </div>
         </div>
 
         {/* Action Button */}
         {onLearnMore && (
-          <button
+          <motion.button
             onClick={onLearnMore}
             className="w-full py-3 px-4 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors flex items-center justify-center"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             Discover Program
-            <i className="bi bi-arrow-right ml-2"></i>
-          </button>
+            <motion.div animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </motion.div>
+          </motion.button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export interface ProgramItemProps {
+export interface IProgramItemProps {
   image: string;
   title: string;
   description: string;
   duration: string;
   level: string;
   className?: string;
+  delay?: number;
 }
 
-export const ProgramItem: React.FC<ProgramItemProps> = ({
+export const ProgramItem: React.FC<IProgramItemProps> = ({
   image,
   title,
   description,
   duration,
   level,
   className = '',
+  delay = 0,
 }) => {
   return (
-    <div
-      className={cn(
-        'bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center space-x-4',
-        className
-      )}
+    <motion.div
+      className={cn('bg-white p-4 rounded-xl shadow-md flex items-center space-x-4', className)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeInUp}
+      transition={{ delay }}
+      whileHover={{ y: -4, ...glowHover.hover }}
     >
       {/* Icon/Image */}
       <div className="flex-shrink-0">
-        <img
-          src={image}
-          alt={title}
-          className="w-20 h-20 object-cover rounded-lg"
-          loading="lazy"
-        />
+        <img src={image} alt={title} className="w-20 h-20 object-cover rounded-lg" loading="lazy" />
       </div>
 
       {/* Content */}
       <div className="flex-1">
         <h4 className="text-base font-bold text-gray-900 mb-1">{title}</h4>
-        <p className="text-xs text-gray-600 leading-relaxed mb-2">
-          {description}
-        </p>
+        <p className="text-xs text-gray-600 leading-relaxed mb-2">{description}</p>
         <div className="flex items-center space-x-3 text-xs text-gray-500">
           <span>{duration}</span>
           <span>•</span>
@@ -150,9 +170,13 @@ export const ProgramItem: React.FC<ProgramItemProps> = ({
       </div>
 
       {/* Arrow */}
-      <div className="flex-shrink-0">
-        <i className="bi bi-arrow-right text-[#e95001] text-xl"></i>
-      </div>
-    </div>
+      <motion.div
+        className="flex-shrink-0"
+        animate={{ x: [0, 5, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
+      >
+        <ArrowRight className="w-5 h-5 text-[#e95001]" />
+      </motion.div>
+    </motion.div>
   );
 };
