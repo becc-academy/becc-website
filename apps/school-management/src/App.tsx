@@ -1,6 +1,7 @@
 import { Button } from '@becc/ui';
+import { ReactElement } from 'react';
 
-const App = (): JSX.Element => {
+const App = (): ReactElement => {
   return (
     <div className="app">
       <h1>BECC School Management System</h1>
