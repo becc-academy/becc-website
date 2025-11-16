@@ -304,7 +304,7 @@ const HomePage = (): JSX.Element => {
                 <TestimonialCard
                   image="/assets/img/person/sq.jpg"
                   name="Sandra Yemoley Quarshie"
-                  role="Alumni" // eslint-disable-line jsx-a11y/aria-role
+                  position="Alumni"
                   rating={5}
                   testimonial="I had a good time learning. I learned what it takes to be a good designer, the course stressed on the need for making use of the design principles to achieve great designs. I liked my tutor, he was very professional. Yes! I would 100% recommend BECC Academy."
                 />
@@ -317,7 +317,7 @@ const HomePage = (): JSX.Element => {
                 <TestimonialCard
                   image="/assets/img/person/ll.jpg"
                   name="Lartey Lois Lartebea"
-                  role="Alumni" // eslint-disable-line jsx-a11y/aria-role
+                  position="Alumni"
                   rating={5}
                   testimonial="It was a great experience. Our tutor was the best. His knowledge on the course, his humility and friendliness made the class always interesting. I will always recommend BECC Academy to others. Thank you for this opportunity."
                 />
@@ -330,7 +330,7 @@ const HomePage = (): JSX.Element => {
                 <TestimonialCard
                   image="/assets/img/person/fe.jpg"
                   name="Agyepong Felix Okoree"
-                  role="Alumni" // eslint-disable-line jsx-a11y/aria-role
+                  position="Alumni"
                   rating={5}
                   testimonial="It was an insightful training program; I had the opportunity to learn the basics of graphic design and implement what I learned in my designs."
                 />

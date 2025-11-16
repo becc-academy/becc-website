@@ -21,6 +21,7 @@ export interface IEventCardProps {
   location: string;
   participants: string;
   onRegister?: () => void;
+  registrationUrl?: string;
   className?: string;
   delay?: number;
 }

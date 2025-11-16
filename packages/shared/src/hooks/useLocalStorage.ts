@@ -11,7 +11,7 @@ export const useLocalStorage = <T>(
 
   // Load initial value
   useEffect(() => {
-    const loadValue = async () => {
+    const loadValue = async (): Promise<void> => {
       try {
         const item = await storage.get<T>(key, store);
         if (item !== null) {
@@ -24,7 +24,7 @@ export const useLocalStorage = <T>(
     void loadValue();
   }, [key, store]);
 
-  const setValue = async (value: T) => {
+  const setValue = async (value: T): Promise<void> => {
     try {
       setStoredValue(value);
       await storage.set(key, value, store);
@@ -33,7 +33,7 @@ export const useLocalStorage = <T>(
     }
   };
 
-  const removeValue = async () => {
+  const removeValue = async (): Promise<void> => {
     try {
       setStoredValue(initialValue);
       await storage.remove(key, store);

@@ -82,3 +82,88 @@ p {
     background: rgba(0, 0, 0, 0.05);
   }
 }
+
+/* Enhanced Select Dropdown Styling - Global Override */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) - Style the dropdown options */
+select option {
+  padding: 12px 16px !important;
+  background-color: #ffffff !important;
+  color: #374151 !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  border-bottom: 1px solid #f3f4f6;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover state for options in dropdown */
+select option:hover {
+  background: linear-gradient(135deg, #fff5f0 0%, #ffe5d9 100%) !important;
+  color: #e95001 !important;
+  font-weight: 600 !important;
+  border-left: 3px solid #e95001 !important;
+  padding-left: 13px !important;
+}
+
+/* Checked/Selected state for options */
+select option:checked {
+  background: linear-gradient(135deg, #e95001 0%, #d14801 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-left: 3px solid #ffffff !important;
+}
+
+/* Active/Focus state for options */
+select option:active,
+select option:focus {
+  background: linear-gradient(135deg, #fff5f0 0%, #ffe5d9 100%) !important;
+  color: #e95001 !important;
+  font-weight: 600 !important;
+}
+
+/* Placeholder option styling */
+select option[value=''],
+select option:disabled {
+  color: #9ca3af !important;
+  font-weight: 400 !important;
+  font-style: italic;
+}
+
+/* Firefox-specific styling */
+@-moz-document url-prefix() {
+  select option {
+    padding: 12px 16px !important;
+  }
+
+  select option:hover {
+    background-color: #fff5f0 !important;
+    color: #e95001 !important;
+  }
+
+  select option:checked {
+    background: #e95001 !important;
+    color: white !important;
+  }
+}
+
+/* Animation for select dropdown opening */
+@keyframes selectDropOpen {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.95) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+  }
+}
+
+/* Apply animation when select is focused */
+select:focus {
+  animation: selectDropOpen 0.2s ease-out;
+}

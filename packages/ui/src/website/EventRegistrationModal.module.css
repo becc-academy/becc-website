@@ -1,0 +1,107 @@
+/* Custom select dropdown styling with animations */
+
+.customSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #374151;
+  font-weight: 500;
+}
+
+.customSelect:hover {
+  border-color: #e95001 !important;
+  box-shadow: 0 0 0 3px rgba(233, 80, 1, 0.1);
+}
+
+.customSelect:focus {
+  outline: none;
+  border-color: #e95001 !important;
+  box-shadow: 0 0 0 3px rgba(233, 80, 1, 0.15);
+  animation: selectFocus 0.3s ease-out;
+}
+
+@keyframes selectFocus {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Dropdown arrow animation on open */
+.customSelect:focus {
+  animation: selectFocus 0.3s ease-out;
+}
+
+/* Firefox-specific option styling */
+@-moz-document url-prefix() {
+  .customSelect option {
+    background-color: white;
+    color: #374151;
+    padding: 8px 12px;
+  }
+
+  .customSelect option:hover,
+  .customSelect option:focus {
+    background-color: #fff5f0 !important;
+    color: #e95001 !important;
+  }
+
+  .customSelect option:checked {
+    background: linear-gradient(135deg, #e95001 0%, #d14801 100%) !important;
+    color: white !important;
+    font-weight: 600;
+  }
+}
+
+/* Webkit/Chrome-specific option styling */
+.customSelect option {
+  padding: 10px 14px;
+  background-color: white;
+  color: #374151;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.customSelect option:hover {
+  background: linear-gradient(135deg, #fff5f0 0%, #ffe5d9 100%);
+  color: #e95001;
+  font-weight: 600;
+}
+
+.customSelect option:checked,
+.customSelect option:active,
+.customSelect option[selected] {
+  background: linear-gradient(135deg, #e95001 0%, #d14801 100%) !important;
+  color: white !important;
+  font-weight: 700;
+}
+
+/* Styling for disabled/placeholder option */
+.customSelect option[value=''] {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* Animation for dropdown opening */
+@keyframes dropdownSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.customSelect[size]:not([size='1']) {
+  animation: dropdownSlide 0.25s ease-out;
+}
