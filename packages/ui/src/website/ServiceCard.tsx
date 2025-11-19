@@ -29,7 +29,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={cn('bg-white p-8 rounded-2xl shadow-lg group', className)}
+      className={cn('bg-white p-8 rounded-2xl shadow-lg group text-left', className)}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -53,7 +53,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
       <motion.h3 className="text-2xl font-bold text-gray-900 mb-3" variants={staggerItem}>
         {title}
       </motion.h3>
-      <motion.p className="text-gray-600 leading-relaxed mb-4" variants={staggerItem}>
+      <motion.p className="text-base text-gray-600 leading-relaxed mb-4" variants={staggerItem}>
         {description}
       </motion.p>
 
@@ -70,10 +70,10 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
           {features.map((feature, index) => (
             <motion.li
               key={index}
-              className="flex items-start text-sm text-gray-700"
+              className="flex items-start text-base text-gray-700"
               variants={staggerItem}
             >
-              <CheckCircle className="w-4 h-4 text-[#e95001] mr-2 mt-0.5 flex-shrink-0" />
+              <CheckCircle className="w-5 h-5 text-[#e95001] mr-2 mt-0.5 flex-shrink-0" />
               <span>{feature}</span>
             </motion.li>
           ))}

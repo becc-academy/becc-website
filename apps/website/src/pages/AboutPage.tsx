@@ -145,6 +145,7 @@ const AboutPage = (): JSX.Element => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Column - Content */}
               <motion.div
+                className="text-left"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -157,7 +158,7 @@ const AboutPage = (): JSX.Element => {
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-3 mb-6">
                   Educating Minds, Inspiring Hearts
                 </h2>
-                <div className="space-y-4 text-gray-600 leading-relaxed">
+                <div className="space-y-4 text-gray-600 leading-relaxed text-base">
                   <p>
                     BECC Academy was founded with a vision to transform education through hands-on,
                     project-based learning experiences. We believe that learning should be engaging,
@@ -191,9 +192,9 @@ const AboutPage = (): JSX.Element => {
                           <div className="w-0.5 h-full bg-orange-200 mt-2" />
                         )}
                       </div>
-                      <div className="flex-1 pb-8">
+                      <div className="flex-1 pb-8 text-left">
                         <h4 className="text-xl font-bold text-gray-900 mb-2">{item.year}</h4>
-                        <p className="text-gray-600">{item.description}</p>
+                        <p className="text-base text-gray-600">{item.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -219,7 +220,7 @@ const AboutPage = (): JSX.Element => {
                 {/* Mission & Vision Cards */}
                 <div className="space-y-4">
                   <motion.div
-                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 overflow-hidden group"
+                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 overflow-hidden group text-left"
                     whileHover={{
                       x: 10,
                       scale: 1.02,
@@ -232,7 +233,7 @@ const AboutPage = (): JSX.Element => {
                       <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">
                         Our Mission
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-base text-gray-600 leading-relaxed">
                         To provide accessible, high-quality learning experiences that empower
                         individuals of all ages to develop the skills and confidence needed to
                         succeed in the digital age.
@@ -241,7 +242,7 @@ const AboutPage = (): JSX.Element => {
                   </motion.div>
 
                   <motion.div
-                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 overflow-hidden group"
+                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 overflow-hidden group text-left"
                     whileHover={{
                       x: 10,
                       scale: 1.02,
@@ -254,7 +255,7 @@ const AboutPage = (): JSX.Element => {
                       <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">
                         Our Vision
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-base text-gray-600 leading-relaxed">
                         To be the leading provider of experiential learning programs in Africa,
                         creating a generation of innovative thinkers and problem solvers who drive
                         positive change in their communities.
@@ -283,7 +284,7 @@ const AboutPage = (): JSX.Element => {
                   return (
                     <motion.div
                       key={index}
-                      className="relative bg-white p-8 rounded-xl shadow-lg border-t-4 border-orange-500 overflow-hidden group"
+                      className="relative bg-white p-8 rounded-xl shadow-lg border-t-4 border-orange-500 overflow-hidden group text-left"
                       variants={fadeInUp}
                       whileHover={{
                         y: -8,
@@ -300,7 +301,9 @@ const AboutPage = (): JSX.Element => {
                         <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">
                           {value.title}
                         </h4>
-                        <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                        <p className="text-base text-gray-600 leading-relaxed">
+                          {value.description}
+                        </p>
                       </div>
                     </motion.div>
                   );
@@ -344,7 +347,7 @@ const AboutPage = (): JSX.Element => {
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   whileHover={{ y: -10 }}
                 >
-                  <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-[450px] group cursor-pointer">
+                  <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-[450px] group cursor-pointer text-left">
                     <div className="h-64 overflow-hidden">
                       <motion.img
                         src={member.image}
@@ -356,8 +359,10 @@ const AboutPage = (): JSX.Element => {
                     </div>
                     <div className="p-6">
                       <h4 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h4>
-                      <p className="text-orange-500 font-medium mb-3 text-sm">{member.position}</p>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                      <p className="text-orange-500 font-medium mb-3 text-base">
+                        {member.position}
+                      </p>
+                      <p className="text-gray-600 text-base leading-relaxed mb-4 line-clamp-3">
                         {member.bio}
                       </p>
                       <div className="flex justify-center gap-3 pt-2">

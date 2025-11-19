@@ -66,9 +66,9 @@ const HomePage = (): JSX.Element => {
           title="Launching Futures Through Experiential Learning"
           description="BECC Academy delivers hands-on, project-based training that equips learners (ages 6–30) with practical digital, creative, and problem-solving skills to succeed in education and the workplace."
           stats={[
-            { value: '90%', label: 'Completion Rate' },
+            { value: '96%', label: 'Completion Rate' },
             { value: '5:1', label: 'Student-Tutor Ratio' },
-            { value: '5+', label: 'Programs' },
+            { value: '6+', label: 'Programs' },
           ]}
           primaryButton={{ label: 'Get Involved', href: '/programs' }}
           secondaryButton={{ label: 'Contact Us', href: '/contact' }}

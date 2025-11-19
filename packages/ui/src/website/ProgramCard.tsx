@@ -70,20 +70,20 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
       </div>
 
       {/* Content Section */}
-      <div className="p-6">
+      <div className="p-6 text-left">
         {/* Program Header */}
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">{title}</h3>
           {stats && (
-            <div className="flex items-center space-x-4 text-xs text-gray-600">
+            <div className="flex items-center space-x-4 text-sm text-gray-600">
               {stats.students && (
                 <span className="flex items-center">
-                  <Users className="w-3 h-3 mr-1" /> {stats.students}
+                  <Users className="w-4 h-4 mr-1" /> {stats.students}
                 </span>
               )}
               {stats.successRate && (
                 <span className="flex items-center">
-                  <Award className="w-3 h-3 mr-1" /> {stats.successRate}
+                  <Award className="w-4 h-4 mr-1" /> {stats.successRate}
                 </span>
               )}
             </div>
@@ -91,16 +91,16 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
         </div>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 leading-relaxed mb-4">{description}</p>
+        <p className="text-base text-gray-600 leading-relaxed mb-4">{description}</p>
 
         {/* Meta Information */}
-        <div className="flex items-center space-x-4 text-xs text-gray-500 mb-4">
+        <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
           <div className="flex items-center">
-            <Calendar className="w-3 h-3 mr-1" />
+            <Calendar className="w-4 h-4 mr-1" />
             <span>{duration}</span>
           </div>
           <div className="flex items-center">
-            <GraduationCap className="w-3 h-3 mr-1" />
+            <GraduationCap className="w-4 h-4 mr-1" />
             <span>{level}</span>
           </div>
         </div>
@@ -145,7 +145,10 @@ export const ProgramItem: React.FC<IProgramItemProps> = ({
 }) => {
   return (
     <motion.div
-      className={cn('bg-white p-4 rounded-xl shadow-md flex items-center space-x-4', className)}
+      className={cn(
+        'bg-white p-4 rounded-xl shadow-md flex items-center space-x-4 text-left',
+        className,
+      )}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -160,9 +163,9 @@ export const ProgramItem: React.FC<IProgramItemProps> = ({
 
       {/* Content */}
       <div className="flex-1">
-        <h4 className="text-base font-bold text-gray-900 mb-1">{title}</h4>
-        <p className="text-xs text-gray-600 leading-relaxed mb-2">{description}</p>
-        <div className="flex items-center space-x-3 text-xs text-gray-500">
+        <h4 className="text-lg font-bold text-gray-900 mb-1">{title}</h4>
+        <p className="text-sm text-gray-600 leading-relaxed mb-2">{description}</p>
+        <div className="flex items-center space-x-3 text-sm text-gray-500">
           <span>{duration}</span>
           <span>•</span>
           <span>{level}</span>
