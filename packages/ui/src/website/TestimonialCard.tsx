@@ -26,7 +26,7 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={cn('bg-white p-8 rounded-2xl shadow-lg', className)}
+      className={cn('bg-white p-8 rounded-2xl shadow-lg text-left', className)}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -77,7 +77,7 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
 
       {/* Testimonial Text */}
       <motion.p
-        className="text-gray-700 text-sm leading-relaxed mb-6 italic"
+        className="text-gray-700 text-base leading-relaxed mb-6 italic"
         variants={fadeInUp}
         transition={{ delay: delay + 0.3 }}
       >

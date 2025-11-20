@@ -81,34 +81,34 @@ export const EventCard: React.FC<IEventCardProps> = ({
       </div>
 
       {/* Content Section */}
-      <div className="p-6">
+      <div className="p-6 text-left">
         {/* Category and Time */}
         <div className="flex items-center justify-between mb-3">
           <span
             className={cn(
-              'px-3 py-1 rounded-full text-white text-xs font-semibold',
+              'px-3 py-1 rounded-full text-white text-sm font-semibold',
               categoryColors[category.type],
             )}
           >
             {category.label}
           </span>
-          <span className="text-sm text-gray-600">{time}</span>
+          <span className="text-base text-gray-600">{time}</span>
         </div>
 
         {/* Title and Description */}
-        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#e95001] transition-colors">
+        <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-[#e95001] transition-colors">
           {title}
         </h3>
-        <p className="text-sm text-gray-600 leading-relaxed mb-4">{description}</p>
+        <p className="text-base text-gray-600 leading-relaxed mb-4">{description}</p>
 
         {/* Event Info */}
-        <div className="space-y-2 mb-4 text-sm text-gray-700">
+        <div className="space-y-2 mb-4 text-base text-gray-700">
           <div className="flex items-center">
-            <MapPin className="w-4 h-4 text-[#e95001] mr-2" />
+            <MapPin className="w-5 h-5 text-[#e95001] mr-2" />
             <span>{location}</span>
           </div>
           <div className="flex items-center">
-            <Users className="w-4 h-4 text-[#e95001] mr-2" />
+            <Users className="w-5 h-5 text-[#e95001] mr-2" />
             <span>{participants}</span>
           </div>
         </div>
@@ -118,7 +118,7 @@ export const EventCard: React.FC<IEventCardProps> = ({
           {onRegister && (
             <motion.button
               onClick={onRegister}
-              className="px-6 py-2 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors text-sm"
+              className="px-6 py-2 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors text-base"
               whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(233, 80, 1, 0.4)' }}
               whileTap={{ scale: 0.95 }}
             >

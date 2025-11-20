@@ -66,7 +66,7 @@ export const TabbedCard: React.FC<ITabbedCardProps> = ({ tabs, className = '' })
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="space-y-4">
+              <div className="space-y-4 text-left">
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-[#e95001] to-[#d14801] bg-clip-text text-transparent">
                   {activeTabData.title}
                 </h3>

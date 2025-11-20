@@ -2,9 +2,9 @@ import type { JSX } from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
+import * as yup from 'yup';
 
 import { BeccFooter, Header, PageTitle, ScrollToTop } from '@becc/ui';
 
@@ -15,10 +15,7 @@ const contactSchema = yup.object().shape({
     .required('Name is required')
     .min(2, 'Name must be at least 2 characters')
     .max(100, 'Name cannot exceed 100 characters'),
-  email: yup
-    .string()
-    .required('Email is required')
-    .email('Please enter a valid email address'),
+  email: yup.string().required('Email is required').email('Please enter a valid email address'),
   subject: yup
     .string()
     .required('Subject is required')
@@ -49,7 +46,7 @@ const ContactPage = (): JSX.Element => {
     mode: 'onBlur',
   });
 
-  const onSubmit = async (data: ContactFormData): Promise<void> => {
+  const onSubmit = (data: ContactFormData): void => {
     try {
       setSubmitStatus('submitting');
       setErrorMessage('');
@@ -157,10 +154,10 @@ const ContactPage = (): JSX.Element => {
                   <motion.div
                     className="relative flex items-center gap-4 p-6 bg-gradient-to-br from-white to-orange-50 rounded-xl shadow-lg border-2 border-orange-100 overflow-hidden group"
                     variants={fadeInUp}
-                    whileHover={{ 
-                      y: -8, 
+                    whileHover={{
+                      y: -8,
                       scale: 1.03,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)' 
+                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
@@ -169,7 +166,9 @@ const ContactPage = (): JSX.Element => {
                       <MapPin size={24} className="drop-shadow-md" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">Location</h4>
+                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
+                        Location
+                      </h4>
                       <p className="text-gray-600 text-sm">Accra, Ghana</p>
                     </div>
                   </motion.div>
@@ -177,10 +176,10 @@ const ContactPage = (): JSX.Element => {
                   <motion.div
                     className="relative flex items-center gap-4 p-6 bg-gradient-to-br from-white to-orange-50 rounded-xl shadow-lg border-2 border-orange-100 overflow-hidden group"
                     variants={fadeInUp}
-                    whileHover={{ 
-                      y: -8, 
+                    whileHover={{
+                      y: -8,
                       scale: 1.03,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)' 
+                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
@@ -189,7 +188,9 @@ const ContactPage = (): JSX.Element => {
                       <Mail size={24} className="drop-shadow-md" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">Email</h4>
+                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
+                        Email
+                      </h4>
                       <p className="text-gray-600 text-sm break-words">info@beccacademy.com</p>
                     </div>
                   </motion.div>
@@ -197,10 +198,10 @@ const ContactPage = (): JSX.Element => {
                   <motion.div
                     className="relative flex items-center gap-4 p-6 bg-gradient-to-br from-white to-orange-50 rounded-xl shadow-lg border-2 border-orange-100 overflow-hidden group"
                     variants={fadeInUp}
-                    whileHover={{ 
-                      y: -8, 
+                    whileHover={{
+                      y: -8,
                       scale: 1.03,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)' 
+                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
@@ -209,18 +210,20 @@ const ContactPage = (): JSX.Element => {
                       <Phone size={24} className="drop-shadow-md" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">Call</h4>
-                      <p className="text-gray-600 text-sm">+1 (212) 555-7890</p>
+                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
+                        Call
+                      </h4>
+                      <p className="text-gray-600 text-sm">+233 (0)20 123 3215</p>
                     </div>
                   </motion.div>
 
                   <motion.div
                     className="relative flex items-center gap-4 p-6 bg-gradient-to-br from-white to-orange-50 rounded-xl shadow-lg border-2 border-orange-100 overflow-hidden group"
                     variants={fadeInUp}
-                    whileHover={{ 
-                      y: -8, 
+                    whileHover={{
+                      y: -8,
                       scale: 1.03,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)' 
+                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
@@ -229,7 +232,9 @@ const ContactPage = (): JSX.Element => {
                       <Clock size={24} className="drop-shadow-md" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">Open Hours</h4>
+                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
+                        Open Hours
+                      </h4>
                       <p className="text-gray-600 text-sm">Monday-Friday: 9AM - 6PM</p>
                     </div>
                   </motion.div>
@@ -255,7 +260,12 @@ const ContactPage = (): JSX.Element => {
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 relative z-10">
+                  <form
+                    onSubmit={(e) => {
+                      void handleSubmit(onSubmit)(e);
+                    }}
+                    className="space-y-6 relative z-10"
+                  >
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <input
@@ -396,7 +406,9 @@ const ContactPage = (): JSX.Element => {
                           <span className="absolute -inset-[3px] bg-gradient-to-br from-orange-500 to-orange-600 rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
                         </a>
                         <a
-                          href="#"
+                          href="https://www.facebook.com/beccacademy"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-600 rounded-full text-white transition-all duration-300 hover:shadow-[0_6px_20px_rgba(255,107,53,0.4)]"
                         >
                           <Facebook size={20} className="relative z-10" />

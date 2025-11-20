@@ -9,11 +9,13 @@ import {
   EventBanner,
   EventCard,
   EventRegistrationModal,
+  formatCountdown,
   Header,
   type IEventCardProps,
   type IEventRegistrationFormData,
   PageTitle,
   ScrollToTop,
+  useCountdown,
 } from '@becc/ui';
 
 const EventsPage = (): JSX.Element => {
@@ -24,6 +26,10 @@ const EventsPage = (): JSX.Element => {
     title: string;
     registrationUrl?: string;
   } | null>(null);
+
+  const humbleDataEventDate = new Date('2025-11-22T09:00:00');
+  const countdown = useCountdown(humbleDataEventDate);
+  const countdownText = formatCountdown(countdown);
 
   const handleRegisterClick = (
     title: string,
@@ -154,7 +160,7 @@ const EventsPage = (): JSX.Element => {
               title="Humble Data Workshop"
               description="Join us for an intensive data analysis workshop. Register now and start your journey!"
               buttonText="Register Now"
-              countdown="Only 2 days left!"
+              countdown={countdownText}
               onButtonClick={() =>
                 handleRegisterClick('Humble Data Workshop', 'https://bit.ly/HDW1025', false)
               }

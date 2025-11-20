@@ -72,12 +72,12 @@ export const Hero: React.FC<IHeroProps> = ({
             .animate-circular-4 { animation: circular-motion-4 8s ease-in-out infinite 6s; }
           `}</style>
           {/* Content */}
-          <div className="space-y-8" data-aos="fade-right" data-aos-delay="100">
+          <div className="space-y-8 text-left" data-aos="fade-right" data-aos-delay="100">
             {}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
               {title}
             </h1>
-            <p className="text-lg text-gray-600 leading-relaxed">{description}</p>
+            <p className="text-lg text-gray-600 leading-relaxed text-left">{description}</p>
 
             {/* Stats */}
             {stats && stats.length > 0 && (

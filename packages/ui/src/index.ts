@@ -70,5 +70,8 @@ export { ValueCard } from './website/ValueCard';
 // Utilities
 export { cn } from './lib/utils';
 
+// Hooks
+export { formatCountdown, useCountdown } from './hooks/useCountdown';
+
 // Animations
 export * from './lib/animations';

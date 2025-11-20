@@ -25,8 +25,8 @@ export const FeatureCard: React.FC<IFeatureCardProps> = ({
   return (
     <motion.div
       className={cn(
-        'p-8 rounded-2xl transition-all duration-300',
-        active ? 'bg-[#e95001] text-white shadow-xl' : 'bg-white text-gray-800 shadow-lg',
+        'p-8 rounded-2xl transition-all duration-300 text-left',
+        active ? 'bg-white text-gray-800 shadow-lg' : 'bg-white text-gray-800 shadow-lg',
         className,
       )}
       initial="hidden"
@@ -43,18 +43,16 @@ export const FeatureCard: React.FC<IFeatureCardProps> = ({
       <motion.div
         className={cn(
           'w-16 h-16 rounded-full flex items-center justify-center mb-4',
-          active ? 'bg-white/20' : 'bg-[#e95001]/10',
+          'bg-[#e95001]/10',
         )}
         whileHover={{ rotate: 360 }}
         transition={{ duration: 0.6 }}
       >
-        <Icon className={cn('w-8 h-8', active ? 'text-white' : 'text-[#e95001]')} />
+        <Icon className="w-8 h-8 text-[#e95001]" />
       </motion.div>
       <div>
-        <h3 className="text-xl font-bold mb-3">{title}</h3>
-        <p className={cn('text-sm leading-relaxed', active ? 'text-white/90' : 'text-gray-600')}>
-          {description}
-        </p>
+        <h3 className="text-2xl font-bold mb-3">{title}</h3>
+        <p className="text-base leading-relaxed text-gray-600">{description}</p>
       </div>
     </motion.div>
   );

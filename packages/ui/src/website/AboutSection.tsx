@@ -64,7 +64,7 @@ export const AboutSection: React.FC<IAboutSectionProps> = ({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="space-y-8 text-left"
           >
             {eyebrow && (
               <div className="inline-block">
@@ -84,7 +84,7 @@ export const AboutSection: React.FC<IAboutSectionProps> = ({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-gray-700 text-lg leading-relaxed relative pl-6 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-gradient-to-br before:from-[#e95001] before:to-[#d14801] before:rounded-full"
+                  className="text-gray-700 text-lg leading-relaxed relative pl-6 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-gradient-to-br before:from-[#e95001] before:to-[#d14801] before:rounded-full text-left"
                 >
                   {desc}
                 </motion.p>
