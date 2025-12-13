@@ -1,6 +1,18 @@
 import type { JSX } from 'react';
-import { motion } from 'framer-motion';
-import { Book, BookOpen, Globe, Laptop, Lightbulb, Users } from 'lucide-react';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  Book,
+  BookOpen,
+  ChevronLeft,
+  ChevronRight,
+  Globe,
+  Laptop,
+  Lightbulb,
+  Quote,
+  Star,
+  Users,
+} from 'lucide-react';
 
 import {
   AboutSection,
@@ -10,10 +22,8 @@ import {
   Header,
   Hero,
   ProgramCard,
-  ProgramItem,
   ScrollToTop,
   SectionTitle,
-  TestimonialCard,
   ValueCard,
 } from '@becc/ui';
 
@@ -21,16 +31,6 @@ import {
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
-};
-
-const fadeInLeft = {
-  hidden: { opacity: 0, x: -30 },
-  visible: { opacity: 1, x: 0 },
-};
-
-const fadeInRight = {
-  hidden: { opacity: 0, x: 30 },
-  visible: { opacity: 1, x: 0 },
 };
 
 const staggerContainer = {
@@ -43,7 +43,127 @@ const staggerContainer = {
   },
 };
 
+interface IProgram {
+  image: string;
+  title: string;
+  description: string;
+  duration: string;
+  level: string;
+  badge?: string;
+  stats?: {
+    students?: string;
+    successRate?: string;
+  };
+  onLearnMore?: () => void;
+}
+
 const HomePage = (): JSX.Element => {
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [direction, setDirection] = useState<'left' | 'right'>('right');
+
+  const programs: IProgram[] = [
+    {
+      image: '/assets/img/innovators.jpg',
+      title: 'Innovators Program',
+      description:
+        'A blended accelerator for designers, developers and founders — includes mentorship, portfolio projects and demo day presentations with industry partners.',
+      duration: '3 months/course',
+      level: 'Professional',
+      badge: 'Popular',
+      stats: {
+        students: '5+ Students',
+        successRate: '90% Success Rate',
+      },
+      onLearnMore: () => {
+        // Navigate to Innovators Program registration page
+        window.location.href = '/contact';
+      },
+    },
+    {
+      image: '/assets/img/education/education-4.webp',
+      title: 'Summer Code Camp',
+      description:
+        'Intensive beginner-to-intermediate coding bootcamp that builds web and mobile development fundamentals.',
+      duration: '3 weeks',
+      level: 'Bootcamp',
+    },
+    {
+      image: '/assets/img/education/education-6.webp',
+      title: 'Digital Marketing',
+      description:
+        'Practical training in social media, analytics and campaign strategy to grow businesses and portfolios.',
+      duration: '1 Month',
+      level: 'Certificate',
+    },
+    {
+      image: '/assets/img/education/education-10.webp',
+      title: 'Creative Arts',
+      description:
+        'Studio-based courses in visual and performing arts with exhibition and portfolio development.',
+      duration: '6 Weeks',
+      level: 'Bootcamp',
+    },
+  ];
+
+  const testimonials = [
+    {
+      image: '/assets/img/person/Eners.jpg',
+      name: 'Ernestina Asabea',
+      position: 'Alumni',
+      rating: 5,
+      testimonial:
+        'I learnt how to create different games and animations.Yes I would recommend for others.',
+    },
+    {
+      image: '/assets/img/person/Eners.jpg',
+      name: 'Osei Wendy Laura',
+      position: 'Alumni',
+      rating: 5,
+      testimonial:
+        "Learning Scratch has been an exciting journey for me. It helped me understanding coding in fun and simple way. I was able to create animations, tell stories, and even design my own games. Scratch has boosted my creativity and confidence in programming. I'm proud of how far I've come!",
+    },
+    {
+      image: '/assets/img/person/sq.jpg',
+      name: 'Sandra Yemoley Quarshie',
+      position: 'Alumni',
+      rating: 5,
+      testimonial:
+        'I had a good time learning. I learned what it takes to be a good designer, the course stressed on the need for making use of the design principles to achieve great designs. I liked my tutor, he was very professional. Yes! I would 100% recommend BECC Academy.',
+    },
+    {
+      image: '/assets/img/person/ll.jpg',
+      name: 'Lartey Lois Lartebea',
+      position: 'Alumni',
+      rating: 5,
+      testimonial:
+        'It was a great experience. Our tutor was the best. His knowledge on the course, his humility and friendliness made the class always interesting. I will always recommend BECC Academy to others. Thank you for this opportunity.',
+    },
+    {
+      image: '/assets/img/person/fe.jpg',
+      name: 'Agyepong Felix Okoree',
+      position: 'Alumni',
+      rating: 5,
+      testimonial:
+        'It was an insightful training program; I had the opportunity to learn the basics of graphic design and implement what I learned in my designs.',
+    },
+  ];
+
+  const testimonialsPerPage = 3;
+  const totalPages = Math.ceil(testimonials.length / testimonialsPerPage);
+  const startIndex = testimonialIndex * testimonialsPerPage;
+  const endIndex = startIndex + testimonialsPerPage;
+  const currentTestimonials = testimonials.slice(startIndex, endIndex);
+
+  const handlePrevious = (): void => {
+    setDirection('left');
+    setTestimonialIndex((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
+  };
+
+  const handleNext = (): void => {
+    setDirection('right');
+    setTestimonialIndex((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
+  };
+
   return (
     <>
       {/* Header */}
@@ -64,7 +184,7 @@ const HomePage = (): JSX.Element => {
         {/* Hero Section */}
         <Hero
           title="Launching Futures Through Experiential Learning"
-          description="BECC Academy delivers hands-on, project-based training that equips learners (ages 6–30) with practical digital, creative, and problem-solving skills to succeed in education and the workplace."
+          description="BECC Academy delivers hands-on, project-based training that equips learners (ages 6-30) with practical digital, creative, and problem-solving skills to succeed in education and the workplace."
           stats={[
             { value: '96%', label: 'Completion Rate' },
             { value: '5:1', label: 'Student-Tutor Ratio' },
@@ -223,55 +343,29 @@ const HomePage = (): JSX.Element => {
               />
             </motion.div>
 
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* Featured Program */}
-              <motion.div variants={fadeInLeft} transition={{ duration: 0.6, delay: 0.1 }}>
-                <ProgramCard
-                  image="/assets/img/innovators.jpg"
-                  title="Innovators Program"
-                  description="A blended accelerator for designers, developers and founders — includes mentorship, portfolio projects and demo day presentations with industry partners."
-                  duration="3 months/course"
-                  level="Professional"
-                  badge="Popular"
-                  stats={{
-                    students: '5+ Students',
-                    successRate: '90% Success Rate',
-                  }}
-                  onLearnMore={() => (window.location.href = '/programs')}
-                />
-              </motion.div>
-
-              {/* Program List */}
-              <motion.div className="space-y-4" variants={staggerContainer}>
-                <motion.div variants={fadeInRight}>
-                  <ProgramItem
-                    image="/assets/img/education/education-4.webp"
-                    title="Summer Code Camp"
-                    description="Intensive beginner-to-intermediate coding bootcamp that builds web and mobile development fundamentals."
-                    duration="3 weeks"
-                    level="Bootcamp"
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              variants={staggerContainer}
+            >
+              {programs.map((program, index) => (
+                <motion.div
+                  key={`${program.title}-${index}`}
+                  variants={fadeInUp}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <ProgramCard
+                    image={program.image}
+                    title={program.title}
+                    description={program.description}
+                    duration={program.duration}
+                    level={program.level}
+                    badge={program.badge}
+                    stats={program.stats}
+                    onLearnMore={program.onLearnMore}
                   />
                 </motion.div>
-                <motion.div variants={fadeInRight}>
-                  <ProgramItem
-                    image="/assets/img/education/education-6.webp"
-                    title="Digital Marketing"
-                    description="Practical training in social media, analytics and campaign strategy to grow businesses and portfolios."
-                    duration="1 Month"
-                    level="Certificate"
-                  />
-                </motion.div>
-                <motion.div variants={fadeInRight}>
-                  <ProgramItem
-                    image="/assets/img/education/education-10.webp"
-                    title="Creative Arts"
-                    description="Studio-based courses in visual and performing arts with exhibition and portfolio development."
-                    duration="6 Weeks"
-                    level="Bootcamp"
-                  />
-                </motion.div>
-              </motion.div>
-            </div>
+              ))}
+            </motion.div>
           </div>
         </motion.section>
 
@@ -292,50 +386,118 @@ const HomePage = (): JSX.Element => {
               />
             </motion.div>
 
-            <motion.div
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-              variants={staggerContainer}
-            >
-              <motion.div
-                variants={fadeInUp}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+            <div className="relative min-h-[400px] mb-8 overflow-hidden">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={testimonialIndex}
+                  custom={direction}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
+                  variants={{
+                    enter: (dir: 'left' | 'right') => ({
+                      opacity: 0,
+                      x: dir === 'right' ? 100 : -100,
+                    }),
+                    center: { opacity: 1, x: 0 },
+                    exit: (dir: 'left' | 'right') => ({
+                      opacity: 0,
+                      x: dir === 'right' ? -100 : 100,
+                    }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.3 }}
+                >
+                  {currentTestimonials.map((testimonial, index) => (
+                    <motion.div
+                      key={`${testimonial.name}-${testimonialIndex}-${index}`}
+                      custom={direction}
+                      variants={{
+                        enter: (dir: 'left' | 'right') => ({
+                          opacity: 0,
+                          x: dir === 'right' ? 50 : -50,
+                        }),
+                        center: { opacity: 1, x: 0 },
+                        exit: (dir: 'left' | 'right') => ({
+                          opacity: 0,
+                          x: dir === 'right' ? -50 : 50,
+                        }),
+                      }}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                      whileHover={{ scale: 1.05 }}
+                      className="w-full"
+                    >
+                      <div className="bg-white p-8 rounded-2xl shadow-lg text-left">
+                        {/* Header with Image and Rating */}
+                        <div className="flex items-center justify-between mb-6">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className="w-16 h-16 rounded-full object-cover border-2 border-[#e95001]/20"
+                            loading="lazy"
+                          />
+                          <div className="flex space-x-1">
+                            {Array.from({ length: 5 }).map((_, starIndex) => (
+                              <Star
+                                key={starIndex}
+                                className={`w-4 h-4 ${
+                                  starIndex < testimonial.rating
+                                    ? 'text-yellow-400 fill-yellow-400'
+                                    : 'text-gray-300 fill-gray-300'
+                                }`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Testimonial Text */}
+                        <p className="text-gray-700 text-base leading-relaxed mb-6 italic">
+                          &ldquo;{testimonial.testimonial}&rdquo;
+                        </p>
+
+                        {/* Footer with Name and Role */}
+                        <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                          <div>
+                            <h5 className="font-bold text-gray-900 text-base">
+                              {testimonial.name}
+                            </h5>
+                            <span className="text-sm text-gray-500">{testimonial.position}</span>
+                          </div>
+                          <div className="w-10 h-10 bg-[#e95001]/10 rounded-full flex items-center justify-center">
+                            <Quote className="w-5 h-5 text-[#e95001]" />
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="flex justify-end gap-3 mt-6">
+              <motion.button
+                onClick={handlePrevious}
+                className="w-12 h-12 rounded-full bg-[#e95001] text-white shadow-lg hover:bg-[#d14801] transition-colors flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Previous testimonials"
               >
-                <TestimonialCard
-                  image="/assets/img/person/sq.jpg"
-                  name="Sandra Yemoley Quarshie"
-                  position="Alumni"
-                  rating={5}
-                  testimonial="I had a good time learning. I learned what it takes to be a good designer, the course stressed on the need for making use of the design principles to achieve great designs. I liked my tutor, he was very professional. Yes! I would 100% recommend BECC Academy."
-                />
-              </motion.div>
-              <motion.div
-                variants={fadeInUp}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                <ChevronLeft className="w-6 h-6" />
+              </motion.button>
+              <motion.button
+                onClick={handleNext}
+                className="w-12 h-12 rounded-full bg-[#e95001] text-white shadow-lg hover:bg-[#d14801] transition-colors flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Next testimonials"
               >
-                <TestimonialCard
-                  image="/assets/img/person/ll.jpg"
-                  name="Lartey Lois Lartebea"
-                  position="Alumni"
-                  rating={5}
-                  testimonial="It was a great experience. Our tutor was the best. His knowledge on the course, his humility and friendliness made the class always interesting. I will always recommend BECC Academy to others. Thank you for this opportunity."
-                />
-              </motion.div>
-              <motion.div
-                variants={fadeInUp}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <TestimonialCard
-                  image="/assets/img/person/fe.jpg"
-                  name="Agyepong Felix Okoree"
-                  position="Alumni"
-                  rating={5}
-                  testimonial="It was an insightful training program; I had the opportunity to learn the basics of graphic design and implement what I learned in my designs."
-                />
-              </motion.div>
-            </motion.div>
+                <ChevronRight className="w-6 h-6" />
+              </motion.button>
+            </div>
           </div>
         </motion.section>
       </main>
