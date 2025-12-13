@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Briefcase, Code, Lightbulb, Palette, Sparkles, Users } from 'lucide-react';
 
-import { BeccFooter, Header, PageTitle, ScrollToTop, ServiceCard, Slider } from '@becc/ui';
+import { BeccFooter, Header, PageTitle, ScrollToTop, ServiceCard } from '@becc/ui';
 
 // Animation variants
 const fadeInUp = {
@@ -30,42 +30,6 @@ const staggerContainer = {
 };
 
 const ServicesPage = () => {
-  const sliderData = [
-    {
-      id: 1,
-      title: 'Digital Skills for the Future',
-      description:
-        'Empowering the next generation with cutting-edge technology training and hands-on experience.',
-      image: '/assets/img/education/education-1.webp',
-      cta: {
-        label: 'Explore Programs',
-        href: '/programs',
-      },
-    },
-    {
-      id: 2,
-      title: 'Transform Your Team',
-      description:
-        'Corporate training solutions designed to upskill your workforce and drive innovation.',
-      image: '/assets/img/education/education-3.webp',
-      cta: {
-        label: 'Get Quote',
-        href: '/contact',
-      },
-    },
-    {
-      id: 3,
-      title: 'Youth Programs',
-      description:
-        'Engaging and fun tech programs for young learners aged 6-18 to explore their creativity.',
-      image: '/assets/img/education/students-1.webp',
-      cta: {
-        label: 'View Programs',
-        href: '/programs',
-      },
-    },
-  ];
-
   const services = [
     {
       icon: Code,
@@ -200,7 +164,7 @@ const ServicesPage = () => {
         {/* Services Introduction Section */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Image */}
               <motion.div
                 initial="hidden"
@@ -224,17 +188,24 @@ const ServicesPage = () => {
                 viewport={{ once: true }}
                 variants={fadeInLeft}
                 transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-left"
               >
-                <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <h3
+                  className="text-3xl md:text-4xl font-bold mb-6"
+                  style={{ color: 'var(--heading-color)' }}
+                >
                   Empowering Growth Through Digital Education & Partnerships
                 </h3>
-                <p className="text-gray-600 text-lg leading-relaxed mb-4">
+                <p
+                  className="text-lg leading-relaxed mb-4"
+                  style={{ color: 'var(--default-color)' }}
+                >
                   At BECC Academy, we provide comprehensive learning solutions that combine
                   practical skills development with creative thinking and entrepreneurial mindset.
                   Our services are designed to meet the diverse needs of learners aged 6-30, from
                   coding basics to advanced professional development.
                 </p>
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <p className="text-lg leading-relaxed" style={{ color: 'var(--default-color)' }}>
                   Whether you&apos;re starting your digital journey, enhancing your creative
                   capabilities, or seeking specialized corporate training, our expert-led programs
                   and personalized approach ensure meaningful learning outcomes that translate to
@@ -242,13 +213,6 @@ const ServicesPage = () => {
                 </p>
               </motion.div>
             </div>
-          </div>
-        </section>
-
-        {/* Slider Section */}
-        <section className="py-12 bg-white">
-          <div className="container mx-auto px-4">
-            <Slider slides={sliderData} autoPlay autoPlayInterval={6000} />
           </div>
         </section>
 
@@ -267,44 +231,6 @@ const ServicesPage = () => {
                   <ServiceCard {...service} />
                 </motion.div>
               ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-[#e95001] to-[#d14801] text-white">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-              transition={{ duration: 0.6 }}
-              className="grid lg:grid-cols-2 gap-8 items-center"
-            >
-              <div>
-                <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                  Ready to Start Your Learning Journey?
-                </h3>
-                <p className="text-lg text-white/90">
-                  Connect with our team to learn more about our programs and find the perfect
-                  learning path for your goals.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-4 lg:justify-end">
-                <a
-                  href="/contact"
-                  className="inline-block px-8 py-4 bg-white text-[#e95001] font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                >
-                  Schedule a Visit
-                </a>
-                <a
-                  href="/contact"
-                  className="inline-block px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#e95001] transition-all duration-300"
-                >
-                  Contact Us
-                </a>
-              </div>
             </motion.div>
           </div>
         </section>
