@@ -24,11 +24,11 @@ export const FeatureCard: React.FC<IFeatureCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={cn(
-        'p-8 rounded-2xl transition-all duration-300 text-left',
-        active ? 'bg-white text-gray-800 shadow-lg' : 'bg-white text-gray-800 shadow-lg',
-        className,
-      )}
+      className={cn('p-8 rounded-2xl transition-all duration-300 text-left shadow-lg', className)}
+      style={{
+        backgroundColor: 'var(--surface-color)',
+        color: 'var(--default-color)',
+      }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -41,18 +41,20 @@ export const FeatureCard: React.FC<IFeatureCardProps> = ({
       }}
     >
       <motion.div
-        className={cn(
-          'w-16 h-16 rounded-full flex items-center justify-center mb-4',
-          'bg-[#e95001]/10',
-        )}
+        className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
+        style={{ backgroundColor: 'var(--accent-color)1a' }}
         whileHover={{ rotate: 360 }}
         transition={{ duration: 0.6 }}
       >
-        <Icon className="w-8 h-8 text-[#e95001]" />
+        <Icon className="w-8 h-8" style={{ color: 'var(--accent-color)' }} />
       </motion.div>
       <div>
-        <h3 className="text-2xl font-bold mb-3">{title}</h3>
-        <p className="text-base leading-relaxed text-gray-600">{description}</p>
+        <h3 className="text-2xl font-bold mb-3" style={{ color: 'var(--heading-color)' }}>
+          {title}
+        </h3>
+        <p className="text-base leading-relaxed" style={{ color: 'var(--default-color)' }}>
+          {description}
+        </p>
       </div>
     </motion.div>
   );

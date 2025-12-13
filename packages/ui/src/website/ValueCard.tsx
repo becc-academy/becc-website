@@ -19,15 +19,23 @@ export const ValueCard: React.FC<IValueCardProps> = ({
   return (
     <div
       className={cn(
-        'bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-left',
+        'p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-left',
         className,
       )}
+      style={{ backgroundColor: 'var(--surface-color)' }}
     >
-      <div className="w-14 h-14 bg-[#e95001]/10 rounded-full flex items-center justify-center mb-4">
-        <Icon className="w-6 h-6 text-[#e95001]" />
+      <div
+        className="w-14 h-14 rounded-full flex items-center justify-center mb-4"
+        style={{ backgroundColor: 'var(--accent-color)1a' }}
+      >
+        <Icon className="w-6 h-6" style={{ color: 'var(--accent-color)' }} />
       </div>
-      <h4 className="text-xl font-bold text-gray-900 mb-2">{title}</h4>
-      <p className="text-base text-gray-600 leading-relaxed">{description}</p>
+      <h4 className="text-xl font-bold mb-2" style={{ color: 'var(--heading-color)' }}>
+        {title}
+      </h4>
+      <p className="text-base leading-relaxed" style={{ color: 'var(--default-color)' }}>
+        {description}
+      </p>
     </div>
   );
 };
