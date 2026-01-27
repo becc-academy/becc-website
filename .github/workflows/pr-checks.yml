@@ -1,0 +1,90 @@
+name: PR Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  check-pr-requirements:
+    name: Check PR Requirements
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    
+    steps:
+      - name: Check PR has description
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if [ -z "$PR_BODY" ] || [ ${#PR_BODY} -lt 10 ]; then
+            echo "❌ PR description is too short or empty. Please provide a meaningful description."
+            exit 1
+          fi
+          echo "✅ PR has a valid description"
+      
+      - name: Check PR title follows convention
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          if ! echo "$TITLE" | grep -qE "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?: .+"; then
+            echo "❌ PR title does not follow conventional commit format."
+            echo "Expected format: type(scope): description"
+            echo "Example: feat(website): add user authentication"
+            exit 1
+          fi
+          echo "✅ PR title follows conventional commit format"
+      
+      - name: Check PR has at least one reviewer requested
+        run: |
+          REVIEWERS_COUNT=$(echo '${{ toJson(github.event.pull_request.requested_reviewers) }}' | jq '. | length')
+          TEAM_REVIEWERS_COUNT=$(echo '${{ toJson(github.event.pull_request.requested_teams) }}' | jq '. | length')
+          TOTAL_REVIEWERS=$((REVIEWERS_COUNT + TEAM_REVIEWERS_COUNT))
+          
+          if [ $TOTAL_REVIEWERS -eq 0 ]; then
+            echo "⚠️ Warning: No reviewers have been requested for this PR."
+            echo "Please request at least one reviewer before merging."
+            # Don't fail the check, just warn
+          else
+            echo "✅ PR has $TOTAL_REVIEWERS reviewer(s) requested"
+          fi
+      
+      - name: Check PR is not from main/master branch
+        run: |
+          HEAD_REF="${{ github.event.pull_request.head.ref }}"
+          if [ "$HEAD_REF" = "main" ] || [ "$HEAD_REF" = "master" ]; then
+            echo "❌ Please do not create PRs from the main/master branch."
+            echo "Create a feature branch instead (e.g., feat/your-feature)."
+            exit 1
+          fi
+          echo "✅ PR is from a feature branch: $HEAD_REF"
+
+  label-pr:
+    name: Auto-label PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    
+    steps:
+      - name: Label PR based on title
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = context.payload.pull_request.title.toLowerCase();
+            const labels = [];
+            
+            if (title.startsWith('feat')) labels.push('enhancement');
+            if (title.startsWith('fix')) labels.push('bug');
+            if (title.startsWith('docs')) labels.push('documentation');
+            if (title.startsWith('test')) labels.push('testing');
+            if (title.startsWith('perf')) labels.push('performance');
+            if (title.startsWith('refactor')) labels.push('refactoring');
+            if (title.startsWith('ci')) labels.push('ci/cd');
+            if (title.startsWith('build')) labels.push('dependencies');
+            
+            if (labels.length > 0) {
+              github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                labels: labels
+              });
+            }

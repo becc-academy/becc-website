@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Colors */
+    --background-color: #f1f5f7;
+    --default-color: #010608;
+    --heading-color: #6a3136;
+    --accent-color: #e95001;
+    --surface-color: #ffffff;
+    --contrast-color: #ffffff;
+    --nav-color: #04415f;
+    --nav-hover-color: #6a3136;
+    --nav-mobile-background-color: #ffffff;
+    --border-color: #e5e7eb;
+    --border: 214.3 31.8% 91.4%;
+
+    /* Legacy Tailwind variables (for compatibility) */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
+  }
+
+  /* Light Background Variant */
+  .light-background {
+    --background-color: #e6edf0;
+    --surface-color: #ffffff;
+  }
+
+  /* Dark Background Variant */
+  .dark-background {
+    --background-color: #060606;
+    --default-color: #ffffff;
+    --heading-color: #ffffff;
+    --surface-color: #252525;
+    --contrast-color: #ffffff;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--background-color);
+    color: var(--default-color);
+  }
+}
+
+@layer utilities {
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  @keyframes gradient {
+    0%,
+    100% {
+      background-size: 200% 200%;
+      background-position: 0% 50%;
+    }
+    50% {
+      background-size: 200% 200%;
+      background-position: 100% 50%;
+    }
+  }
+}
