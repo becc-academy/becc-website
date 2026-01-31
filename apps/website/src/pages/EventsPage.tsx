@@ -6,6 +6,7 @@ import { Calendar, Search } from 'lucide-react';
 import {
   BeccFooter,
   EventCard,
+  EventRegistrationModal,
   Header,
   type IEventCardProps,
   PageTitle,
@@ -14,6 +15,36 @@ import {
 
 const EventsPage = (): JSX.Element => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<{
+    title: string;
+    registrationUrl?: string;
+  } | null>(null);
+
+  // const humbleDataEventDate = new Date('2025-11-22T09:00:00');
+  // const countdown = useCountdown(humbleDataEventDate);
+  // const countdownText = formatCountdown(countdown);
+
+  const handleRegisterClick = (
+    title: string,
+    registrationUrl?: string,
+    shouldNavigate?: boolean,
+  ): void => {
+    if (shouldNavigate) {
+      // For events with detail pages
+      const slug = title.toLowerCase().replace(/\s+/g, '-');
+      void navigate(`/events/${slug}`);
+    } else {
+      // Open registration modal
+      setSelectedEvent({ title, registrationUrl });
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleRegistrationSubmit = (data: IEventRegistrationFormData): void => {
+    console.warn('Registration data:', data);
+    // Here you would typically send the data to your backend
+  };
 
   const events: IEventCardProps[] = [
     {
@@ -28,6 +59,58 @@ const EventsPage = (): JSX.Element => {
       participants: 'Open to all',
       delay: 0,
     },
+    {
+      image: '/assets/img/education/events-6.webp',
+      date: { day: '22', month: 'Dec' },
+      category: { label: 'Meeting', type: 'community' },
+      time: '12:00 PM - 07:00 PM',
+      title: 'General Annual Meeting',
+      description:
+        'Join us for our annual general meeting to review achievements, discuss plans, and celebrate our community success together.',
+      location: 'University Grand Hall',
+      participants: '150+ Expected',
+      onRegister: () => handleRegisterClick('General Annual Meeting', undefined, false),
+      delay: 0.1,
+    },
+    // {
+    //   image: '/assets/img/education/events-1.webp',
+    //   date: { day: '15', month: 'Jan' },
+    //   category: { label: 'Seminar', type: 'academic' },
+    //   time: '10:00 AM - 02:00 PM',
+    //   title: 'Career Development Seminar',
+    //   description:
+    //     'Learn essential career skills, networking strategies, and professional development techniques from industry experts.',
+    //   location: 'Main Auditorium',
+    //   participants: '200+ Expected',
+    //   onRegister: () => handleRegisterClick('Career Development Seminar', undefined, false),
+    //   delay: 0.2,
+    // },
+    // {
+    //   image: '/assets/img/education/events-2.webp',
+    //   date: { day: '28', month: 'Jan' },
+    //   category: { label: 'Competition', type: 'sports' },
+    //   time: '08:00 AM - 06:00 PM',
+    //   title: 'Inter-College Sports Day',
+    //   description:
+    //     'Annual sports competition featuring various athletic events, team sports, and individual competitions across multiple disciplines.',
+    //   location: 'Sports Complex',
+    //   participants: '500+ Athletes',
+    //   onRegister: () => handleRegisterClick('Inter-College Sports Day', undefined, false),
+    //   delay: 0.3,
+    // },
+    // {
+    //   image: '/assets/img/education/events-3.webp',
+    //   date: { day: '10', month: 'Feb' },
+    //   category: { label: 'Exhibition', type: 'arts' },
+    //   time: '11:00 AM - 05:00 PM',
+    //   title: 'Student Art Exhibition',
+    //   description:
+    //     'Showcase of creative works by talented students featuring paintings, sculptures, digital art, and multimedia installations.',
+    //   location: 'Art Gallery',
+    //   participants: 'Open to public',
+    //   onRegister: () => handleRegisterClick('Student Art Exhibition', undefined, false),
+    //   delay: 0.4,
+    // },
   ];
 
   const filteredEvents = events.filter(
@@ -59,6 +142,22 @@ const EventsPage = (): JSX.Element => {
             { label: 'Events', href: '/events' },
           ]}
         />
+
+        {/* Featured Event Banner */}
+        {/* <section className="py-12 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <EventBanner
+              date={{ day: '22', month: 'Nov' }}
+              title="Humble Data Workshop"
+              description="Join us for an intensive data analysis workshop. Register now and start your journey!"
+              buttonText="Register Now"
+              countdown={countdownText}
+              onButtonClick={() =>
+                handleRegisterClick('Humble Data Workshop', 'https://bit.ly/HDW1025', false)
+              }
+            />
+          </div>
+        </section> */}
 
         {/* Events Listing */}
         <section className="py-12 px-4">

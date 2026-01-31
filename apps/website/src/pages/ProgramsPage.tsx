@@ -147,6 +147,7 @@ const ProgramsPage = (): JSX.Element => {
             <div className="grid lg:grid-cols-2 gap-12 mb-16">
               {/* Left Column - Content */}
               <motion.div
+                className="text-left"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}

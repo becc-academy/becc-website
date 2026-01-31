@@ -1,5 +1,6 @@
-import { Button } from '@becc/ui';
 import { ReactElement } from 'react';
+
+import { Button } from '@becc/ui';
 
 const App = (): ReactElement => {
   return (

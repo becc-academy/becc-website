@@ -17,7 +17,6 @@ import {
 import {
   AboutSection,
   BeccFooter,
-  EventBanner,
   FeatureCard,
   Header,
   Hero,
@@ -237,7 +236,7 @@ const HomePage = (): JSX.Element => {
         </motion.section>
 
         {/* Event Banner */}
-        <motion.section
+        {/* <motion.section
           className="py-8 bg-gray-50"
           initial="hidden"
           whileInView="visible"
@@ -255,7 +254,7 @@ const HomePage = (): JSX.Element => {
               countdown="Starts in 4 weeks"
             />
           </div>
-        </motion.section>
+        </motion.section> */}
 
         {/* About Section */}
         <AboutSection
