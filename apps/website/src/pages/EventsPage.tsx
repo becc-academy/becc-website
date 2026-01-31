@@ -6,16 +6,13 @@ import { Calendar, Search } from 'lucide-react';
 
 import {
   BeccFooter,
-  EventBanner,
   EventCard,
   EventRegistrationModal,
-  formatCountdown,
   Header,
   type IEventCardProps,
   type IEventRegistrationFormData,
   PageTitle,
   ScrollToTop,
-  useCountdown,
 } from '@becc/ui';
 
 const EventsPage = (): JSX.Element => {
@@ -27,9 +24,9 @@ const EventsPage = (): JSX.Element => {
     registrationUrl?: string;
   } | null>(null);
 
-  const humbleDataEventDate = new Date('2025-11-22T09:00:00');
-  const countdown = useCountdown(humbleDataEventDate);
-  const countdownText = formatCountdown(countdown);
+  // const humbleDataEventDate = new Date('2025-11-22T09:00:00');
+  // const countdown = useCountdown(humbleDataEventDate);
+  // const countdownText = formatCountdown(countdown);
 
   const handleRegisterClick = (
     title: string,
@@ -81,45 +78,45 @@ const EventsPage = (): JSX.Element => {
       onRegister: () => handleRegisterClick('General Annual Meeting', undefined, false),
       delay: 0.1,
     },
-    {
-      image: '/assets/img/education/events-1.webp',
-      date: { day: '15', month: 'Jan' },
-      category: { label: 'Seminar', type: 'academic' },
-      time: '10:00 AM - 02:00 PM',
-      title: 'Career Development Seminar',
-      description:
-        'Learn essential career skills, networking strategies, and professional development techniques from industry experts.',
-      location: 'Main Auditorium',
-      participants: '200+ Expected',
-      onRegister: () => handleRegisterClick('Career Development Seminar', undefined, false),
-      delay: 0.2,
-    },
-    {
-      image: '/assets/img/education/events-2.webp',
-      date: { day: '28', month: 'Jan' },
-      category: { label: 'Competition', type: 'sports' },
-      time: '08:00 AM - 06:00 PM',
-      title: 'Inter-College Sports Day',
-      description:
-        'Annual sports competition featuring various athletic events, team sports, and individual competitions across multiple disciplines.',
-      location: 'Sports Complex',
-      participants: '500+ Athletes',
-      onRegister: () => handleRegisterClick('Inter-College Sports Day', undefined, false),
-      delay: 0.3,
-    },
-    {
-      image: '/assets/img/education/events-3.webp',
-      date: { day: '10', month: 'Feb' },
-      category: { label: 'Exhibition', type: 'arts' },
-      time: '11:00 AM - 05:00 PM',
-      title: 'Student Art Exhibition',
-      description:
-        'Showcase of creative works by talented students featuring paintings, sculptures, digital art, and multimedia installations.',
-      location: 'Art Gallery',
-      participants: 'Open to public',
-      onRegister: () => handleRegisterClick('Student Art Exhibition', undefined, false),
-      delay: 0.4,
-    },
+    // {
+    //   image: '/assets/img/education/events-1.webp',
+    //   date: { day: '15', month: 'Jan' },
+    //   category: { label: 'Seminar', type: 'academic' },
+    //   time: '10:00 AM - 02:00 PM',
+    //   title: 'Career Development Seminar',
+    //   description:
+    //     'Learn essential career skills, networking strategies, and professional development techniques from industry experts.',
+    //   location: 'Main Auditorium',
+    //   participants: '200+ Expected',
+    //   onRegister: () => handleRegisterClick('Career Development Seminar', undefined, false),
+    //   delay: 0.2,
+    // },
+    // {
+    //   image: '/assets/img/education/events-2.webp',
+    //   date: { day: '28', month: 'Jan' },
+    //   category: { label: 'Competition', type: 'sports' },
+    //   time: '08:00 AM - 06:00 PM',
+    //   title: 'Inter-College Sports Day',
+    //   description:
+    //     'Annual sports competition featuring various athletic events, team sports, and individual competitions across multiple disciplines.',
+    //   location: 'Sports Complex',
+    //   participants: '500+ Athletes',
+    //   onRegister: () => handleRegisterClick('Inter-College Sports Day', undefined, false),
+    //   delay: 0.3,
+    // },
+    // {
+    //   image: '/assets/img/education/events-3.webp',
+    //   date: { day: '10', month: 'Feb' },
+    //   category: { label: 'Exhibition', type: 'arts' },
+    //   time: '11:00 AM - 05:00 PM',
+    //   title: 'Student Art Exhibition',
+    //   description:
+    //     'Showcase of creative works by talented students featuring paintings, sculptures, digital art, and multimedia installations.',
+    //   location: 'Art Gallery',
+    //   participants: 'Open to public',
+    //   onRegister: () => handleRegisterClick('Student Art Exhibition', undefined, false),
+    //   delay: 0.4,
+    // },
   ];
 
   const filteredEvents = events.filter(
@@ -153,7 +150,7 @@ const EventsPage = (): JSX.Element => {
         />
 
         {/* Featured Event Banner */}
-        <section className="py-12 px-4">
+        {/* <section className="py-12 px-4">
           <div className="container mx-auto max-w-6xl">
             <EventBanner
               date={{ day: '22', month: 'Nov' }}
@@ -166,7 +163,7 @@ const EventsPage = (): JSX.Element => {
               }
             />
           </div>
-        </section>
+        </section> */}
 
         {/* Events Listing */}
         <section className="py-12 px-4">
