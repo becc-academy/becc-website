@@ -58,10 +58,17 @@ export const Footer: React.FC<IFooterProps> = ({
 
   const footerBgClass = withGlasmorphism
     ? 'bg-gradient-to-br from-[#e95001] via-[#d14801] to-[#b83d01] text-white relative overflow-hidden'
-    : 'bg-gray-50 border-t border-gray-200';
+    : 'border-t border-gray-200';
 
   return (
-    <footer id="footer" className={cn(footerBgClass, className)}>
+    <footer
+      id="footer"
+      className={cn(footerBgClass, className)}
+      style={{
+        color: withGlasmorphism ? undefined : 'var(--default-color)',
+        backgroundColor: withGlasmorphism ? undefined : 'var(--background-color)',
+      }}
+    >
       {/* Glasmorphism overlay for scroll button area */}
       {withGlasmorphism && (
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 backdrop-blur-lg rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
