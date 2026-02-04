@@ -1,10 +1,9 @@
 /* eslint-disable simple-import-sort/imports */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { motion } from 'framer-motion';
 import { Calendar, Search } from 'lucide-react';
 import type { JSX } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import {
   BeccFooter,
@@ -17,33 +16,33 @@ import {
 } from '@becc/ui';
 
 const EventsPage = (): JSX.Element => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState<{
-    title: string;
-    registrationUrl?: string;
-  } | null>(null);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [selectedEvent, setSelectedEvent] = useState<{
+  //   title: string;
+  //   registrationUrl?: string;
+  // } | null>(null);
 
   // const humbleDataEventDate = new Date('2025-11-22T09:00:00');
   // const countdown = useCountdown(humbleDataEventDate);
   // const countdownText = formatCountdown(countdown);
 
-  const handleRegisterClick = (
-    title: string,
-    registrationUrl?: string,
-    shouldNavigate?: boolean,
-  ): void => {
-    if (shouldNavigate) {
-      // For events with detail pages
-      const slug = title.toLowerCase().replace(/\s+/g, '-');
-      void navigate(`/events/${slug}`);
-    } else {
-      // Open registration modal
-      setSelectedEvent({ title, registrationUrl });
-      setIsModalOpen(true);
-    }
-  };
+  // const handleRegisterClick = (
+  //   title: string,
+  //   registrationUrl?: string,
+  //   shouldNavigate?: boolean,
+  // ): void => {
+  //   if (shouldNavigate) {
+  //     // For events with detail pages
+  //     const slug = title.toLowerCase().replace(/\s+/g, '-');
+  //     void navigate(`/events/${slug}`);
+  //   } else {
+  //     // Open registration modal
+  //     setSelectedEvent({ title, registrationUrl });
+  //     setIsModalOpen(true);
+  //   }
+  // };
 
   // const handleRegistrationSubmit = (data: IEventRegistrationFormData): void => {
   //   console.warn('Registration data:', data);
