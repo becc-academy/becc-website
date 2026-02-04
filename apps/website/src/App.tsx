@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { CustomScrollbar } from '@becc/ui';
 
@@ -15,19 +15,17 @@ import ServicesPage from '@/pages/ServicesPage';
 const App = (): JSX.Element => {
   return (
     <>
-      <BrowserRouter>
-        <CustomScrollbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/events/:eventId" element={<EventDetailsPage />} />
-          <Route path="/programs" element={<ProgramsPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </BrowserRouter>
+      <CustomScrollbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/events/:eventId" element={<EventDetailsPage />} />
+        <Route path="/programs" element={<ProgramsPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   );
 };

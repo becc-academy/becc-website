@@ -1,5 +1,7 @@
+// apps/website/src/main.tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // Add this import
 
 import '@/styles/index.css';
 
@@ -13,6 +15,10 @@ if (!rootElement) {
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      {' '}
+      {/* Wrap App here */}
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
 );
