@@ -1,0 +1,43 @@
+name: Build and Deploy Website
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.12.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Website
+        # Replace "website" with the folder name inside your /apps directory
+        run: pnpm turbo run build --filter=@becc/website...
+
+      - name: Sync to StormerHost
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Path to the specific app's build output (usually 'dist' for Vite or 'next' for Next.js)
+          local-dir: ./apps/website/dist/
+          server-dir:
+            ./public_html/
+            # This ensures old files (like raw HTML) are removed
+          delete-destination: true
