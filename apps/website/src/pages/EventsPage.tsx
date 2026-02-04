@@ -1,12 +1,15 @@
-import type { JSX } from 'react';
-import { useState } from 'react';
+/* eslint-disable simple-import-sort/imports */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { motion } from 'framer-motion';
 import { Calendar, Search } from 'lucide-react';
+import type { JSX } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   BeccFooter,
   EventCard,
-  EventRegistrationModal,
+  // EventRegistrationModal,
   Header,
   type IEventCardProps,
   PageTitle,
@@ -14,6 +17,7 @@ import {
 } from '@becc/ui';
 
 const EventsPage = (): JSX.Element => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<{
@@ -41,10 +45,10 @@ const EventsPage = (): JSX.Element => {
     }
   };
 
-  const handleRegistrationSubmit = (data: IEventRegistrationFormData): void => {
-    console.warn('Registration data:', data);
-    // Here you would typically send the data to your backend
-  };
+  // const handleRegistrationSubmit = (data: IEventRegistrationFormData): void => {
+  //   console.warn('Registration data:', data);
+  //   // Here you would typically send the data to your backend
+  // };
 
   const events: IEventCardProps[] = [
     {
@@ -63,13 +67,13 @@ const EventsPage = (): JSX.Element => {
       image: '/assets/img/education/events-6.webp',
       date: { day: '22', month: 'Dec' },
       category: { label: 'Meeting', type: 'community' },
-      time: '12:00 PM - 07:00 PM',
+      time: 'All Day',
       title: 'General Annual Meeting',
       description:
         'Join us for our annual general meeting to review achievements, discuss plans, and celebrate our community success together.',
-      location: 'University Grand Hall',
-      participants: '150+ Expected',
-      onRegister: () => handleRegisterClick('General Annual Meeting', undefined, false),
+      location: 'To be decided',
+      participants: 'Open to all members',
+      // onRegister: () => handleRegisterClick('General Annual Meeting', undefined, false),
       delay: 0.1,
     },
     // {
