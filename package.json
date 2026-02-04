@@ -18,7 +18,7 @@
     "generate:tests": "node generate-tests.mjs",
     "check:all": "pnpm lint && pnpm format:check && pnpm type-check && pnpm test",
     "clean": "turbo run clean && rm -rf node_modules",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",
