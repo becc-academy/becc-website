@@ -1,6 +1,6 @@
-import type { JSX } from 'react';
 import { motion } from 'framer-motion';
 import { Award, GraduationCap, TrendingUp, Users } from 'lucide-react';
+import type { JSX } from 'react';
 
 import {
   BeccFooter,
@@ -152,7 +152,6 @@ const ProgramsPage = (): JSX.Element => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={fadeInLeft}
-                className="text-left"
               >
                 <h3 className="text-3xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>
                   Transform Your Future Through Practical Learning
