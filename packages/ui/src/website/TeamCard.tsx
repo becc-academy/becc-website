@@ -50,16 +50,26 @@ export const TeamCard: React.FC<ITeamCardProps> = ({
                 loading="lazy"
               />
             </div>
-            <div className="p-6 text-left">
-              <h4 className="text-2xl font-bold text-gray-900 mb-1">{name}</h4>
-              <p className="text-base text-[#e95001] font-medium">{position}</p>
+            <div className="p-8 text-left">
+              <h4 className="text-2xl font-bold mb-1" style={{ color: 'var(--heading-color)' }}>
+                {name}
+              </h4>
+              <p className="text-base font-medium" style={{ color: 'var(--accent-color)' }}>
+                {position}
+              </p>
             </div>
           </div>
         </div>
 
         {/* Back of Card */}
         <div className="absolute inset-0 backface-hidden rotate-y-180">
-          <div className="bg-gradient-to-br from-[#e95001] to-[#d14801] rounded-2xl shadow-lg p-6 h-full flex flex-col justify-center text-white text-left">
+          <div
+            className="rounded-2xl shadow-lg p-8 h-full flex flex-col justify-center text-left"
+            style={{
+              background: 'linear-gradient(to bottom right, var(--accent-color), #d14801)',
+              color: 'var(--contrast-color)',
+            }}
+          >
             <h4 className="text-2xl font-bold mb-2">{name}</h4>
             <p className="text-base opacity-90 mb-4">{position}</p>
             {bio && <p className="text-base leading-relaxed mb-6 opacity-90">{bio}</p>}

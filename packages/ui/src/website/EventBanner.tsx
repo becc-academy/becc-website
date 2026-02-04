@@ -29,10 +29,10 @@ export const EventBanner: React.FC<IEventBannerProps> = ({
 }) => {
   return (
     <div
-      className={cn(
-        'bg-gradient-to-r from-[#e95001] to-[#d14801] rounded-2xl p-6 md:p-8 shadow-xl overflow-hidden relative',
-        className,
-      )}
+      className={cn('rounded-2xl p-6 md:p-8 shadow-xl overflow-hidden relative', className)}
+      style={{
+        background: 'linear-gradient(to right, var(--accent-color), #d14801)',
+      }}
       data-aos="fade-up"
       data-aos-delay="400"
     >
@@ -45,9 +45,19 @@ export const EventBanner: React.FC<IEventBannerProps> = ({
         {/* Top Section */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           {/* Date Badge */}
-          <div className="flex-shrink-0 bg-white rounded-xl p-4 text-center min-w-[80px] shadow-md">
-            <div className="text-3xl font-bold text-[#e95001]">{date.day}</div>
-            <div className="text-sm font-semibold text-gray-600 uppercase">{date.month}</div>
+          <div
+            className="flex-shrink-0 rounded-xl p-4 text-center min-w-[80px] shadow-md"
+            style={{ backgroundColor: 'var(--surface-color)' }}
+          >
+            <div className="text-3xl font-bold" style={{ color: 'var(--accent-color)' }}>
+              {date.day}
+            </div>
+            <div
+              className="text-sm font-semibold uppercase"
+              style={{ color: 'var(--default-color)' }}
+            >
+              {date.month}
+            </div>
           </div>
 
           {/* Event Info */}
@@ -63,10 +73,24 @@ export const EventBanner: React.FC<IEventBannerProps> = ({
               disabled={buttonDisabled}
               className={cn(
                 'px-8 py-4 rounded-lg font-bold text-base transition-all duration-300 transform',
-                buttonDisabled
-                  ? 'bg-white/20 text-white cursor-not-allowed'
-                  : 'bg-white text-[#e95001] hover:bg-yellow-50 shadow-lg hover:shadow-2xl hover:scale-105 animate-pulse',
+                buttonDisabled ? 'cursor-not-allowed' : 'hover:scale-105 animate-pulse',
               )}
+              style={{
+                backgroundColor: buttonDisabled
+                  ? 'rgba(255, 255, 255, 0.2)'
+                  : 'var(--surface-color)',
+                color: buttonDisabled ? 'var(--contrast-color)' : 'var(--accent-color)',
+              }}
+              onMouseEnter={(e) => {
+                if (!buttonDisabled) {
+                  e.currentTarget.style.backgroundColor = 'var(--background-color)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = buttonDisabled
+                  ? 'rgba(255, 255, 255, 0.2)'
+                  : 'var(--surface-color)';
+              }}
             >
               {buttonText}
             </button>
@@ -78,17 +102,35 @@ export const EventBanner: React.FC<IEventBannerProps> = ({
           <div className="mt-4">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-2xl border-4 border-yellow-400 animate-[pulse_2s_ease-in-out_infinite]">
               <div className="flex items-center justify-center gap-3 mb-3">
-                <Clock className="w-8 h-8 text-[#e95001] animate-[spin_3s_linear_infinite]" />
-                <span className="text-lg md:text-xl font-bold text-[#e95001] uppercase tracking-wider">
+                <Clock
+                  className="w-8 h-8 animate-[spin_3s_linear_infinite]"
+                  style={{ color: 'var(--accent-color)' }}
+                />
+                <span
+                  className="text-lg md:text-xl font-bold uppercase tracking-wider"
+                  style={{ color: 'var(--accent-color)' }}
+                >
                   Event Starts In
                 </span>
-                <Clock className="w-8 h-8 text-[#e95001] animate-[spin_3s_linear_infinite]" />
+                <Clock
+                  className="w-8 h-8 animate-[spin_3s_linear_infinite]"
+                  style={{ color: 'var(--accent-color)' }}
+                />
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#e95001] via-[#ff6b35] to-[#e95001] animate-[gradient_3s_ease_infinite] drop-shadow-lg">
+                <div
+                  className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r animate-[gradient_3s_ease_infinite] drop-shadow-lg"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(to right, var(--accent-color), #ff6b35, var(--accent-color))',
+                  }}
+                >
                   {countdown}
                 </div>
-                <div className="mt-3 text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wide">
+                <div
+                  className="mt-3 text-sm md:text-base font-semibold uppercase tracking-wide"
+                  style={{ color: 'var(--default-color)' }}
+                >
                   ⏰ Don&apos;t Miss Out! Register Now! ⏰
                 </div>
               </div>

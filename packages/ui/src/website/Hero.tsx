@@ -34,7 +34,12 @@ export const Hero: React.FC<IHeroProps> = ({
   className = '',
 }) => {
   return (
-    <section className={cn('py-20 bg-gradient-to-br from-gray-50 to-white', className)}>
+    <section
+      className={cn('py-20 bg-gradient-to-br', className)}
+      style={{
+        background: `linear-gradient(to bottom right, var(--background-color), var(--surface-color))`,
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <style>{`
@@ -44,28 +49,28 @@ export const Hero: React.FC<IHeroProps> = ({
               50% { transform: translate(10px, 0) scale(1.1); }
               75% { transform: translate(5px, 5px) scale(1.05); }
             }
-            
+
             @keyframes circular-motion-2 {
               0%, 100% { transform: translate(0, 0) scale(1); }
               25% { transform: translate(-5px, 5px) scale(1.05); }
               50% { transform: translate(-10px, 0) scale(1.1); }
               75% { transform: translate(-5px, -5px) scale(1.05); }
             }
-            
+
             @keyframes circular-motion-3 {
               0%, 100% { transform: translate(0, 0) scale(1); }
               25% { transform: translate(5px, 5px) scale(1.05); }
               50% { transform: translate(0, 10px) scale(1.1); }
               75% { transform: translate(-5px, 5px) scale(1.05); }
             }
-            
+
             @keyframes circular-motion-4 {
               0%, 100% { transform: translate(0, 0) scale(1); }
               25% { transform: translate(-5px, -5px) scale(1.05); }
               50% { transform: translate(0, -10px) scale(1.1); }
               75% { transform: translate(5px, -5px) scale(1.05); }
             }
-            
+
             .animate-circular-1 { animation: circular-motion-1 8s ease-in-out infinite; }
             .animate-circular-2 { animation: circular-motion-2 8s ease-in-out infinite 2s; }
             .animate-circular-3 { animation: circular-motion-3 8s ease-in-out infinite 4s; }
@@ -74,18 +79,30 @@ export const Hero: React.FC<IHeroProps> = ({
           {/* Content */}
           <div className="space-y-8 text-left" data-aos="fade-right" data-aos-delay="100">
             {}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+              style={{ color: 'var(--heading-color)' }}
+            >
               {title}
             </h1>
-            <p className="text-lg text-gray-600 leading-relaxed text-left">{description}</p>
+            <p
+              className="text-lg leading-relaxed text-left"
+              style={{ color: 'var(--default-color)' }}
+            >
+              {description}
+            </p>
 
             {/* Stats */}
             {stats && stats.length > 0 && (
               <div className="flex flex-wrap gap-8">
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-3xl font-bold text-[#e95001]">{stat.value}</div>
-                    <div className="text-sm text-gray-600 mt-1">{stat.label}</div>
+                    <div className="text-3xl font-bold" style={{ color: 'var(--accent-color)' }}>
+                      {stat.value}
+                    </div>
+                    <div className="text-sm mt-1" style={{ color: 'var(--default-color)' }}>
+                      {stat.label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -97,7 +114,17 @@ export const Hero: React.FC<IHeroProps> = ({
                 {primaryButton && (
                   <a
                     href={primaryButton.href}
-                    className="px-8 py-4 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1"
+                    className="px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1"
+                    style={{
+                      backgroundColor: 'var(--accent-color)',
+                      color: 'var(--contrast-color)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#d14801';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--accent-color)';
+                    }}
                   >
                     {primaryButton.label}
                   </a>
@@ -105,7 +132,17 @@ export const Hero: React.FC<IHeroProps> = ({
                 {secondaryButton && (
                   <a
                     href={secondaryButton.href}
-                    className="px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1"
+                    className="px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1"
+                    style={{
+                      backgroundColor: 'var(--surface-color)',
+                      color: 'var(--default-color)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--background-color)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--surface-color)';
+                    }}
                   >
                     {secondaryButton.label}
                   </a>
@@ -128,7 +165,12 @@ export const Hero: React.FC<IHeroProps> = ({
                     `animate-circular-${index + 1}`,
                   )}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#e95001]/20 to-[#d14801]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+                    style={{
+                      background: `linear-gradient(to bottom right, var(--accent-color)33, #d1480133)`,
+                    }}
+                  />
                   <img
                     src={image}
                     alt={`BECC Academy student learning ${index + 1}`}

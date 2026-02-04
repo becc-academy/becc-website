@@ -48,7 +48,8 @@ export const EventCard: React.FC<IEventCardProps> = ({
 
   return (
     <motion.div
-      className={cn('bg-white rounded-2xl shadow-lg overflow-hidden group', className)}
+      className={cn('rounded-2xl shadow-lg overflow-hidden group', className)}
+      style={{ backgroundColor: 'var(--surface-color)' }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -75,8 +76,15 @@ export const EventCard: React.FC<IEventCardProps> = ({
           animate={{ scale: 1, rotate: 0 }}
           transition={{ delay: delay + 0.3, type: 'spring', stiffness: 200 }}
         >
-          <div className="text-2xl font-bold text-[#e95001]">{date.day}</div>
-          <div className="text-xs font-semibold text-gray-600 uppercase">{date.month}</div>
+          <div className="text-2xl font-bold" style={{ color: 'var(--accent-color)' }}>
+            {date.day}
+          </div>
+          <div
+            className="text-xs font-semibold uppercase"
+            style={{ color: 'var(--default-color)' }}
+          >
+            {date.month}
+          </div>
         </motion.div>
       </div>
 
@@ -92,23 +100,36 @@ export const EventCard: React.FC<IEventCardProps> = ({
           >
             {category.label}
           </span>
-          <span className="text-base text-gray-600">{time}</span>
+          <span className="text-base" style={{ color: 'var(--default-color)' }}>
+            {time}
+          </span>
         </div>
 
         {/* Title and Description */}
-        <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-[#e95001] transition-colors">
+        <h3
+          className="text-2xl font-bold mb-2 transition-colors"
+          style={{ color: 'var(--heading-color)' }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = 'var(--accent-color)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'var(--heading-color)';
+          }}
+        >
           {title}
         </h3>
-        <p className="text-base text-gray-600 leading-relaxed mb-4">{description}</p>
+        <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--default-color)' }}>
+          {description}
+        </p>
 
         {/* Event Info */}
-        <div className="space-y-2 mb-4 text-base text-gray-700">
+        <div className="space-y-2 mb-4 text-base" style={{ color: 'var(--default-color)' }}>
           <div className="flex items-center">
-            <MapPin className="w-5 h-5 text-[#e95001] mr-2" />
+            <MapPin className="w-5 h-5 mr-2" style={{ color: 'var(--accent-color)' }} />
             <span>{location}</span>
           </div>
           <div className="flex items-center">
-            <Users className="w-5 h-5 text-[#e95001] mr-2" />
+            <Users className="w-5 h-5 mr-2" style={{ color: 'var(--accent-color)' }} />
             <span>{participants}</span>
           </div>
         </div>
@@ -118,7 +139,17 @@ export const EventCard: React.FC<IEventCardProps> = ({
           {onRegister && (
             <motion.button
               onClick={onRegister}
-              className="px-6 py-2 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors text-base"
+              className="px-6 py-2 rounded-lg font-semibold transition-colors text-base"
+              style={{
+                backgroundColor: 'var(--accent-color)',
+                color: 'var(--contrast-color)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#d14801';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--accent-color)';
+              }}
               whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(233, 80, 1, 0.4)' }}
               whileTap={{ scale: 0.95 }}
             >
@@ -127,20 +158,34 @@ export const EventCard: React.FC<IEventCardProps> = ({
           )}
           <div className="flex space-x-2">
             <motion.button
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-full transition-colors"
+              style={{ color: 'var(--default-color)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--background-color)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }}
               aria-label="Share event"
               whileHover={{ scale: 1.1, rotate: 15 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Share2 className="w-4 h-4 text-gray-600" />
+              <Share2 className="w-4 h-4" />
             </motion.button>
             <motion.button
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-full transition-colors"
+              style={{ color: 'var(--default-color)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--background-color)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }}
               aria-label="Save event"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Heart className="w-4 h-4 text-gray-600" />
+              <Heart className="w-4 h-4" />
             </motion.button>
           </div>
         </div>

@@ -165,7 +165,7 @@ const ContactPage = (): JSX.Element => {
                     <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-xl text-white shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <MapPin size={24} className="drop-shadow-md" />
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 text-left">
                       <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
                         Location
                       </h4>
@@ -187,7 +187,7 @@ const ContactPage = (): JSX.Element => {
                     <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-xl text-white shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <Mail size={24} className="drop-shadow-md" />
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 text-left">
                       <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
                         Email
                       </h4>
@@ -209,7 +209,7 @@ const ContactPage = (): JSX.Element => {
                     <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-xl text-white shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <Phone size={24} className="drop-shadow-md" />
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 text-left">
                       <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
                         Call
                       </h4>
@@ -231,7 +231,7 @@ const ContactPage = (): JSX.Element => {
                     <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-xl text-white shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <Clock size={24} className="drop-shadow-md" />
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 text-left">
                       <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
                         Open Hours
                       </h4>

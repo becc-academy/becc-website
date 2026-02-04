@@ -58,7 +58,11 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
       {/* Name and Email Row */}
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+          <label
+            htmlFor="name"
+            className="block text-sm font-semibold mb-2"
+            style={{ color: 'var(--default-color)' }}
+          >
             Your Name
           </label>
           <input
@@ -68,13 +72,28 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#e95001] focus:ring-2 focus:ring-[#e95001]/20 outline-none transition-all"
+            className="w-full px-4 py-3 rounded-lg border outline-none transition-all"
+            style={{
+              borderColor: 'var(--border-color)',
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'var(--accent-color)';
+              e.currentTarget.style.boxShadow = '0 0 0 2px var(--accent-color)33';
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border-color)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
             placeholder="John Doe"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+          <label
+            htmlFor="email"
+            className="block text-sm font-semibold mb-2"
+            style={{ color: 'var(--default-color)' }}
+          >
             Your Email
           </label>
           <input
@@ -84,7 +103,18 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#e95001] focus:ring-2 focus:ring-[#e95001]/20 outline-none transition-all"
+            className="w-full px-4 py-3 rounded-lg border outline-none transition-all"
+            style={{
+              borderColor: 'var(--border-color)',
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'var(--accent-color)';
+              e.currentTarget.style.boxShadow = '0 0 0 2px var(--accent-color)33';
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border-color)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
             placeholder="john@example.com"
           />
         </div>
@@ -92,7 +122,11 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
 
       {/* Subject */}
       <div>
-        <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
+        <label
+          htmlFor="subject"
+          className="block text-sm font-semibold mb-2"
+          style={{ color: 'var(--default-color)' }}
+        >
           Subject
         </label>
         <input
@@ -102,14 +136,29 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
           value={formData.subject}
           onChange={handleChange}
           required
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#e95001] focus:ring-2 focus:ring-[#e95001]/20 outline-none transition-all"
+          className="w-full px-4 py-3 rounded-lg border outline-none transition-all"
+          style={{
+            borderColor: 'var(--border)',
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = 'var(--accent-color)';
+            e.currentTarget.style.boxShadow = '0 0 0 2px var(--accent-color)33';
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = 'var(--border)';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
           placeholder="How can we help you?"
         />
       </div>
 
       {/* Message */}
       <div>
-        <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+        <label
+          htmlFor="message"
+          className="block text-sm font-semibold mb-2"
+          style={{ color: 'var(--default-color)' }}
+        >
           Message
         </label>
         <textarea
@@ -119,7 +168,18 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
           onChange={handleChange}
           required
           rows={6}
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#e95001] focus:ring-2 focus:ring-[#e95001]/20 outline-none transition-all resize-none"
+          className="w-full px-4 py-3 rounded-lg border outline-none transition-all resize-none"
+          style={{
+            borderColor: 'var(--border)',
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = 'var(--accent-color)';
+            e.currentTarget.style.boxShadow = '0 0 0 2px var(--accent-color)33';
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = 'var(--border)';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
           placeholder="Your message here..."
         />
       </div>
@@ -130,11 +190,23 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
           type="submit"
           disabled={isSubmitting}
           className={cn(
-            'w-full px-8 py-4 bg-[#e95001] text-white rounded-lg font-semibold transition-all duration-300',
+            'w-full px-8 py-4 rounded-lg font-semibold transition-all duration-300',
             isSubmitting
               ? 'opacity-70 cursor-not-allowed'
-              : 'hover:bg-[#d14801] shadow-lg hover:shadow-xl hover:-translate-y-1',
+              : 'shadow-lg hover:shadow-xl hover:-translate-y-1',
           )}
+          style={{
+            backgroundColor: isSubmitting ? 'var(--accent-color)' : 'var(--accent-color)',
+            color: 'var(--contrast-color)',
+          }}
+          onMouseEnter={(e) => {
+            if (!isSubmitting) {
+              e.currentTarget.style.backgroundColor = '#d14801';
+            }
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--accent-color)';
+          }}
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center">

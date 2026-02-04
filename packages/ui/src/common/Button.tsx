@@ -24,12 +24,51 @@ export const Button: React.FC<IButtonProps> = ({
     'font-semibold rounded-lg transition-all duration-300 inline-flex items-center justify-center';
 
   const variantStyles = {
-    primary:
-      'bg-[#e95001] text-white hover:bg-[#d14801] shadow-md hover:shadow-lg hover:-translate-y-1',
-    secondary:
-      'bg-white text-[#010608] hover:text-[#6a3136] shadow-md hover:shadow-lg hover:-translate-y-1',
-    outline: 'border-2 border-[#e95001] text-[#e95001] hover:bg-[#e95001] hover:text-white',
-    ghost: 'text-[#e95001] hover:bg-[#e95001]/10',
+    primary: 'shadow-md hover:shadow-lg hover:-translate-y-1',
+    secondary: 'shadow-md hover:shadow-lg hover:-translate-y-1',
+    outline: 'border-2',
+    ghost: '',
+  };
+
+  const getVariantStyles = (variant: string) => {
+    switch (variant) {
+      case 'primary':
+        return {
+          backgroundColor: 'var(--accent-color)',
+          color: 'var(--contrast-color)',
+        };
+      case 'secondary':
+        return {
+          backgroundColor: 'var(--surface-color)',
+          color: 'var(--default-color)',
+        };
+      case 'outline':
+        return {
+          borderColor: 'var(--accent-color)',
+          color: 'var(--accent-color)',
+        };
+      case 'ghost':
+        return {
+          color: 'var(--accent-color)',
+        };
+      default:
+        return {};
+    }
+  };
+
+  const getHoverStyles = (variant: string) => {
+    switch (variant) {
+      case 'primary':
+        return { backgroundColor: '#d14801' };
+      case 'secondary':
+        return { color: 'var(--nav-hover-color)' };
+      case 'outline':
+        return { backgroundColor: 'var(--accent-color)', color: 'var(--contrast-color)' };
+      case 'ghost':
+        return { backgroundColor: 'var(--accent-color)1a' };
+      default:
+        return {};
+    }
   };
 
   const sizeStyles = {
@@ -40,9 +79,19 @@ export const Button: React.FC<IButtonProps> = ({
 
   const widthStyle = fullWidth ? 'w-full' : '';
 
+  const variantStyle = getVariantStyles(variant);
+  const hoverStyle = getHoverStyles(variant);
+
   return (
     <motion.button
       className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${widthStyle} ${className}`}
+      style={variantStyle}
+      onMouseEnter={(e) => {
+        Object.assign(e.currentTarget.style, hoverStyle);
+      }}
+      onMouseLeave={(e) => {
+        Object.assign(e.currentTarget.style, variantStyle);
+      }}
       whileTap={buttonTap.tap}
       {...(glow && { whileHover: glowHover.hover })}
       {...props}

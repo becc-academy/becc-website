@@ -1,6 +1,5 @@
 import type { JSX } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Search } from 'lucide-react';
 
@@ -10,13 +9,11 @@ import {
   EventRegistrationModal,
   Header,
   type IEventCardProps,
-  type IEventRegistrationFormData,
   PageTitle,
   ScrollToTop,
 } from '@becc/ui';
 
 const EventsPage = (): JSX.Element => {
-  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<{
@@ -60,9 +57,6 @@ const EventsPage = (): JSX.Element => {
         'A day of introduction to Data Analysis, where Participants will be taught how to prepare and position themselves as Data Analysts, from beginners to advance.',
       location: 'Virtual Event',
       participants: 'Open to all',
-      registrationUrl: 'https://bit.ly/HDW1025',
-      onRegister: () =>
-        handleRegisterClick('Humble Data Workshop', 'https://bit.ly/HDW1025', false),
       delay: 0,
     },
     {
@@ -180,8 +174,23 @@ const EventsPage = (): JSX.Element => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
+                        className="relative"
                       >
-                        <EventCard {...event} />
+                        {/* Over Badge */}
+                        <div className="absolute top-4 right-4 z-10">
+                          <span
+                            className="px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
+                            style={{
+                              backgroundColor: 'var(--default-color)',
+                              color: 'var(--contrast-color)',
+                            }}
+                          >
+                            Event Over
+                          </span>
+                        </div>
+                        <div className="opacity-75">
+                          <EventCard {...event} />
+                        </div>
                       </motion.div>
                     ))
                   ) : (
@@ -205,19 +214,47 @@ const EventsPage = (): JSX.Element => {
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="bg-white rounded-2xl shadow-lg p-6"
+                    className="rounded-2xl shadow-lg p-6"
+                    style={{ backgroundColor: 'var(--surface-color)' }}
                   >
-                    <h4 className="text-lg font-bold text-gray-900 mb-4">Search Events</h4>
+                    <h4
+                      className="text-lg font-bold mb-4"
+                      style={{ color: 'var(--heading-color)' }}
+                    >
+                      Search Events
+                    </h4>
                     <div className="relative">
                       <input
                         type="text"
                         placeholder="Search Events..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#e95001] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 pr-12 rounded-lg transition-all"
+                        style={{
+                          border: '1px solid var(--border-color)',
+                          color: 'var(--default-color)',
+                        }}
+                        onFocus={(e) => {
+                          e.currentTarget.style.borderColor = 'var(--accent-color)';
+                          e.currentTarget.style.boxShadow = '0 0 0 2px rgba(233, 80, 1, 0.2)';
+                        }}
+                        onBlur={(e) => {
+                          e.currentTarget.style.borderColor = 'var(--border-color)';
+                          e.currentTarget.style.boxShadow = 'none';
+                        }}
                       />
                       <button
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-[#e95001] text-white rounded-lg hover:bg-[#d14801] transition-colors"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-colors"
+                        style={{
+                          backgroundColor: 'var(--accent-color)',
+                          color: 'var(--contrast-color)',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#d14801';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'var(--accent-color)';
+                        }}
                         aria-label="Search"
                       >
                         <Search className="w-5 h-5" />
@@ -225,15 +262,19 @@ const EventsPage = (): JSX.Element => {
                     </div>
                   </motion.div>
 
-                  {/* Upcoming Featured Event */}
+                  {/* Past Featured Event */}
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                    className="rounded-2xl shadow-lg overflow-hidden opacity-75"
+                    style={{ backgroundColor: 'var(--surface-color)' }}
                   >
-                    <h4 className="text-lg font-bold text-gray-900 p-6 pb-4">
-                      Upcoming Featured Event
+                    <h4
+                      className="text-lg font-bold p-6 pb-4"
+                      style={{ color: 'var(--heading-color)' }}
+                    >
+                      Past Event
                     </h4>
                     <div className="relative">
                       <img
@@ -241,27 +282,35 @@ const EventsPage = (): JSX.Element => {
                         alt="Humble Data Workshop"
                         className="w-full h-48 object-cover"
                       />
+                      <div className="absolute top-4 right-4">
+                        <span
+                          className="px-3 py-1 rounded-full text-xs font-semibold shadow-lg"
+                          style={{
+                            backgroundColor: 'var(--default-color)',
+                            color: 'var(--contrast-color)',
+                          }}
+                        >
+                          Over
+                        </span>
+                      </div>
                     </div>
                     <div className="p-6">
-                      <h5 className="text-xl font-bold text-gray-900 mb-2">Humble Data Workshop</h5>
-                      <div className="flex items-center text-gray-600 mb-4">
-                        <Calendar className="w-4 h-4 mr-2 text-[#e95001]" />
+                      <h5
+                        className="text-xl font-bold mb-2"
+                        style={{ color: 'var(--heading-color)' }}
+                      >
+                        Humble Data Workshop
+                      </h5>
+                      <div
+                        className="flex items-center mb-4"
+                        style={{ color: 'var(--default-color)' }}
+                      >
+                        <Calendar
+                          className="w-4 h-4 mr-2"
+                          style={{ color: 'var(--accent-color)' }}
+                        />
                         <span className="text-sm">November 22, 2025</span>
                       </div>
-                      <motion.button
-                        onClick={() =>
-                          handleRegisterClick(
-                            'Humble Data Workshop',
-                            'https://bit.ly/HDW1025',
-                            false,
-                          )
-                        }
-                        className="w-full px-6 py-3 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        Register Now
-                      </motion.button>
                     </div>
                   </motion.div>
 
@@ -270,21 +319,21 @@ const EventsPage = (): JSX.Element => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-gradient-to-br from-[#e95001] to-[#d14801] rounded-2xl shadow-lg p-6 text-white"
+                    className="rounded-2xl shadow-lg p-6"
+                    style={{
+                      background: 'linear-gradient(to bottom right, var(--accent-color), #d14801)',
+                      color: 'var(--contrast-color)',
+                    }}
                   >
                     <h4 className="text-lg font-bold mb-4">Event Statistics</h4>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-white/80">Total Events</span>
+                        <span style={{ opacity: 0.8 }}>Total Events</span>
                         <span className="text-2xl font-bold">{events.length}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-white/80">This Month</span>
-                        <span className="text-2xl font-bold">2</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-white/80">Registered</span>
-                        <span className="text-2xl font-bold">850+</span>
+                        <span style={{ opacity: 0.8 }}>Past Events</span>
+                        <span className="text-2xl font-bold">{events.length}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -296,20 +345,6 @@ const EventsPage = (): JSX.Element => {
       </main>
       <BeccFooter />
       <ScrollToTop />
-
-      {/* Registration Modal */}
-      {selectedEvent && (
-        <EventRegistrationModal
-          isOpen={isModalOpen}
-          onClose={() => {
-            setIsModalOpen(false);
-            setSelectedEvent(null);
-          }}
-          eventTitle={selectedEvent.title}
-          externalRegistrationUrl={selectedEvent.registrationUrl}
-          onSubmit={handleRegistrationSubmit}
-        />
-      )}
     </>
   );
 };

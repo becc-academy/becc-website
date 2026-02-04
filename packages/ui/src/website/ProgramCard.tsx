@@ -35,7 +35,8 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={cn('bg-white rounded-2xl shadow-lg overflow-hidden', className)}
+      className={cn('rounded-2xl shadow-lg overflow-hidden', className)}
+      style={{ backgroundColor: 'var(--surface-color)' }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -59,7 +60,11 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
         />
         {badge && (
           <motion.div
-            className="absolute top-4 right-4 bg-[#e95001] text-white px-3 py-1 rounded-full text-xs font-semibold"
+            className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold"
+            style={{
+              backgroundColor: 'var(--accent-color)',
+              color: 'var(--contrast-color)',
+            }}
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ delay: delay + 0.3, type: 'spring' }}
@@ -73,9 +78,14 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
       <div className="p-6 text-left">
         {/* Program Header */}
         <div className="mb-4">
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">{title}</h3>
+          <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--heading-color)' }}>
+            {title}
+          </h3>
           {stats && (
-            <div className="flex items-center space-x-4 text-sm text-gray-600">
+            <div
+              className="flex items-center space-x-4 text-sm"
+              style={{ color: 'var(--default-color)' }}
+            >
               {stats.students && (
                 <span className="flex items-center">
                   <Users className="w-4 h-4 mr-1" /> {stats.students}
@@ -91,10 +101,15 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
         </div>
 
         {/* Description */}
-        <p className="text-base text-gray-600 leading-relaxed mb-4">{description}</p>
+        <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--default-color)' }}>
+          {description}
+        </p>
 
         {/* Meta Information */}
-        <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
+        <div
+          className="flex items-center space-x-4 text-sm mb-4"
+          style={{ color: 'var(--default-color)' }}
+        >
           <div className="flex items-center">
             <Calendar className="w-4 h-4 mr-1" />
             <span>{duration}</span>
@@ -109,7 +124,17 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
         {onLearnMore && (
           <motion.button
             onClick={onLearnMore}
-            className="w-full py-3 px-4 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors flex items-center justify-center"
+            className="w-full py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center"
+            style={{
+              backgroundColor: 'var(--accent-color)',
+              color: 'var(--contrast-color)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#d14801';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--accent-color)';
+            }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -145,10 +170,8 @@ export const ProgramItem: React.FC<IProgramItemProps> = ({
 }) => {
   return (
     <motion.div
-      className={cn(
-        'bg-white p-4 rounded-xl shadow-md flex items-center space-x-4 text-left',
-        className,
-      )}
+      className={cn('p-4 rounded-xl shadow-md flex items-center space-x-4 text-left', className)}
+      style={{ backgroundColor: 'var(--surface-color)' }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -163,9 +186,16 @@ export const ProgramItem: React.FC<IProgramItemProps> = ({
 
       {/* Content */}
       <div className="flex-1">
-        <h4 className="text-lg font-bold text-gray-900 mb-1">{title}</h4>
-        <p className="text-sm text-gray-600 leading-relaxed mb-2">{description}</p>
-        <div className="flex items-center space-x-3 text-sm text-gray-500">
+        <h4 className="text-lg font-bold mb-1" style={{ color: 'var(--heading-color)' }}>
+          {title}
+        </h4>
+        <p className="text-sm leading-relaxed mb-2" style={{ color: 'var(--default-color)' }}>
+          {description}
+        </p>
+        <div
+          className="flex items-center space-x-3 text-sm"
+          style={{ color: 'var(--default-color)' }}
+        >
           <span>{duration}</span>
           <span>•</span>
           <span>{level}</span>
@@ -178,7 +208,7 @@ export const ProgramItem: React.FC<IProgramItemProps> = ({
         animate={{ x: [0, 5, 0] }}
         transition={{ repeat: Infinity, duration: 1.5 }}
       >
-        <ArrowRight className="w-5 h-5 text-[#e95001]" />
+        <ArrowRight className="w-5 h-5" style={{ color: 'var(--accent-color)' }} />
       </motion.div>
     </motion.div>
   );

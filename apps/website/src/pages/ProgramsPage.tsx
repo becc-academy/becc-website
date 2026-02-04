@@ -152,23 +152,37 @@ const ProgramsPage = (): JSX.Element => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={fadeInLeft}
+                className="text-left"
               >
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                <h3 className="text-3xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>
                   Transform Your Future Through Practical Learning
                 </h3>
-                <p className="text-lg text-gray-700 mb-4 leading-relaxed">
+                <p
+                  className="text-lg mb-4 leading-relaxed"
+                  style={{ color: 'var(--default-color)' }}
+                >
                   Our hands-on programs combine technical skills, creative thinking, and
                   entrepreneurial mindset to prepare learners ages 6-30 for success in the digital
                   age.
                 </p>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="mb-6 leading-relaxed" style={{ color: 'var(--default-color)' }}>
                   Whether you&apos;re starting your coding journey, developing creative skills, or
                   launching a business idea, our project-based curriculum and expert mentorship will
                   help you achieve your goals.
                 </p>
                 <motion.a
                   href="/contact"
-                  className="inline-block px-8 py-3 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors"
+                  className="inline-block px-8 py-3 rounded-lg font-semibold transition-colors"
+                  style={{
+                    backgroundColor: 'var(--accent-color)',
+                    color: 'var(--contrast-color)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#d14801';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--accent-color)';
+                  }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -222,49 +236,18 @@ const ProgramsPage = (): JSX.Element => {
                     level={program.level}
                     badge={program.badge}
                     stats={program.stats}
-                    onLearnMore={() => {
-                      // Handle navigation or modal opening
-                      window.location.href = '/contact';
-                    }}
+                    onLearnMore={
+                      program.title === 'Innovators Program'
+                        ? () => {
+                            // Navigate to Innovators Program registration page
+                            window.location.href = '/contact';
+                          }
+                        : undefined
+                    }
                     delay={index * 0.1}
                   />
                 </motion.div>
               ))}
-            </motion.div>
-
-            {/* Call to Action */}
-            <motion.div
-              className="mt-16 text-center bg-white rounded-2xl shadow-lg p-12"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-            >
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                Ready to Start Your Learning Journey?
-              </h3>
-              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                Join thousands of learners who have transformed their careers and lives through our
-                programs. Get started today!
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <motion.a
-                  href="/contact"
-                  className="px-8 py-3 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Apply Now
-                </motion.a>
-                <motion.a
-                  href="/contact"
-                  className="px-8 py-3 bg-white border-2 border-[#e95001] text-[#e95001] rounded-lg font-semibold hover:bg-[#e95001] hover:text-white transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Contact Us
-                </motion.a>
-              </div>
             </motion.div>
           </div>
         </section>

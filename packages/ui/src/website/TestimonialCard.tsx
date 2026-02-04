@@ -26,7 +26,8 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={cn('bg-white p-8 rounded-2xl shadow-lg text-left', className)}
+      className={cn('p-8 rounded-2xl shadow-lg text-left', className)}
+      style={{ backgroundColor: 'var(--surface-color)' }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -42,7 +43,8 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
         <motion.img
           src={image}
           alt={name}
-          className="w-16 h-16 rounded-full object-cover border-2 border-[#e95001]/20"
+          className="w-16 h-16 rounded-full object-cover border-2"
+          style={{ borderColor: 'var(--accent-color)33' }}
           loading="lazy"
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: 'spring', stiffness: 300 }}
@@ -77,7 +79,8 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
 
       {/* Testimonial Text */}
       <motion.p
-        className="text-gray-700 text-base leading-relaxed mb-6 italic"
+        className="text-base leading-relaxed mb-6 italic"
+        style={{ color: 'var(--default-color)' }}
         variants={fadeInUp}
         transition={{ delay: delay + 0.3 }}
       >
@@ -91,11 +94,16 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
         transition={{ delay: delay + 0.4 }}
       >
         <div>
-          <h5 className="font-bold text-gray-900 text-base">{name}</h5>
-          <span className="text-sm text-gray-500">{position}</span>
+          <h5 className="font-bold text-base" style={{ color: 'var(--heading-color)' }}>
+            {name}
+          </h5>
+          <span className="text-sm" style={{ color: 'var(--default-color)' }}>
+            {position}
+          </span>
         </div>
         <motion.div
-          className="w-10 h-10 bg-[#e95001]/10 rounded-full flex items-center justify-center"
+          className="w-10 h-10 rounded-full flex items-center justify-center"
+          style={{ backgroundColor: 'var(--accent-color)1a' }}
           animate={{
             rotate: [0, 10, -10, 0],
           }}
@@ -105,7 +113,7 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
             ease: 'easeInOut',
           }}
         >
-          <Quote className="w-5 h-5 text-[#e95001]" />
+          <Quote className="w-5 h-5" style={{ color: 'var(--accent-color)' }} />
         </motion.div>
       </motion.div>
     </motion.div>

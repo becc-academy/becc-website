@@ -7,6 +7,16 @@ export default {
         border: 'hsl(var(--border))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        // Brand colors
+        'becc-background': 'var(--background-color)',
+        'becc-default': 'var(--default-color)',
+        'becc-heading': 'var(--heading-color)',
+        'becc-accent': 'var(--accent-color)',
+        'becc-surface': 'var(--surface-color)',
+        'becc-contrast': 'var(--contrast-color)',
+        'becc-nav': 'var(--nav-color)',
+        'becc-nav-hover': 'var(--nav-hover-color)',
+        'becc-nav-mobile': 'var(--nav-mobile-background-color)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
