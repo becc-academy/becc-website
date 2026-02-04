@@ -15,8 +15,8 @@ import ServicesPage from '@/pages/ServicesPage';
 const App = (): JSX.Element => {
   return (
     <>
-      <CustomScrollbar />
       <BrowserRouter>
+        <CustomScrollbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
