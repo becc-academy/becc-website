@@ -29,7 +29,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
-    dedupe: ['react', 'react-router-dom'],
+    dedupe: ['react', 'react-dom', 'react-router-dom'],
   },
   server: {
     port: 3000,
@@ -54,4 +54,5 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test-setup.ts',
   },
+  base: '/',
 });
