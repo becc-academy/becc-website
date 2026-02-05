@@ -1,9 +1,9 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import { defineConfig } from 'vite';
 import { imagetools } from 'vite-imagetools';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 export default defineConfig({
   plugins: [
@@ -29,6 +29,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+    dedupe: ['react', 'react-router-dom'],
   },
   server: {
     port: 3000,
