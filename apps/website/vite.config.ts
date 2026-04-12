@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig, type PluginOption } from 'vite';
 import { imagetools } from 'vite-imagetools';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
@@ -24,7 +24,7 @@ export default defineConfig({
         quality: 85,
       },
     }),
-  ],
+  ] as PluginOption[],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -39,7 +39,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          const info = assetInfo.name?.split('/') || [];
           const extType = assetInfo.name?.split('.').pop();
           if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(extType || '')) {
             return `assets/images/[name]-[hash][extname]`;
@@ -55,4 +54,4 @@ export default defineConfig({
     setupFiles: './src/test-setup.ts',
   },
   base: '/',
-});
+} as any);

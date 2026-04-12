@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Award, Calendar, GraduationCap, Users } from 'lucide-react';
 
-import { fadeInUp, glowHover, hoverScale } from '../lib/animations';
+import { fadeInUp, glowHover } from '../lib/animations';
 import { cn } from '../lib/utils';
 
 export interface IProgramCardProps {
@@ -42,11 +42,6 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeInUp}
       transition={{ delay }}
-      whileHover={{
-        ...hoverScale.hover,
-        ...glowHover.hover,
-        y: -8,
-      }}
     >
       {/* Image Section */}
       <div className="relative overflow-hidden">
@@ -55,8 +50,6 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
           alt={title}
           className="w-full h-48 object-cover"
           loading="lazy"
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.3 }}
         />
         {badge && (
           <motion.div
@@ -138,7 +131,7 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Discover Program
+            Get in Touch
             <motion.div animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
               <ArrowRight className="w-4 h-4 ml-2" />
             </motion.div>
