@@ -40,7 +40,7 @@ export const Header: React.FC<IHeaderProps> = ({ logo, siteName, navLinks, class
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link, index) => (
               <Link
                 key={index}
@@ -67,7 +67,7 @@ export const Header: React.FC<IHeaderProps> = ({ logo, siteName, navLinks, class
 
           {/* Mobile Menu Toggle */}
           <button
-            className="xl:hidden text-2xl transition-colors"
+            className="lg:hidden text-2xl transition-colors"
             style={{ color: 'var(--nav-color)' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = 'var(--accent-color)';
@@ -85,7 +85,7 @@ export const Header: React.FC<IHeaderProps> = ({ logo, siteName, navLinks, class
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <nav
-            className="xl:hidden py-4 border-t"
+            className="lg:hidden py-4 border-t"
             style={{
               backgroundColor: 'var(--nav-mobile-background-color)',
               borderColor: 'var(--border)',

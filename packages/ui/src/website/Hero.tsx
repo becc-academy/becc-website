@@ -1,5 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
 
 import { cn } from '../lib/utils';
 
@@ -78,7 +78,6 @@ export const Hero: React.FC<IHeroProps> = ({
           `}</style>
           {/* Content */}
           <div className="space-y-8 text-left" data-aos="fade-right" data-aos-delay="100">
-            {}
             <h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
               style={{ color: 'var(--heading-color)' }}
@@ -153,15 +152,15 @@ export const Hero: React.FC<IHeroProps> = ({
 
           {/* Image Grid with Animations */}
           {images && images.length > 0 && (
-            <div className="grid grid-cols-2 gap-6" data-aos="zoom-in" data-aos-delay="200">
+            <div className="grid grid-cols-2 gap-12" data-aos="zoom-in" data-aos-delay="200">
               {images.map((image, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 1, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
                   className={cn(
-                    'rounded-2xl overflow-hidden shadow-xl relative group',
+                    'rounded-[2rem] overflow-hidden shadow-xl relative group',
                     `animate-circular-${index + 1}`,
                   )}
                 >
@@ -174,7 +173,7 @@ export const Hero: React.FC<IHeroProps> = ({
                   <img
                     src={image}
                     alt={`BECC Academy student learning ${index + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                     loading={index < 2 ? 'eager' : 'lazy'}
                   />
                 </motion.div>
