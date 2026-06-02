@@ -347,8 +347,8 @@ const AboutPage = (): JSX.Element => {
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   whileHover={{ y: -10 }}
                 >
-                  <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-[450px] group cursor-pointer text-left">
-                    <div className="h-64 overflow-hidden">
+                  <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-[450px] group cursor-pointer text-left flex flex-col">
+                    <div className="h-64 flex-shrink-0 overflow-hidden">
                       <motion.img
                         src={member.image}
                         alt={member.name}
@@ -357,15 +357,15 @@ const AboutPage = (): JSX.Element => {
                         transition={{ duration: 0.4 }}
                       />
                     </div>
-                    <div className="p-6">
+                    <div className="p-6 flex flex-col flex-1 min-h-0">
                       <h4 className="text-xl font-bold mb-2" style={{ color: 'var(--heading-color)' }}>{member.name}</h4>
                       <p className="text-becc-accent font-medium mb-3 text-base">
                         {member.position}
                       </p>
-                      <p className="text-base leading-relaxed mb-4 line-clamp-3" style={{ color: 'var(--default-color)' }}>
+                      <p className="text-base leading-relaxed line-clamp-3" style={{ color: 'var(--default-color)' }}>
                         {member.bio}
                       </p>
-                      <div className="flex justify-center gap-3 pt-2">
+                      <div className="flex justify-center gap-3 pt-2 mt-auto">
                         {member.linkedin && (
                           <motion.a
                             href={member.linkedin}
