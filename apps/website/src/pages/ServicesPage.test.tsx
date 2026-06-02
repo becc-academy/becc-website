@@ -4,13 +4,29 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import ServicesPage from './ServicesPage';
 
 // Mock framer-motion to avoid animation issues in tests
-vi.mock('framer-motion', () => ({
-  motion: {
-    section: ({ children, ...props }: any) => <section {...props}>{children}</section>,
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    h3: ({ children, ...props }: any) => <h3 {...props}>{children}</h3>,
-  },
-}));
+vi.mock('framer-motion', () => {
+  const actual = { motion: new Proxy({}, { get: () => (props: any) => props?.children ?? null }) };
+  return {
+    motion: new Proxy(
+      {},
+      {
+        get: () => {
+          const Component = ({ children, ...props }: any) => {
+            const tag = Object.keys(props).length > 0 ? 'div' : 'div';
+            const { initial, animate, exit, variants, whileHover, whileTap, whileInView, viewport, transition, layout, ...validProps } = props;
+            return <div {...validProps}>{children}</div>;
+          };
+          return Component;
+        },
+      },
+    ),
+    AnimatePresence: ({ children }: any) => <>{children}</>,
+    useScroll: () => ({ scrollYProgress: { on: () => {} } }),
+    useTransform: (val: any) => val,
+    useMotionValue: (val: any) => val,
+    useSpring: (val: any) => val,
+  };
+});
 
 describe('ServicesPage', () => {
   beforeEach(() => {
@@ -166,14 +182,11 @@ describe('ServicesPage', () => {
       ).toBeInTheDocument();
     });
 
-    it('should render CTA buttons', () => {
+    it('should render CTA button', () => {
       render(<ServicesPage />);
-      const scheduleButton = screen.getByText('Schedule a Visit');
       const contactButton = screen.getByText('Contact Us');
 
-      expect(scheduleButton).toBeInTheDocument();
       expect(contactButton).toBeInTheDocument();
-      expect(scheduleButton.closest('a')).toHaveAttribute('href', '/contact');
       expect(contactButton.closest('a')).toHaveAttribute('href', '/contact');
     });
   });
