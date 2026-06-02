@@ -15,12 +15,12 @@ export const Badge: React.FC<IBadgeProps> = ({
 }) => {
   const baseStyles = 'inline-flex items-center font-semibold rounded-full';
 
-  const variantStyles = {
-    primary: 'bg-[#e95001] text-white',
-    secondary: 'bg-[#6a3136] text-white',
+  const variantStyles: Record<string, string> = {
+    primary: 'bg-becc-accent text-white',
+    secondary: '',
     success: 'bg-green-500 text-white',
-    warning: 'bg-yellow-500 text-gray-900',
-    info: 'bg-[#04415f] text-white',
+    warning: 'bg-yellow-500',
+    info: 'bg-becc-nav text-white',
   };
 
   const sizeStyles = {
@@ -30,7 +30,10 @@ export const Badge: React.FC<IBadgeProps> = ({
   };
 
   return (
-    <span className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}>
+    <span
+      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      style={variant === 'secondary' ? { backgroundColor: 'var(--heading-color)', color: 'var(--contrast-color)' } : variant === 'warning' ? { color: 'var(--default-color)' } : undefined}
+    >
       {children}
     </span>
   );
