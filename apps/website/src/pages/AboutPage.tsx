@@ -347,8 +347,8 @@ const AboutPage = (): JSX.Element => {
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   whileHover={{ y: -10 }}
                 >
-                  <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-[450px] group cursor-pointer text-left flex flex-col">
-                    <div className="h-64 flex-shrink-0 overflow-hidden">
+                  <div className="bg-white rounded-2xl shadow-xl overflow-hidden min-h-[450px] group cursor-pointer text-left flex flex-col">
+                    <div className="h-56 flex-shrink-0 overflow-hidden">
                       <motion.img
                         src={member.image}
                         alt={member.name}
@@ -365,35 +365,37 @@ const AboutPage = (): JSX.Element => {
                       <p className="text-base leading-relaxed line-clamp-3" style={{ color: 'var(--default-color)' }}>
                         {member.bio}
                       </p>
-                      <div className="flex justify-center gap-3 pt-2 mb-2 mt-auto">
-                        {member.linkedin && (
+                      <div className="mt-auto mb-2">
+                        <div className="flex justify-center gap-3 pt-2">
+                          {member.linkedin && (
+                            <motion.a
+                              href={member.linkedin}
+                              className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
+                              whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)', color: 'var(--contrast-color)' }}
+                              transition={{ type: 'spring', stiffness: 400 }}
+                            >
+                              <Linkedin className="w-4 h-4" />
+                            </motion.a>
+                          )}
                           <motion.a
-                            href={member.linkedin}
+                            href="#"
                             className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
                             whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)', color: 'var(--contrast-color)' }}
                             transition={{ type: 'spring', stiffness: 400 }}
                           >
-                            <Linkedin className="w-4 h-4" />
+                            <Twitter className="w-4 h-4" />
                           </motion.a>
-                        )}
-                        <motion.a
-                          href="#"
-                          className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
-                          whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)', color: 'var(--contrast-color)' }}
-                          transition={{ type: 'spring', stiffness: 400 }}
-                        >
-                          <Twitter className="w-4 h-4" />
-                        </motion.a>
-                        {member.email && (
-                          <motion.a
-                            href={`mailto:${member.email}`}
-                            className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
-                            whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)', color: 'var(--contrast-color)' }}
-                            transition={{ type: 'spring', stiffness: 400 }}
-                          >
-                            <Mail className="w-4 h-4" />
-                          </motion.a>
-                        )}
+                          {member.email && (
+                            <motion.a
+                              href={`mailto:${member.email}`}
+                              className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
+                              whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)', color: 'var(--contrast-color)' }}
+                              transition={{ type: 'spring', stiffness: 400 }}
+                            >
+                              <Mail className="w-4 h-4" />
+                            </motion.a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
