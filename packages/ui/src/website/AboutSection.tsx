@@ -55,7 +55,7 @@ export const AboutSection: React.FC<IAboutSectionProps> = ({
   }
 
   return (
-    <section className={cn('py-20 bg-gradient-to-b from-white to-gray-50', className)}>
+    <section className={cn('py-20', className)} style={{ background: 'linear-gradient(to bottom, var(--surface-color), var(--background-color))' }}>
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Content */}
@@ -68,13 +68,13 @@ export const AboutSection: React.FC<IAboutSectionProps> = ({
           >
             {eyebrow && (
               <div className="inline-block">
-                <span className="px-4 py-2 bg-gradient-to-r from-[#e95001] to-[#d14801] text-white text-sm font-semibold rounded-full shadow-lg">
+                <span className="px-4 py-2 bg-becc-accent text-white text-sm font-semibold rounded-full shadow-lg">
                   {eyebrow}
                 </span>
               </div>
             )}
 
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">{title}</h2>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--heading-color)' }}>{title}</h2>
 
             <div className="space-y-6">
               {descriptions.map((desc, index) => (
@@ -84,7 +84,8 @@ export const AboutSection: React.FC<IAboutSectionProps> = ({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-gray-700 text-lg leading-relaxed relative pl-6 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-gradient-to-br before:from-[#e95001] before:to-[#d14801] before:rounded-full text-left"
+                  className="text-lg leading-relaxed relative pl-6 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-becc-accent before:rounded-full text-left"
+                  style={{ color: 'var(--default-color)' }}
                 >
                   {desc}
                 </motion.p>
@@ -93,9 +94,9 @@ export const AboutSection: React.FC<IAboutSectionProps> = ({
 
             {/* Decorative line */}
             <div className="flex items-center space-x-3">
-              <div className="h-1 w-16 bg-gradient-to-r from-[#e95001] to-[#d14801] rounded-full" />
-              <div className="h-1 w-8 bg-gradient-to-r from-[#d14801] to-transparent rounded-full" />
-              <div className="h-1 w-4 bg-gradient-to-r from-[#d14801] to-transparent rounded-full opacity-50" />
+              <div className="h-1 w-16 bg-becc-accent rounded-full" />
+              <div className="h-1 w-8 bg-gradient-to-r from-becc-accent to-transparent rounded-full" />
+              <div className="h-1 w-4 bg-gradient-to-r from-becc-accent to-transparent rounded-full opacity-50" />
             </div>
           </motion.div>
 
@@ -109,7 +110,7 @@ export const AboutSection: React.FC<IAboutSectionProps> = ({
           >
             {image && (
               <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#e95001]/20 to-[#d14801]/20 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-br from-becc-accent/20 to-becc-accent/20 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300" />
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                   <img
                     src={image}

@@ -66,22 +66,23 @@ export const MetricCard: React.FC<IMetricCardProps> = ({
       transition={{ delay }}
       whileHover={{
         y: -8,
-        boxShadow: '0 20px 40px rgba(233, 80, 1, 0.2)',
+        boxShadow: '0 20px 40px var(--accent-color)',
       }}
       {...(animated && glowPulse)}
     >
       {/* Header Section */}
       <div className="flex items-center justify-between mb-4">
         <motion.div
-          className="w-14 h-14 bg-[#e95001]/10 rounded-full flex items-center justify-center"
+          className="w-14 h-14 bg-becc-accent/10 rounded-full flex items-center justify-center"
           whileHover={{ rotate: 360, scale: 1.1 }}
           transition={{ duration: 0.6 }}
         >
-          <Icon className="w-6 h-6 text-[#e95001]" />
+          <Icon className="w-6 h-6 text-becc-accent" />
         </motion.div>
         <div className="text-right">
           <motion.div
-            className="text-3xl font-bold text-gray-900"
+            className="text-3xl font-bold"
+            style={{ color: 'var(--heading-color)' }}
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -97,7 +98,8 @@ export const MetricCard: React.FC<IMetricCardProps> = ({
       {/* Info Section */}
       <div>
         <motion.h4
-          className="text-lg font-bold text-gray-900 mb-1"
+          className="text-lg font-bold mb-1"
+          style={{ color: 'var(--heading-color)' }}
           variants={fadeInUp}
           transition={{ delay: delay + 0.1 }}
         >
@@ -105,7 +107,8 @@ export const MetricCard: React.FC<IMetricCardProps> = ({
         </motion.h4>
         {description && (
           <motion.p
-            className="text-sm text-gray-600 leading-relaxed"
+            className="text-sm leading-relaxed"
+            style={{ color: 'var(--default-color)' }}
             variants={fadeInUp}
             transition={{ delay: delay + 0.2 }}
           >
