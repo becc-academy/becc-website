@@ -149,7 +149,7 @@ html {
 
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--default-color) 15%, transparent);
 }
 
 .hover-scale {
