@@ -155,7 +155,7 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="bg-gradient-to-r from-[#e95001] to-[#d14801] text-white p-4 rounded-t-xl flex justify-between items-center">
+              <div className="bg-gradient-to-r from-becc-accent to-becc-accent text-white p-4 rounded-t-xl flex justify-between items-center">
                 <div>
                   <h2 className="text-lg font-bold">Event Registration</h2>
                   <p className="text-white/90 text-xs mt-0.5">{eventTitle}</p>
@@ -181,9 +181,10 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-xs font-semibold text-gray-700 mb-1.5 flex items-center"
+                      className="block text-xs font-semibold mb-1.5 flex items-center"
+                      style={{ color: 'var(--default-color)' }}
                     >
-                      <User className="w-3.5 h-3.5 mr-1.5 text-[#e95001]" />
+                      <User className="w-3.5 h-3.5 mr-1.5 text-becc-accent" />
                       Full Name *
                     </label>
                     <input
@@ -193,8 +194,9 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                       value={formData.name}
                       onChange={handleChange}
                       className={`w-full px-3 py-2 text-sm border ${
-                        errors.name ? 'border-red-500' : 'border-gray-300'
-                      } rounded-lg focus:ring-2 focus:ring-[#e95001] focus:border-transparent transition-all`}
+                        errors.name ? 'border-red-500' : ''
+                      } rounded-lg focus:ring-2 focus:ring-becc-accent focus:border-transparent transition-all`}
+                      style={!errors.name ? { borderColor: 'var(--border-color)' } : undefined}
                       placeholder="Enter your full name"
                     />
                     {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
@@ -204,9 +206,10 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-xs font-semibold text-gray-700 mb-1.5 flex items-center"
+                      className="block text-xs font-semibold mb-1.5 flex items-center"
+                      style={{ color: 'var(--default-color)' }}
                     >
-                      <Mail className="w-3.5 h-3.5 mr-1.5 text-[#e95001]" />
+                      <Mail className="w-3.5 h-3.5 mr-1.5 text-becc-accent" />
                       Email Address *
                     </label>
                     <input
@@ -216,8 +219,9 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                       value={formData.email}
                       onChange={handleChange}
                       className={`w-full px-3 py-2 text-sm border ${
-                        errors.email ? 'border-red-500' : 'border-gray-300'
-                      } rounded-lg focus:ring-2 focus:ring-[#e95001] focus:border-transparent transition-all`}
+                        errors.email ? 'border-red-500' : ''
+                      } rounded-lg focus:ring-2 focus:ring-becc-accent focus:border-transparent transition-all`}
+                      style={!errors.email ? { borderColor: 'var(--border-color)' } : undefined}
                       placeholder="your.email@example.com"
                     />
                     {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -227,9 +231,10 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-xs font-semibold text-gray-700 mb-1.5 flex items-center"
+                      className="block text-xs font-semibold mb-1.5 flex items-center"
+                      style={{ color: 'var(--default-color)' }}
                     >
-                      <Phone className="w-3.5 h-3.5 mr-1.5 text-[#e95001]" />
+                      <Phone className="w-3.5 h-3.5 mr-1.5 text-becc-accent" />
                       Phone Number *
                     </label>
                     <input
@@ -239,8 +244,9 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                       value={formData.phone}
                       onChange={handleChange}
                       className={`w-full px-3 py-2 text-sm border ${
-                        errors.phone ? 'border-red-500' : 'border-gray-300'
-                      } rounded-lg focus:ring-2 focus:ring-[#e95001] focus:border-transparent transition-all`}
+                        errors.phone ? 'border-red-500' : ''
+                      } rounded-lg focus:ring-2 focus:ring-becc-accent focus:border-transparent transition-all`}
+                      style={!errors.phone ? { borderColor: 'var(--border-color)' } : undefined}
                       placeholder="+233 XX XXX XXXX"
                     />
                     {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
@@ -250,9 +256,10 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                   <div>
                     <label
                       htmlFor="ghanaCard"
-                      className="block text-xs font-semibold text-gray-700 mb-1.5 flex items-center"
+                      className="block text-xs font-semibold mb-1.5 flex items-center"
+                      style={{ color: 'var(--default-color)' }}
                     >
-                      <CreditCard className="w-3.5 h-3.5 mr-1.5 text-[#e95001]" />
+                      <CreditCard className="w-3.5 h-3.5 mr-1.5 text-becc-accent" />
                       Ghana Card Number *
                     </label>
                     <input
@@ -262,8 +269,9 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                       value={formData.ghanaCard}
                       onChange={handleChange}
                       className={`w-full px-3 py-2 text-sm border ${
-                        errors.ghanaCard ? 'border-red-500' : 'border-gray-300'
-                      } rounded-lg focus:ring-2 focus:ring-[#e95001] focus:border-transparent transition-all`}
+                        errors.ghanaCard ? 'border-red-500' : ''
+                      } rounded-lg focus:ring-2 focus:ring-becc-accent focus:border-transparent transition-all`}
+                      style={!errors.ghanaCard ? { borderColor: 'var(--border-color)' } : undefined}
                       placeholder="GHA-XXXXXXXXX-X"
                     />
                     {errors.ghanaCard && (
@@ -308,9 +316,10 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                   <div>
                     <label
                       htmlFor="location"
-                      className="block text-xs font-semibold text-gray-700 mb-1.5 flex items-center"
+                      className="block text-xs font-semibold mb-1.5 flex items-center"
+                      style={{ color: 'var(--default-color)' }}
                     >
-                      <MapPin className="w-3.5 h-3.5 mr-1.5 text-[#e95001]" />
+                      <MapPin className="w-3.5 h-3.5 mr-1.5 text-becc-accent" />
                       Location *
                     </label>
                     <input
@@ -320,8 +329,9 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                       value={formData.location}
                       onChange={handleChange}
                       className={`w-full px-3 py-2 text-sm border ${
-                        errors.location ? 'border-red-500' : 'border-gray-300'
-                      } rounded-lg focus:ring-2 focus:ring-[#e95001] focus:border-transparent transition-all`}
+                        errors.location ? 'border-red-500' : ''
+                      } rounded-lg focus:ring-2 focus:ring-becc-accent focus:border-transparent transition-all`}
+                      style={!errors.location ? { borderColor: 'var(--border-color)' } : undefined}
                       placeholder="City, Region"
                     />
                     {errors.location && (
@@ -334,7 +344,7 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                     <motion.button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full px-4 py-2.5 bg-gradient-to-r from-[#e95001] to-[#d14801] text-white rounded-lg font-bold text-sm hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                      className="w-full px-4 py-2.5 bg-gradient-to-r from-becc-accent to-becc-accent text-white rounded-lg font-bold text-sm hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                       whileHover={{ scale: isSubmitting ? 1 : 1.01 }}
                       whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                     >
@@ -342,7 +352,7 @@ export const EventRegistrationModal: React.FC<IEventRegistrationModalProps> = ({
                     </motion.button>
                   </div>
 
-                  <p className="text-[10px] text-gray-500 text-center pt-1">
+                  <p className="text-[10px] text-center pt-1" style={{ color: 'var(--default-color)' }}>
                     By registering, you agree to receive event updates and communications.
                   </p>
                 </form>
