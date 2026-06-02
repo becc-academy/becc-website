@@ -20,6 +20,8 @@ build/
 .env.test.local
 .env.production.local
 
+# tmp folder
+tmp/
 # Cache
 .turbo/
 .cache/
