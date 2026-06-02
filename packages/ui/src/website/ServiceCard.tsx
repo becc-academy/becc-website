@@ -45,7 +45,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
       <motion.div
         className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
         style={{
-          background: `linear-gradient(to bottom right, var(--accent-color), #d14801)`,
+          background: 'var(--accent-color)',
         }}
         whileHover={{ rotate: 360, scale: 1.1 }}
         transition={{ duration: 0.6 }}
@@ -103,7 +103,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
           className="inline-flex items-center font-semibold transition-colors group"
           style={{ color: 'var(--accent-color)' }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#d14801';
+            e.currentTarget.style.color = 'var(--accent-color)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.color = 'var(--accent-color)';

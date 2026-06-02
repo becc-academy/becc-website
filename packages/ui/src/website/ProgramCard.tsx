@@ -123,7 +123,7 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
               color: 'var(--contrast-color)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#d14801';
+              e.currentTarget.style.backgroundColor = 'var(--accent-color)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = 'var(--accent-color)';
