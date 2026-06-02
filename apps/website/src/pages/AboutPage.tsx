@@ -129,7 +129,7 @@ const AboutPage = (): JSX.Element => {
         }}
       />
 
-      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <main className="min-h-screen" style={{ background: 'linear-gradient(to bottom, var(--background-color), var(--surface-color))' }}>
         {/* Page Title */}
         <PageTitle
           title="About"
@@ -152,13 +152,13 @@ const AboutPage = (): JSX.Element => {
                 variants={fadeInUp}
                 transition={{ duration: 0.6 }}
               >
-                <span className="text-orange-500 font-semibold text-sm uppercase tracking-wider">
+                <span className="text-becc-accent font-semibold text-sm uppercase tracking-wider">
                   Our Story
                 </span>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-3 mb-6">
+                <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-6" style={{ color: 'var(--heading-color)' }}>
                   Educating Minds, Inspiring Hearts
                 </h2>
-                <div className="space-y-4 text-gray-600 leading-relaxed text-base">
+                <div className="space-y-4 leading-relaxed text-base" style={{ color: 'var(--default-color)' }}>
                   <p>
                     BECC Academy was founded with a vision to transform education through hands-on,
                     project-based learning experiences. We believe that learning should be engaging,
@@ -187,14 +187,14 @@ const AboutPage = (): JSX.Element => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <div className="flex flex-col items-center">
-                        <div className="w-4 h-4 rounded-full bg-orange-500 flex-shrink-0" />
+                        <div className="w-4 h-4 rounded-full bg-becc-accent flex-shrink-0" />
                         {index < timeline.length - 1 && (
-                          <div className="w-0.5 h-full bg-orange-200 mt-2" />
+                          <div className="w-0.5 h-full bg-becc-accent/20 mt-2" />
                         )}
                       </div>
                       <div className="flex-1 pb-8 text-left">
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">{item.year}</h4>
-                        <p className="text-base text-gray-600">{item.description}</p>
+                        <h4 className="text-xl font-bold mb-2" style={{ color: 'var(--heading-color)' }}>{item.year}</h4>
+                        <p className="text-base" style={{ color: 'var(--default-color)' }}>{item.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -220,20 +220,20 @@ const AboutPage = (): JSX.Element => {
                 {/* Mission & Vision Cards */}
                 <div className="space-y-4">
                   <motion.div
-                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 overflow-hidden group text-left"
+                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 overflow-hidden group text-left" style={{ borderLeftColor: 'var(--accent-color)' }}
                     whileHover={{
                       x: 10,
                       scale: 1.02,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
+                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
                     <div className="relative z-10">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">
+                      <h3 className="text-2xl font-bold mb-3 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
                         Our Mission
                       </h3>
-                      <p className="text-base text-gray-600 leading-relaxed">
+                      <p className="text-base leading-relaxed" style={{ color: 'var(--default-color)' }}>
                         To provide accessible, high-quality learning experiences that empower
                         individuals of all ages to develop the skills and confidence needed to
                         succeed in the digital age.
@@ -242,20 +242,20 @@ const AboutPage = (): JSX.Element => {
                   </motion.div>
 
                   <motion.div
-                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 overflow-hidden group text-left"
+                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 overflow-hidden group text-left" style={{ borderLeftColor: 'var(--accent-color)' }}
                     whileHover={{
                       x: 10,
                       scale: 1.02,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
+                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
                     <div className="relative z-10">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">
+                      <h3 className="text-2xl font-bold mb-3 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
                         Our Vision
                       </h3>
-                      <p className="text-base text-gray-600 leading-relaxed">
+                      <p className="text-base leading-relaxed" style={{ color: 'var(--default-color)' }}>
                         To be the leading provider of experiential learning programs in Africa,
                         creating a generation of innovative thinkers and problem solvers who drive
                         positive change in their communities.
@@ -275,7 +275,7 @@ const AboutPage = (): JSX.Element => {
               variants={staggerContainer}
             >
               <div className="text-center mb-12">
-                <h3 className="text-4xl font-bold text-gray-900">Core Values</h3>
+                <h3 className="text-4xl font-bold" style={{ color: 'var(--heading-color)' }}>Core Values</h3>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -284,24 +284,24 @@ const AboutPage = (): JSX.Element => {
                   return (
                     <motion.div
                       key={index}
-                      className="relative bg-white p-8 rounded-xl shadow-lg border-t-4 border-orange-500 overflow-hidden group text-left"
+                      className="relative bg-white p-8 rounded-xl shadow-lg border-t-4 overflow-hidden group text-left" style={{ borderTopColor: 'var(--accent-color)' }}
                       variants={fadeInUp}
                       whileHover={{
                         y: -8,
                         scale: 1.03,
-                        boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
+                        boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
                       }}
                       transition={{ type: 'spring', stiffness: 300 }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
                       <div className="relative z-10">
-                        <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                        <div className="w-14 h-14 bg-gradient-to-br from-becc-accent to-becc-accent rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                           <Icon className="w-7 h-7 text-white" />
                         </div>
-                        <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">
+                        <h4 className="text-xl font-bold mb-3 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
                           {value.title}
                         </h4>
-                        <p className="text-base text-gray-600 leading-relaxed">
+                        <p className="text-base leading-relaxed" style={{ color: 'var(--default-color)' }}>
                           {value.description}
                         </p>
                       </div>
@@ -314,7 +314,7 @@ const AboutPage = (): JSX.Element => {
         </section>
 
         {/* Leadership Section */}
-        <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-20 px-4" style={{ background: 'linear-gradient(to bottom, var(--surface-color), var(--background-color))' }}>
           <div className="container mx-auto max-w-7xl">
             <motion.div
               className="text-center mb-16"
@@ -323,13 +323,13 @@ const AboutPage = (): JSX.Element => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-orange-500 font-semibold text-sm uppercase tracking-wider">
+              <span className="text-becc-accent font-semibold text-sm uppercase tracking-wider">
                 Our Team
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-3 mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-6" style={{ color: 'var(--heading-color)' }}>
                 Meet Our Distinguished Leadership
               </h2>
-              <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--default-color)' }}>
                 Our leadership team brings together diverse expertise in education, technology, and
                 business to drive innovation in experiential learning across Africa. Each member is
                 committed to our mission of transforming education through practical, hands-on
@@ -358,19 +358,19 @@ const AboutPage = (): JSX.Element => {
                       />
                     </div>
                     <div className="p-6">
-                      <h4 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h4>
-                      <p className="text-orange-500 font-medium mb-3 text-base">
+                      <h4 className="text-xl font-bold mb-2" style={{ color: 'var(--heading-color)' }}>{member.name}</h4>
+                      <p className="text-becc-accent font-medium mb-3 text-base">
                         {member.position}
                       </p>
-                      <p className="text-gray-600 text-base leading-relaxed mb-4 line-clamp-3">
+                      <p className="text-base leading-relaxed mb-4 line-clamp-3" style={{ color: 'var(--default-color)' }}>
                         {member.bio}
                       </p>
                       <div className="flex justify-center gap-3 pt-2">
                         {member.linkedin && (
                           <motion.a
                             href={member.linkedin}
-                            className="w-9 h-9 bg-orange-100 rounded-full flex items-center justify-center text-orange-600"
-                            whileHover={{ scale: 1.15, backgroundColor: '#ea580c' }}
+                            className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
+                            whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)' }}
                             transition={{ type: 'spring', stiffness: 400 }}
                           >
                             <Linkedin className="w-4 h-4" />
@@ -378,8 +378,8 @@ const AboutPage = (): JSX.Element => {
                         )}
                         <motion.a
                           href="#"
-                          className="w-9 h-9 bg-orange-100 rounded-full flex items-center justify-center text-orange-600"
-                          whileHover={{ scale: 1.15, backgroundColor: '#ea580c' }}
+                          className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
+                          whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)' }}
                           transition={{ type: 'spring', stiffness: 400 }}
                         >
                           <Twitter className="w-4 h-4" />
@@ -387,8 +387,8 @@ const AboutPage = (): JSX.Element => {
                         {member.email && (
                           <motion.a
                             href={`mailto:${member.email}`}
-                            className="w-9 h-9 bg-orange-100 rounded-full flex items-center justify-center text-orange-600"
-                            whileHover={{ scale: 1.15, backgroundColor: '#ea580c' }}
+                            className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
+                            whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)' }}
                             transition={{ type: 'spring', stiffness: 400 }}
                           >
                             <Mail className="w-4 h-4" />
