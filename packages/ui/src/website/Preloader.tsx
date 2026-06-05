@@ -21,16 +21,17 @@ export const Preloader: React.FC<IPreloaderProps> = ({ duration = 1000, classNam
   if (!isLoading) return null;
 
   return (
-    <div
-      className={cn('fixed inset-0 z-[9999] bg-white flex items-center justify-center', className)}
-    >
-      <div className="relative">
-        {/* Spinner */}
-        <div className="w-16 h-16 border-4 border-gray-200 border-t-[#e95001] rounded-full animate-spin"></div>
+      <div
+        className={cn('fixed inset-0 z-[9999] flex items-center justify-center', className)}
+        style={{ backgroundColor: 'var(--surface-color)' }}
+      >
+        <div className="relative">
+          {/* Spinner */}
+          <div className="w-16 h-16 border-4 rounded-full animate-spin" style={{ borderColor: 'var(--border-color)', borderTopColor: 'var(--accent-color)' }}></div>
 
         {/* Optional Logo */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-8 h-8 bg-[#e95001]/10 rounded-full"></div>
+          <div className="w-8 h-8 bg-becc-accent/10 rounded-full"></div>
         </div>
       </div>
     </div>

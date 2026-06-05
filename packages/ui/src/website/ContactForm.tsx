@@ -201,7 +201,7 @@ export const ContactForm: React.FC<IContactFormProps> = ({ onSubmit, className =
           }}
           onMouseEnter={(e) => {
             if (!isSubmitting) {
-              e.currentTarget.style.backgroundColor = '#d14801';
+              e.currentTarget.style.backgroundColor = 'var(--accent-color)';
             }
           }}
           onMouseLeave={(e) => {

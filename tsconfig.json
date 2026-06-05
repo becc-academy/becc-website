@@ -5,7 +5,6 @@
     { "path": "./apps/learning-management" },
     { "path": "./apps/school-management" },
     { "path": "./packages/ui" },
-    { "path": "./packages/shared" },
-    { "path": "./packages/config" }
+    { "path": "./packages/shared" }
   ]
 }

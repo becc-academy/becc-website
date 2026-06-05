@@ -50,7 +50,7 @@ export const TeamCard: React.FC<ITeamCardProps> = ({
                 loading="lazy"
               />
             </div>
-            <div className="p-8 text-left">
+            <div className="p-10 text-left">
               <h4 className="text-2xl font-bold mb-1" style={{ color: 'var(--heading-color)' }}>
                 {name}
               </h4>
@@ -66,7 +66,7 @@ export const TeamCard: React.FC<ITeamCardProps> = ({
           <div
             className="rounded-2xl shadow-lg p-8 h-full flex flex-col justify-center text-left"
             style={{
-              background: 'linear-gradient(to bottom right, var(--accent-color), #d14801)',
+              background: 'var(--accent-color)',
               color: 'var(--contrast-color)',
             }}
           >

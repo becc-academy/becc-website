@@ -29,13 +29,13 @@ export const SectionTitle: React.FC<ISectionTitleProps> = ({
     >
       {subtitle && (
         <motion.span
-          className="inline-block text-[#e95001] font-semibold text-sm uppercase tracking-wider mb-2"
+          className="inline-block text-becc-accent font-semibold text-sm uppercase tracking-wider mb-2"
           variants={fadeInDown}
           animate={{
             backgroundImage: [
-              'linear-gradient(to right, #e95001 0%, #e95001 100%)',
-              'linear-gradient(to right, #e95001 0%, #ff6b1a 50%, #e95001 100%)',
-              'linear-gradient(to right, #e95001 0%, #e95001 100%)',
+              'linear-gradient(to right, var(--accent-color) 0%, var(--accent-color) 100%)',
+              'linear-gradient(to right, var(--accent-color) 0%, var(--accent-color) 50%, var(--accent-color) 100%)',
+              'linear-gradient(to right, var(--accent-color) 0%, var(--accent-color) 100%)',
             ],
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
@@ -46,18 +46,20 @@ export const SectionTitle: React.FC<ISectionTitleProps> = ({
         </motion.span>
       )}
       <motion.h2
-        className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{ color: 'var(--heading-color)' }}
         variants={fadeInUp}
         transition={{ delay: 0.1 }}
       >
         {title}
       </motion.h2>
-      {description && (
+          {description && (
         <motion.p
           className={cn(
-            'text-gray-600 leading-relaxed',
+            'leading-relaxed',
             centered ? 'max-w-3xl mx-auto' : 'max-w-2xl',
           )}
+          style={{ color: 'var(--default-color)' }}
           variants={fadeInUp}
           transition={{ delay: 0.2 }}
         >

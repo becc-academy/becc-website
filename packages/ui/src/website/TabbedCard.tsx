@@ -25,17 +25,17 @@ export const TabbedCard: React.FC<ITabbedCardProps> = ({ tabs, className = '' })
   return (
     <div className={cn('bg-white rounded-2xl shadow-xl overflow-hidden', className)}>
       {/* Tab Headers */}
-      <div className="flex border-b border-gray-200 bg-gray-50">
+      <div className="flex border-b" style={{ borderColor: 'var(--border-color)', backgroundColor: 'var(--background-color)' }}>
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
               'flex-1 px-6 py-4 font-semibold text-sm transition-all duration-300 relative',
-              'focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#e95001]',
+              'focus:outline-none focus:ring-2 focus:ring-inset focus:ring-becc-accent',
               activeTab === tab.id
-                ? 'text-white bg-gradient-to-br from-[#e95001] to-[#d14801]'
-                : 'text-gray-600 hover:text-[#e95001] hover:bg-gray-100',
+                ? 'text-white bg-becc-accent'
+                : 'hover:text-becc-accent',
             )}
           >
             <div className="flex items-center justify-center space-x-2">
@@ -67,10 +67,10 @@ export const TabbedCard: React.FC<ITabbedCardProps> = ({ tabs, className = '' })
               transition={{ duration: 0.3 }}
             >
               <div className="space-y-4 text-left">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-[#e95001] to-[#d14801] bg-clip-text text-transparent">
+                <h3 className="text-2xl font-bold text-becc-accent">
                   {activeTabData.title}
                 </h3>
-                <p className="text-gray-700 leading-relaxed text-base">
+                <p className="leading-relaxed text-base" style={{ color: 'var(--default-color)' }}>
                   {activeTabData.description}
                 </p>
               </div>
@@ -83,9 +83,10 @@ export const TabbedCard: React.FC<ITabbedCardProps> = ({ tabs, className = '' })
                     className={cn(
                       'h-1 rounded-full transition-all duration-300',
                       index === tabs.findIndex((t) => t.id === activeTab)
-                        ? 'w-8 bg-gradient-to-r from-[#e95001] to-[#d14801]'
-                        : 'w-2 bg-gray-300',
+                        ? 'w-8 bg-becc-accent'
+                        : 'w-2',
                     )}
+                    style={index === tabs.findIndex((t) => t.id === activeTab) ? undefined : { backgroundColor: 'var(--default-color)' }}
                   />
                 ))}
               </div>

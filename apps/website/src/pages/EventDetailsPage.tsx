@@ -204,17 +204,17 @@ const EventDetailsPage = (): JSX.Element => {
             { label: 'Contact', href: '/contact' },
           ]}
         />
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--background-color)' }}>
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Event Not Found</h2>
-            <p className="text-gray-600 mb-6">
+            <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>Event Not Found</h2>
+            <p className="mb-6" style={{ color: 'var(--default-color)' }}>
               The event you are looking for does not exist or has been removed.
             </p>
             <motion.button
               onClick={() => {
                 void navigate('/events');
               }}
-              className="px-6 py-3 bg-[#e95001] text-white rounded-lg font-semibold hover:bg-[#d14801] transition-colors inline-flex items-center"
+              className="px-6 py-3 bg-becc-accent text-white rounded-lg font-semibold transition-colors inline-flex items-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -232,7 +232,7 @@ const EventDetailsPage = (): JSX.Element => {
     academic: 'bg-blue-500',
     sports: 'bg-green-500',
     arts: 'bg-purple-500',
-    community: 'bg-orange-500',
+    community: 'bg-becc-accent',
   };
 
   const handleRegister = (): void => {
@@ -270,14 +270,14 @@ const EventDetailsPage = (): JSX.Element => {
           { label: 'Contact', href: '/contact' },
         ]}
       />
-      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <main className="min-h-screen" style={{ background: 'linear-gradient(to bottom, var(--background-color), var(--surface-color))' }}>
         {/* Back Button */}
         <div className="container mx-auto max-w-7xl px-4 pt-24 pb-8">
           <motion.button
             onClick={() => {
               void navigate('/events');
             }}
-            className="flex items-center text-gray-600 hover:text-[#e95001] transition-colors font-medium"
+            className="flex items-center hover:text-becc-accent transition-colors font-medium" style={{ color: 'var(--default-color)' }}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             whileHover={{ x: -5 }}
@@ -301,11 +301,11 @@ const EventDetailsPage = (): JSX.Element => {
                 <div className="relative h-96 overflow-hidden">
                   <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
                   <div className="absolute top-6 left-6 bg-white rounded-lg p-4 text-center shadow-lg">
-                    <div className="text-3xl font-bold text-[#e95001]">{event.date.day}</div>
-                    <div className="text-sm font-semibold text-gray-600 uppercase">
+                    <div className="text-3xl font-bold text-becc-accent">{event.date.day}</div>
+                    <div className="text-sm font-semibold uppercase" style={{ color: 'var(--default-color)' }}>
                       {event.date.month}
                     </div>
-                    <div className="text-xs text-gray-500">{event.date.year}</div>
+                    <div className="text-xs" style={{ color: 'var(--default-color)' }}>{event.date.year}</div>
                   </div>
                   <span
                     className={`absolute top-6 right-6 px-4 py-2 rounded-full text-white text-sm font-semibold ${categoryColors[event.category.type]}`}
@@ -316,24 +316,24 @@ const EventDetailsPage = (): JSX.Element => {
 
                 {/* Event Content */}
                 <div className="p-8">
-                  <h1 className="text-4xl font-bold text-gray-900 mb-4">{event.title}</h1>
+                  <h1 className="text-4xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>{event.title}</h1>
 
                   {/* Event Meta Info */}
                   <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-center text-gray-700">
-                      <Clock className="w-5 h-5 text-[#e95001] mr-3" />
+                    <div className="flex items-center" style={{ color: 'var(--default-color)' }}>
+                      <Clock className="w-5 h-5 text-becc-accent mr-3" />
                       <span>{event.time}</span>
                     </div>
-                    <div className="flex items-center text-gray-700">
-                      <MapPin className="w-5 h-5 text-[#e95001] mr-3" />
+                    <div className="flex items-center" style={{ color: 'var(--default-color)' }}>
+                      <MapPin className="w-5 h-5 text-becc-accent mr-3" />
                       <span>{event.location}</span>
                     </div>
-                    <div className="flex items-center text-gray-700">
-                      <Users className="w-5 h-5 text-[#e95001] mr-3" />
+                    <div className="flex items-center" style={{ color: 'var(--default-color)' }}>
+                      <Users className="w-5 h-5 text-becc-accent mr-3" />
                       <span>{event.participants}</span>
                     </div>
-                    <div className="flex items-center text-gray-700">
-                      <Calendar className="w-5 h-5 text-[#e95001] mr-3" />
+                    <div className="flex items-center" style={{ color: 'var(--default-color)' }}>
+                      <Calendar className="w-5 h-5 text-becc-accent mr-3" />
                       <span>
                         {event.date.month} {event.date.day}, {event.date.year}
                       </span>
@@ -342,13 +342,13 @@ const EventDetailsPage = (): JSX.Element => {
 
                   {/* Description */}
                   <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">About This Event</h2>
-                    <p className="text-gray-700 leading-relaxed mb-4">{event.fullDescription}</p>
+                    <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>About This Event</h2>
+                    <p className="leading-relaxed mb-4" style={{ color: 'var(--default-color)' }}>{event.fullDescription}</p>
                   </div>
 
                   {/* Highlights */}
                   <div className="mb-8">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Event Highlights</h3>
+                    <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>Event Highlights</h3>
                     <ul className="space-y-2">
                       {event.highlights.map((highlight, index) => (
                         <motion.li
@@ -358,8 +358,8 @@ const EventDetailsPage = (): JSX.Element => {
                           transition={{ delay: index * 0.1 }}
                           className="flex items-start"
                         >
-                          <span className="inline-block w-2 h-2 bg-[#e95001] rounded-full mt-2 mr-3 flex-shrink-0" />
-                          <span className="text-gray-700">{highlight}</span>
+                          <span className="inline-block w-2 h-2 bg-becc-accent rounded-full mt-2 mr-3 flex-shrink-0" />
+                          <span style={{ color: 'var(--default-color)' }}>{highlight}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -367,7 +367,7 @@ const EventDetailsPage = (): JSX.Element => {
 
                   {/* Requirements */}
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Requirements</h3>
+                    <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>Requirements</h3>
                     <ul className="space-y-2">
                       {event.requirements.map((requirement, index) => (
                         <motion.li
@@ -377,8 +377,8 @@ const EventDetailsPage = (): JSX.Element => {
                           transition={{ delay: index * 0.1 }}
                           className="flex items-start"
                         >
-                          <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0" />
-                          <span className="text-gray-700">{requirement}</span>
+                          <span className="inline-block w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0" style={{ backgroundColor: 'var(--default-color)' }} />
+                          <span style={{ color: 'var(--default-color)' }}>{requirement}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -397,14 +397,14 @@ const EventDetailsPage = (): JSX.Element => {
                   transition={{ delay: 0.2 }}
                   className="bg-white rounded-2xl shadow-lg p-6"
                 >
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Register Now</h3>
-                  <p className="text-gray-600 mb-6">
+                  <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>Register Now</h3>
+                  <p className="mb-6" style={{ color: 'var(--default-color)' }}>
                     Secure your spot for this amazing event. Registration is quick and easy!
                   </p>
                   <motion.button
                     onClick={handleRegister}
-                    className="w-full px-6 py-4 bg-[#e95001] text-white rounded-lg font-bold text-lg hover:bg-[#d14801] transition-colors flex items-center justify-center"
-                    whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(233, 80, 1, 0.4)' }}
+                    className="w-full px-6 py-4 bg-becc-accent text-white rounded-lg font-bold text-lg transition-colors flex items-center justify-center"
+                    whileHover={{ scale: 1.02, boxShadow: '0 0 30px color-mix(in srgb, var(--accent-color) 40%, transparent)' }}
                     whileTap={{ scale: 0.98 }}
                   >
                     Register Now
@@ -416,7 +416,8 @@ const EventDetailsPage = (): JSX.Element => {
                       onClick={() => {
                         void handleShare();
                       }}
-                      className="flex-1 px-4 py-2 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-[#e95001] hover:text-[#e95001] transition-colors flex items-center justify-center"
+                      className="flex-1 px-4 py-2 border-2 rounded-lg font-semibold hover:border-becc-accent hover:text-becc-accent transition-colors flex items-center justify-center"
+                      style={{ borderColor: 'var(--border-color)', color: 'var(--default-color)' }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -427,9 +428,10 @@ const EventDetailsPage = (): JSX.Element => {
                       onClick={() => setIsSaved(!isSaved)}
                       className={`flex-1 px-4 py-2 border-2 rounded-lg font-semibold transition-colors flex items-center justify-center ${
                         isSaved
-                          ? 'border-[#e95001] text-[#e95001] bg-orange-50'
-                          : 'border-gray-300 text-gray-700 hover:border-[#e95001] hover:text-[#e95001]'
+                          ? 'border-becc-accent text-becc-accent bg-becc-accent/5'
+                          : 'hover:border-becc-accent hover:text-becc-accent'
                       }`}
+                      style={!isSaved ? { borderColor: 'var(--border-color)', color: 'var(--default-color)' } : undefined}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -446,8 +448,8 @@ const EventDetailsPage = (): JSX.Element => {
                   transition={{ delay: 0.3 }}
                   className="bg-white rounded-2xl shadow-lg p-6"
                 >
-                  <h4 className="text-lg font-bold text-gray-900 mb-3">Organized By</h4>
-                  <p className="text-gray-700">{event.organizer}</p>
+                  <h4 className="text-lg font-bold mb-3" style={{ color: 'var(--heading-color)' }}>Organized By</h4>
+                  <p style={{ color: 'var(--default-color)' }}>{event.organizer}</p>
                 </motion.div>
 
                 {/* Event Info Card */}
@@ -455,7 +457,7 @@ const EventDetailsPage = (): JSX.Element => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="bg-gradient-to-br from-[#e95001] to-[#d14801] rounded-2xl shadow-lg p-6 text-white"
+                  className="rounded-2xl shadow-lg p-6 text-white" style={{ background: 'linear-gradient(to bottom right, var(--accent-color), color-mix(in srgb, var(--accent-color) 80%, black))' }}
                 >
                   <h4 className="text-lg font-bold mb-4">Event Information</h4>
                   <div className="space-y-3 text-sm">

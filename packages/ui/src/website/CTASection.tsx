@@ -35,10 +35,10 @@ export const CTASection: React.FC<ICTASectionProps> = ({
       {backgroundImage ? (
         <div className="absolute inset-0">
           <img src={backgroundImage} alt="Background" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#e95001]/95 to-[#d14801]/95"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-becc-accent/95 to-becc-accent/95"></div>
         </div>
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-r from-[#e95001] to-[#d14801]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-becc-accent to-becc-accent"></div>
       )}
 
       {/* Content */}
@@ -77,11 +77,12 @@ export const CTASection: React.FC<ICTASectionProps> = ({
                 <motion.a
                   href={primaryButton.href}
                   onClick={primaryButton.onClick}
-                  className="px-8 py-4 bg-white text-[#e95001] rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg"
+                  className="px-8 py-4 text-becc-accent rounded-lg font-semibold transition-all duration-300 shadow-lg"
+                  style={{ backgroundColor: 'var(--surface-color)' }}
                   whileHover={{
                     scale: 1.05,
                     y: -5,
-                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+                    boxShadow: '0 20px 40px color-mix(in srgb, var(--default-color) 30%, transparent)',
                   }}
                   whileTap={{ scale: 0.95 }}
                   {...glowPulse}
@@ -94,12 +95,12 @@ export const CTASection: React.FC<ICTASectionProps> = ({
                 <motion.a
                   href={secondaryButton.href}
                   onClick={secondaryButton.onClick}
-                  className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#e95001] transition-all duration-300 shadow-lg"
+                  className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-becc-accent transition-all duration-300 shadow-lg"
                   whileHover={{
                     scale: 1.05,
                     y: -5,
                     backgroundColor: 'white',
-                    color: '#e95001',
+                    color: 'var(--accent-color)',
                   }}
                   whileTap={{ scale: 0.95 }}
                 >

@@ -100,7 +100,7 @@ const ContactPage = (): JSX.Element => {
           alt: 'BECC Academy Logo',
         }}
       />
-      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <main className="min-h-screen" style={{ background: 'linear-gradient(to bottom, var(--background-color), var(--surface-color))' }}>
         {/* Page Title Section */}
         <PageTitle
           title="Contact"
@@ -152,110 +152,110 @@ const ContactPage = (): JSX.Element => {
                   }}
                 >
                   <motion.div
-                    className="relative flex items-center gap-4 p-6 bg-gradient-to-br from-white to-orange-50 rounded-xl shadow-lg border-2 border-orange-100 overflow-hidden group"
+                    className="relative flex items-center gap-4 p-6 rounded-xl shadow-lg overflow-hidden group" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 5%, white))', border: '2px solid color-mix(in srgb, var(--accent-color) 20%, transparent)' }}
                     variants={fadeInUp}
                     whileHover={{
                       y: -8,
                       scale: 1.03,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
+                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-xl text-white shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
+                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-becc-accent rounded-xl text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <MapPin size={24} className="drop-shadow-md" />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
-                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
+                      <h4 className="font-bold text-lg mb-1 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
                         Location
                       </h4>
-                      <p className="text-gray-600 text-sm">Accra, Ghana</p>
+                      <p className="text-sm" style={{ color: 'var(--default-color)' }}>Accra, Ghana</p>
                     </div>
                   </motion.div>
 
                   <motion.div
-                    className="relative flex items-center gap-4 p-6 bg-gradient-to-br from-white to-orange-50 rounded-xl shadow-lg border-2 border-orange-100 overflow-hidden group"
+                    className="relative flex items-center gap-4 p-6 rounded-xl shadow-lg overflow-hidden group" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 5%, white))', border: '2px solid color-mix(in srgb, var(--accent-color) 20%, transparent)' }}
                     variants={fadeInUp}
                     whileHover={{
                       y: -8,
                       scale: 1.03,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
+                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-xl text-white shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
+                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-becc-accent rounded-xl text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <Mail size={24} className="drop-shadow-md" />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
-                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
+                      <h4 className="font-bold text-lg mb-1 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
                         Email
                       </h4>
-                      <p className="text-gray-600 text-sm break-words">info@beccacademy.com</p>
+                      <p className="text-sm break-words" style={{ color: 'var(--default-color)' }}>info@beccacademy.com</p>
                     </div>
                   </motion.div>
 
                   <motion.div
-                    className="relative flex items-center gap-4 p-6 bg-gradient-to-br from-white to-orange-50 rounded-xl shadow-lg border-2 border-orange-100 overflow-hidden group"
+                    className="relative flex items-center gap-4 p-6 rounded-xl shadow-lg overflow-hidden group" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 5%, white))', border: '2px solid color-mix(in srgb, var(--accent-color) 20%, transparent)' }}
                     variants={fadeInUp}
                     whileHover={{
                       y: -8,
                       scale: 1.03,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
+                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-xl text-white shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
+                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-becc-accent rounded-xl text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <Phone size={24} className="drop-shadow-md" />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
-                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
+                      <h4 className="font-bold text-lg mb-1 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
                         Call
                       </h4>
-                      <p className="text-gray-600 text-sm">+233 (0)20 123 3215</p>
+                      <p className="text-sm" style={{ color: 'var(--default-color)' }}>+233 (0)20 123 3215</p>
                     </div>
                   </motion.div>
 
                   <motion.div
-                    className="relative flex items-center gap-4 p-6 bg-gradient-to-br from-white to-orange-50 rounded-xl shadow-lg border-2 border-orange-100 overflow-hidden group"
+                    className="relative flex items-center gap-4 p-6 rounded-xl shadow-lg overflow-hidden group" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 5%, white))', border: '2px solid color-mix(in srgb, var(--accent-color) 20%, transparent)' }}
                     variants={fadeInUp}
                     whileHover={{
                       y: -8,
                       scale: 1.03,
-                      boxShadow: '0 20px 40px rgba(251, 146, 60, 0.3)',
+                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-xl text-white shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
+                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-becc-accent rounded-xl text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <Clock size={24} className="drop-shadow-md" />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
-                      <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition-colors duration-300">
+                      <h4 className="font-bold text-lg mb-1 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
                         Open Hours
                       </h4>
-                      <p className="text-gray-600 text-sm">Monday-Friday: 9AM - 6PM</p>
+                      <p className="text-sm" style={{ color: 'var(--default-color)' }}>Monday-Friday: 9AM - 6PM</p>
                     </div>
                   </motion.div>
                 </motion.div>
 
                 {/* Contact Form */}
                 <motion.div
-                  className="relative bg-gradient-to-br from-white via-orange-50/30 to-white p-8 rounded-2xl shadow-2xl border-2 border-orange-200 overflow-hidden"
+                  className="relative p-8 rounded-2xl shadow-2xl overflow-hidden" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 15%, white), white)', border: '2px solid color-mix(in srgb, var(--accent-color) 40%, transparent)' }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600" />
-                  <div className="absolute -top-20 -right-20 w-40 h-40 bg-orange-500/10 rounded-full blur-3xl" />
-                  <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-orange-600/10 rounded-full blur-3xl" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-becc-accent" />
+                  <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl" style={{ backgroundColor: 'color-mix(in srgb, var(--accent-color) 10%, transparent)' }} />
+                  <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full blur-3xl" style={{ backgroundColor: 'color-mix(in srgb, var(--accent-color) 10%, transparent)' }} />
                   <div className="relative z-10">
-                    <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 mb-3">
+                    <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-becc-accent mb-3">
                       Get in Touch
                     </h3>
-                    <p className="text-gray-600 mb-8 text-lg">
+                    <p className="mb-8 text-lg" style={{ color: 'var(--default-color)' }}>
                       Need to make any enquiry or want to partner with us? We are just a mail away!
                     </p>
                   </div>
@@ -276,8 +276,9 @@ const ContactPage = (): JSX.Element => {
                           className={`w-full px-4 py-3 rounded-lg border-2 bg-white ${
                             errors.name
                               ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-                              : 'border-gray-300 focus:ring-orange-500 focus:border-orange-500 hover:border-orange-300'
+                              : ''
                           } focus:ring-2 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md`}
+                          style={!errors.name ? { borderColor: 'var(--border-color)' } : undefined}
                         />
                         {errors.name && (
                           <motion.span
@@ -298,8 +299,9 @@ const ContactPage = (): JSX.Element => {
                           className={`w-full px-4 py-3 rounded-lg border-2 bg-white ${
                             errors.email
                               ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-                              : 'border-gray-300 focus:ring-orange-500 focus:border-orange-500 hover:border-orange-300'
+                              : ''
                           } focus:ring-2 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md`}
+                          style={!errors.email ? { borderColor: 'var(--border-color)' } : undefined}
                         />
                         {errors.email && (
                           <motion.span
@@ -319,13 +321,14 @@ const ContactPage = (): JSX.Element => {
                         id="subject"
                         placeholder="Subject"
                         {...register('subject')}
-                        className={`w-full px-4 py-3 rounded-lg border-2 bg-white ${
-                          errors.subject
-                            ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-                            : 'border-gray-300 focus:ring-orange-500 focus:border-orange-500 hover:border-orange-300'
-                        } focus:ring-2 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md`}
-                      />
-                      {errors.subject && (
+                          className={`w-full px-4 py-3 rounded-lg border-2 bg-white ${
+                            errors.subject
+                              ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+                              : ''
+                          } focus:ring-2 focus:outline-none transition-all duration-300 shadow-sm hover:shadow-md`}
+                          style={!errors.subject ? { borderColor: 'var(--border-color)' } : undefined}
+                        />
+                        {errors.subject && (
                         <motion.span
                           className="text-red-500 text-sm block"
                           initial={{ opacity: 0, y: -5 }}
@@ -342,11 +345,12 @@ const ContactPage = (): JSX.Element => {
                         rows={5}
                         placeholder="Message"
                         {...register('message')}
-                        className={`w-full px-4 py-3 rounded-lg border-2 bg-white ${
-                          errors.message
-                            ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-                            : 'border-gray-300 focus:ring-orange-500 focus:border-orange-500 hover:border-orange-300'
-                        } focus:ring-2 focus:outline-none transition-all duration-300 resize-none shadow-sm hover:shadow-md`}
+                          className={`w-full px-4 py-3 rounded-lg border-2 bg-white ${
+                            errors.message
+                              ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+                              : ''
+                          } focus:ring-2 focus:outline-none transition-all duration-300 resize-none shadow-sm hover:shadow-md`}
+                          style={!errors.message ? { borderColor: 'var(--border-color)' } : undefined}
                       />
                       {errors.message && (
                         <motion.span
@@ -361,7 +365,8 @@ const ContactPage = (): JSX.Element => {
 
                     {submitStatus === 'success' && (
                       <motion.div
-                        className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700"
+                        className="p-4 border rounded-lg text-green-700"
+                        style={{ backgroundColor: 'color-mix(in srgb, #22c55e 5%, transparent)', borderColor: 'color-mix(in srgb, #22c55e 20%, transparent)' }}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                       >
@@ -371,7 +376,8 @@ const ContactPage = (): JSX.Element => {
 
                     {submitStatus === 'error' && (
                       <motion.div
-                        className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700"
+                        className="p-4 border rounded-lg text-red-700"
+                        style={{ backgroundColor: 'color-mix(in srgb, #ef4444 5%, transparent)', borderColor: 'color-mix(in srgb, #ef4444 20%, transparent)' }}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                       >
@@ -382,7 +388,7 @@ const ContactPage = (): JSX.Element => {
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4">
                       <button
                         type="submit"
-                        className="relative w-full sm:w-auto px-12 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold text-base rounded-full disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 overflow-hidden group shadow-[0_4px_15px_rgba(255,107,53,0.3)] hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(255,107,53,0.4)]"
+                        className="relative w-full sm:w-auto px-12 py-4 bg-gradient-to-r from-becc-accent to-becc-accent text-white font-semibold text-base rounded-full disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 overflow-hidden group hover:-translate-y-0.5"
                         disabled={isSubmitting || submitStatus === 'submitting'}
                       >
                         <span className="relative z-10">
@@ -400,37 +406,37 @@ const ContactPage = (): JSX.Element => {
                           href="https://x.com/BECCAcademy"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-600 rounded-full text-white transition-all duration-300 hover:shadow-[0_6px_20px_rgba(255,107,53,0.4)]"
+                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-becc-accent to-becc-accent rounded-full text-white transition-all duration-300 "
                         >
                           <Twitter size={20} className="relative z-10" />
-                          <span className="absolute -inset-[3px] bg-gradient-to-br from-orange-500 to-orange-600 rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
+                          <span className="absolute -inset-[3px] bg-gradient-to-br from-becc-accent to-becc-accent rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
                         </a>
                         <a
                           href="https://www.facebook.com/beccacademy"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-600 rounded-full text-white transition-all duration-300 hover:shadow-[0_6px_20px_rgba(255,107,53,0.4)]"
+                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-becc-accent to-becc-accent rounded-full text-white transition-all duration-300 "
                         >
                           <Facebook size={20} className="relative z-10" />
-                          <span className="absolute -inset-[3px] bg-gradient-to-br from-orange-500 to-orange-600 rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
+                          <span className="absolute -inset-[3px] bg-gradient-to-br from-becc-accent to-becc-accent rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
                         </a>
                         <a
                           href="https://www.instagram.com/beccacademy/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-600 rounded-full text-white transition-all duration-300 hover:shadow-[0_6px_20px_rgba(255,107,53,0.4)]"
+                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-becc-accent to-becc-accent rounded-full text-white transition-all duration-300 "
                         >
                           <Instagram size={20} className="relative z-10" />
-                          <span className="absolute -inset-[3px] bg-gradient-to-br from-orange-500 to-orange-600 rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
+                          <span className="absolute -inset-[3px] bg-gradient-to-br from-becc-accent to-becc-accent rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
                         </a>
                         <a
                           href="https://www.linkedin.com/company/beccacademy/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-600 rounded-full text-white transition-all duration-300 hover:shadow-[0_6px_20px_rgba(255,107,53,0.4)]"
+                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-becc-accent to-becc-accent rounded-full text-white transition-all duration-300 "
                         >
                           <Linkedin size={20} className="relative z-10" />
-                          <span className="absolute -inset-[3px] bg-gradient-to-br from-orange-500 to-orange-600 rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
+                          <span className="absolute -inset-[3px] bg-gradient-to-br from-becc-accent to-becc-accent rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
                         </a>
                       </div>
                     </div>

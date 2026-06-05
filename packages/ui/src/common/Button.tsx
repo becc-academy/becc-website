@@ -1,9 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 
 import { buttonTap, glowHover } from '../lib/animations';
 
-export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IButtonProps extends HTMLMotionProps<'button'> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
@@ -59,7 +59,7 @@ export const Button: React.FC<IButtonProps> = ({
   const getHoverStyles = (variant: string) => {
     switch (variant) {
       case 'primary':
-        return { backgroundColor: '#d14801' };
+        return { backgroundColor: 'var(--accent-color)' };
       case 'secondary':
         return { color: 'var(--nav-hover-color)' };
       case 'outline':

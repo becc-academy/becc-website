@@ -23,7 +23,7 @@ export const BeccFooter: React.FC<Partial<IFooterProps>> = (props) => {
       },
       {
         icon: Facebook,
-        href: '#',
+        href: 'https://www.facebook.com/beccacademy',
         label: 'Facebook',
       },
       {
@@ -80,5 +80,5 @@ export const BeccFooter: React.FC<Partial<IFooterProps>> = (props) => {
     },
   };
 
-  return <Footer {...mergedProps} withGlasmorphism />;
+  return <Footer {...mergedProps} />;
 };

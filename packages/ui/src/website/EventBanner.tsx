@@ -31,7 +31,7 @@ export const EventBanner: React.FC<IEventBannerProps> = ({
     <div
       className={cn('rounded-2xl p-6 md:p-8 shadow-xl overflow-hidden relative', className)}
       style={{
-        background: 'linear-gradient(to right, var(--accent-color), #d14801)',
+        background: 'var(--accent-color)',
       }}
       data-aos="fade-up"
       data-aos-delay="400"
@@ -77,7 +77,7 @@ export const EventBanner: React.FC<IEventBannerProps> = ({
               )}
               style={{
                 backgroundColor: buttonDisabled
-                  ? 'rgba(255, 255, 255, 0.2)'
+                  ? 'color-mix(in srgb, var(--surface-color) 20%, transparent)'
                   : 'var(--surface-color)',
                 color: buttonDisabled ? 'var(--contrast-color)' : 'var(--accent-color)',
               }}
@@ -88,7 +88,7 @@ export const EventBanner: React.FC<IEventBannerProps> = ({
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = buttonDisabled
-                  ? 'rgba(255, 255, 255, 0.2)'
+                  ? 'color-mix(in srgb, var(--surface-color) 20%, transparent)'
                   : 'var(--surface-color)';
               }}
             >
@@ -122,7 +122,7 @@ export const EventBanner: React.FC<IEventBannerProps> = ({
                   className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r animate-[gradient_3s_ease_infinite] drop-shadow-lg"
                   style={{
                     backgroundImage:
-                      'linear-gradient(to right, var(--accent-color), #ff6b35, var(--accent-color))',
+                      'linear-gradient(to right, var(--accent-color), var(--accent-color), var(--accent-color))',
                   }}
                 >
                   {countdown}
