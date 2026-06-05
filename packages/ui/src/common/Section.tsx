@@ -13,10 +13,16 @@ export const Section: React.FC<ISectionProps> = ({
   background = 'default',
   padding = 'md',
 }) => {
-  const backgroundStyles = {
-    default: 'bg-[#f1f5f7]',
-    light: 'bg-[#e6edf0]',
-    dark: 'bg-[#060606] text-white',
+  const backgroundStyles: Record<string, string> = {
+    default: '',
+    light: '',
+    dark: '',
+  };
+
+  const backgroundColors: Record<string, React.CSSProperties> = {
+    default: { backgroundColor: 'var(--background-color)' },
+    light: { backgroundColor: 'var(--background-color)' },
+    dark: { backgroundColor: 'var(--background-color)', color: 'var(--contrast-color)' },
   };
 
   const paddingStyles = {
@@ -27,7 +33,9 @@ export const Section: React.FC<ISectionProps> = ({
   };
 
   return (
-    <section className={`${backgroundStyles[background]} ${paddingStyles[padding]} ${className}`}>
+    <section
+      className={`${backgroundStyles[background]} ${paddingStyles[padding]} ${className}${background === 'light' ? ' light-background' : ''}${background === 'dark' ? ' dark-background' : ''}`}
+      style={backgroundColors[background]}>
       {children}
     </section>
   );

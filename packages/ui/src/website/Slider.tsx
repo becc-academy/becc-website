@@ -65,7 +65,7 @@ export const Slider: React.FC<ISliderProps> = ({
   return (
     <div className={cn('relative w-full overflow-hidden rounded-2xl group', className)}>
       {/* Static gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#e95001] via-[#d14801] to-[#b83d01]" />
+      <div className="absolute inset-0 bg-becc-accent" />
 
       {/* Slides */}
       <div className="relative min-h-[400px] flex items-center justify-center">
@@ -96,9 +96,10 @@ export const Slider: React.FC<ISliderProps> = ({
                     </p>
                   )}
                   {currentSlide.cta && (
-                    <a
+                      <a
                       href={currentSlide.cta.href}
-                      className="inline-block px-8 py-4 bg-white text-[#e95001] font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg"
+                      className="inline-block px-8 py-4 text-becc-accent font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                      style={{ backgroundColor: 'var(--surface-color)' }}
                     >
                       {currentSlide.cta.label}
                     </a>

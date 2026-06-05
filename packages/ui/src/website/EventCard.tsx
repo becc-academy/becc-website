@@ -43,7 +43,7 @@ export const EventCard: React.FC<IEventCardProps> = ({
     academic: 'bg-blue-500',
     sports: 'bg-green-500',
     arts: 'bg-purple-500',
-    community: 'bg-orange-500',
+    community: 'bg-becc-accent',
   };
 
   return (
@@ -135,7 +135,7 @@ export const EventCard: React.FC<IEventCardProps> = ({
         </div>
 
         {/* Footer with Action Buttons */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+        <div className="flex items-center justify-between pt-4 border-t" style={{ borderColor: 'var(--border-color)' }}>
           {onRegister && (
             <motion.button
               onClick={onRegister}
@@ -145,12 +145,12 @@ export const EventCard: React.FC<IEventCardProps> = ({
                 color: 'var(--contrast-color)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#d14801';
+                e.currentTarget.style.backgroundColor = 'var(--accent-color)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'var(--accent-color)';
               }}
-              whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(233, 80, 1, 0.4)' }}
+              whileHover={{ scale: 1.05, boxShadow: '0 0 20px var(--accent-color)' }}
               whileTap={{ scale: 0.95 }}
             >
               Register Now

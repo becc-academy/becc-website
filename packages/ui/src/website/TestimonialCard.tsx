@@ -35,7 +35,7 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
       transition={{ delay }}
       whileHover={{
         y: -8,
-        boxShadow: '0 20px 40px rgba(233, 80, 1, 0.2)',
+        boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 20%, transparent)',
       }}
     >
       {/* Header with Image and Rating */}
@@ -69,8 +69,9 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
                   'w-4 h-4',
                   index < rating
                     ? 'text-yellow-400 fill-yellow-400'
-                    : 'text-gray-300 fill-gray-300',
+                    : '',
                 )}
+                style={index < rating ? undefined : { color: 'var(--default-color)', fill: 'var(--default-color)' }}
               />
             </motion.div>
           ))}
@@ -89,7 +90,8 @@ export const TestimonialCard: React.FC<ITestimonialCardProps> = ({
 
       {/* Footer with Name and Role */}
       <motion.div
-        className="flex items-center justify-between border-t border-gray-200 pt-4"
+        className="flex items-center justify-between border-t pt-4"
+        style={{ borderColor: 'var(--border-color)' }}
         variants={fadeInUp}
         transition={{ delay: delay + 0.4 }}
       >

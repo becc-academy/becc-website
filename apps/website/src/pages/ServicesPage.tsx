@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Briefcase, Code, Lightbulb, Palette, Sparkles, Users } from 'lucide-react';
 
-import { BeccFooter, Header, PageTitle, ScrollToTop, ServiceCard } from '@becc/ui';
+import { BeccFooter, CTASection, Header, PageTitle, ScrollToTop, ServiceCard } from '@becc/ui';
 
 // Animation variants
 const fadeInUp = {
@@ -162,7 +162,7 @@ const ServicesPage = () => {
         />
 
         {/* Services Introduction Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20" style={{ backgroundColor: 'var(--surface-color)' }}>
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Image */}
@@ -217,7 +217,7 @@ const ServicesPage = () => {
         </section>
 
         {/* Services Grid Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20" style={{ backgroundColor: 'var(--background-color)' }}>
           <div className="container mx-auto px-4">
             <motion.div
               initial="hidden"
@@ -236,9 +236,15 @@ const ServicesPage = () => {
         </section>
       </main>
 
+      {/* CTA Section */}
+      <CTASection
+        title="Ready to Start Your Learning Journey?"
+        description="Connect with our team to learn more about our programs and find the right path for you."
+        primaryButton={{ label: 'Contact Us', href: '/contact' }}
+      />
+
       {/* Footer */}
       <BeccFooter />
-      {}
 
       {/* Scroll to Top */}
       <ScrollToTop />

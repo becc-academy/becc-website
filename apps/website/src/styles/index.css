@@ -59,19 +59,19 @@ p {
 .features li {
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
-  background: rgba(255, 255, 255, 0.05);
+  background: color-mix(in srgb, var(--surface-color) 5%, transparent);
   border-radius: 8px;
   font-size: 1.1em;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--default-color);
+    background-color: var(--surface-color);
   }
 
-  .features li {
-    background: rgba(0, 0, 0, 0.05);
+  .  features li {
+    background: color-mix(in srgb, var(--default-color) 5%, transparent);
   }
 }
 
@@ -85,43 +85,43 @@ select {
 /* Webkit browsers (Chrome, Safari, Edge) - Style the dropdown options */
 select option {
   padding: 12px 16px !important;
-  background-color: #ffffff !important;
-  color: #374151 !important;
+  background-color: var(--surface-color) !important;
+  color: var(--default-color) !important;
   font-weight: 500 !important;
   font-size: 14px !important;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--border-color);
   transition: all 0.2s ease !important;
 }
 
 /* Hover state for options in dropdown */
 select option:hover {
-  background: linear-gradient(135deg, #fff5f0 0%, #ffe5d9 100%) !important;
-  color: #e95001 !important;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color) 5%, white) 0%, color-mix(in srgb, var(--accent-color) 10%, white) 100%) !important;
+  color: var(--accent-color) !important;
   font-weight: 600 !important;
-  border-left: 3px solid #e95001 !important;
+  border-left: 3px solid var(--accent-color) !important;
   padding-left: 13px !important;
 }
 
 /* Checked/Selected state for options */
 select option:checked {
-  background: linear-gradient(135deg, #e95001 0%, #d14801 100%) !important;
-  color: #ffffff !important;
+  background: var(--accent-color) !important;
+  color: var(--contrast-color) !important;
   font-weight: 700 !important;
-  border-left: 3px solid #ffffff !important;
+  border-left: 3px solid var(--contrast-color) !important;
 }
 
 /* Active/Focus state for options */
 select option:active,
 select option:focus {
-  background: linear-gradient(135deg, #fff5f0 0%, #ffe5d9 100%) !important;
-  color: #e95001 !important;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color) 5%, white) 0%, color-mix(in srgb, var(--accent-color) 10%, white) 100%) !important;
+  color: var(--accent-color) !important;
   font-weight: 600 !important;
 }
 
 /* Placeholder option styling */
 select option[value=''],
 select option:disabled {
-  color: #9ca3af !important;
+  color: var(--default-color) !important;
   font-weight: 400 !important;
   font-style: italic;
 }
@@ -133,12 +133,12 @@ select option:disabled {
   }
 
   select option:hover {
-    background-color: #fff5f0 !important;
-    color: #e95001 !important;
+    background-color: color-mix(in srgb, var(--accent-color) 5%, white) !important;
+    color: var(--accent-color) !important;
   }
 
   select option:checked {
-    background: #e95001 !important;
+    background: var(--accent-color) !important;
     color: white !important;
   }
 }

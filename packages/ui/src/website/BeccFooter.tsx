@@ -80,5 +80,5 @@ export const BeccFooter: React.FC<Partial<IFooterProps>> = (props) => {
     },
   };
 
-  return <Footer {...mergedProps} withGlasmorphism />;
+  return <Footer {...mergedProps} />;
 };

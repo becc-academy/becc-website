@@ -59,7 +59,7 @@ export const Button: React.FC<IButtonProps> = ({
   const getHoverStyles = (variant: string) => {
     switch (variant) {
       case 'primary':
-        return { backgroundColor: '#d14801' };
+        return { backgroundColor: 'var(--accent-color)' };
       case 'secondary':
         return { color: 'var(--nav-hover-color)' };
       case 'outline':

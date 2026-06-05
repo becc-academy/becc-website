@@ -56,7 +56,7 @@ describe('HomePage', () => {
 
     it('should render hero statistics', () => {
       render(<HomePage />);
-      expect(screen.getByText('90%')).toBeInTheDocument();
+      expect(screen.getByText('96%')).toBeInTheDocument();
       expect(screen.getByText('Completion Rate')).toBeInTheDocument();
       expect(screen.getByText('5:1')).toBeInTheDocument();
       expect(screen.getByText('Student-Tutor Ratio')).toBeInTheDocument();
@@ -86,21 +86,9 @@ describe('HomePage', () => {
   });
 
   describe('Event Banner Section', () => {
-    it('should render event information', () => {
+    it('should not render event banner when commented out', () => {
       render(<HomePage />);
-      expect(screen.getByText('Humble Data Workshop')).toBeInTheDocument();
-      expect(screen.getByText(/Hands-on introduction to data analytics/i)).toBeInTheDocument();
-    });
-
-    it('should render event date', () => {
-      render(<HomePage />);
-      expect(screen.getByText('22')).toBeInTheDocument();
-      expect(screen.getByText('NOV')).toBeInTheDocument();
-    });
-
-    it('should show countdown', () => {
-      render(<HomePage />);
-      expect(screen.getByText('Starts in 4 weeks')).toBeInTheDocument();
+      expect(screen.queryByText('Humble Data Workshop')).not.toBeInTheDocument();
     });
   });
 
@@ -177,18 +165,18 @@ describe('HomePage', () => {
       expect(screen.getByText('Testimonials')).toBeInTheDocument();
     });
 
-    it('should render all three testimonials', () => {
+    it('should render first page of testimonials', () => {
       render(<HomePage />);
+      expect(screen.getByText('Ernestina Asabea')).toBeInTheDocument();
+      expect(screen.getByText('Osei Wendy Laura')).toBeInTheDocument();
       expect(screen.getByText('Sandra Yemoley Quarshie')).toBeInTheDocument();
-      expect(screen.getByText('Lartey Lois Lartebea')).toBeInTheDocument();
-      expect(screen.getByText('Agyepong Felix Okoree')).toBeInTheDocument();
     });
 
     it('should render testimonial content', () => {
       render(<HomePage />);
+      expect(screen.getByText(/learnt how to create different games/i)).toBeInTheDocument();
+      expect(screen.getByText(/Learning Scratch has been an exciting journey/i)).toBeInTheDocument();
       expect(screen.getByText(/I had a good time learning/i)).toBeInTheDocument();
-      expect(screen.getByText(/It was a great experience/i)).toBeInTheDocument();
-      expect(screen.getByText(/It was an insightful training program/i)).toBeInTheDocument();
     });
   });
 

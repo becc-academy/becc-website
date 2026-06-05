@@ -119,7 +119,7 @@ export const Hero: React.FC<IHeroProps> = ({
                       color: 'var(--contrast-color)',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#d14801';
+                      e.currentTarget.style.backgroundColor = 'var(--accent-color)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = 'var(--accent-color)';
@@ -167,7 +167,7 @@ export const Hero: React.FC<IHeroProps> = ({
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
                     style={{
-                      background: `linear-gradient(to bottom right, var(--accent-color)33, #d1480133)`,
+                      background: `linear-gradient(to bottom right, var(--accent-color)33, var(--accent-color)33)`,
                     }}
                   />
                   <img

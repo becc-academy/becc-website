@@ -142,7 +142,7 @@ const ProgramsPage = (): JSX.Element => {
         />
 
         {/* Programs Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16" style={{ backgroundColor: 'var(--background-color)' }}>
           <div className="container mx-auto px-4">
             {/* Introduction */}
             <div className="grid lg:grid-cols-2 gap-12 mb-16">
@@ -178,7 +178,7 @@ const ProgramsPage = (): JSX.Element => {
                     color: 'var(--contrast-color)',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#d14801';
+                    e.currentTarget.style.backgroundColor = 'color-mix(in srgb, var(--accent-color) 80%, black)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'var(--accent-color)';

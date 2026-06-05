@@ -137,9 +137,9 @@ export const staggerItem: Variants = {
 export const glowPulse = {
   animate: {
     boxShadow: [
-      '0 0 20px rgba(255, 140, 0, 0.3)',
-      '0 0 40px rgba(255, 140, 0, 0.6)',
-      '0 0 20px rgba(255, 140, 0, 0.3)',
+      '0 0 20px color-mix(in srgb, var(--accent-color) 30%, transparent)',
+      '0 0 40px color-mix(in srgb, var(--accent-color) 60%, transparent)',
+      '0 0 20px color-mix(in srgb, var(--accent-color) 30%, transparent)',
     ],
     transition: {
       duration: 2,
@@ -151,7 +151,7 @@ export const glowPulse = {
 
 export const glowHover = {
   hover: {
-    boxShadow: '0 0 30px rgba(255, 140, 0, 0.6)',
+    boxShadow: '0 0 30px color-mix(in srgb, var(--accent-color) 60%, transparent)',
     transition: {
       duration: 0.3,
       ease: 'easeInOut',
@@ -223,11 +223,11 @@ export const hoverLift = {
 export const cardHover = {
   rest: {
     scale: 1,
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 4px 6px color-mix(in srgb, var(--default-color) 10%, transparent)',
   },
   hover: {
     scale: 1.03,
-    boxShadow: '0 10px 30px rgba(255, 140, 0, 0.3)',
+    boxShadow: '0 10px 30px color-mix(in srgb, var(--accent-color) 30%, transparent)',
     transition: {
       duration: 0.3,
       ease: 'easeInOut',

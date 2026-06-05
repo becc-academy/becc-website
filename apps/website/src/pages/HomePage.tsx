@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Book,
@@ -153,15 +153,22 @@ const HomePage = (): JSX.Element => {
   const endIndex = startIndex + testimonialsPerPage;
   const currentTestimonials = testimonials.slice(startIndex, endIndex);
 
-  const handlePrevious = (): void => {
+  const handlePrevious = useCallback((): void => {
     setDirection('left');
     setTestimonialIndex((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
-  };
+  }, [totalPages]);
 
-  const handleNext = (): void => {
+  const handleNext = useCallback((): void => {
     setDirection('right');
     setTestimonialIndex((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
-  };
+  }, [totalPages]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [handleNext]);
 
   return (
     <>
@@ -201,7 +208,8 @@ const HomePage = (): JSX.Element => {
 
         {/* Feature Cards */}
         <motion.section
-          className="py-16 bg-white"
+          className="py-16"
+          style={{ backgroundColor: 'var(--surface-color)' }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
@@ -279,14 +287,15 @@ const HomePage = (): JSX.Element => {
 
         {/* Core Values */}
         <motion.section
-          className="py-16 bg-gray-50"
+          className="py-16"
+          style={{ backgroundColor: 'var(--background-color)' }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={staggerContainer}
         >
           <div className="container mx-auto px-4">
-            <motion.h3 className="text-3xl font-bold text-center mb-12" variants={fadeInUp}>
+            <motion.h3 className="text-3xl font-bold text-center mb-12" style={{ color: 'var(--heading-color)' }} variants={fadeInUp}>
               The B.E.C.C. Code
             </motion.h3>
             <motion.div
@@ -327,7 +336,8 @@ const HomePage = (): JSX.Element => {
 
         {/* Featured Programs */}
         <motion.section
-          className="py-16 bg-white"
+          className="py-16"
+          style={{ backgroundColor: 'var(--surface-color)' }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
@@ -370,7 +380,8 @@ const HomePage = (): JSX.Element => {
 
         {/* Testimonials */}
         <motion.section
-          className="py-16 bg-gray-50"
+          className="py-16"
+          style={{ backgroundColor: 'var(--background-color)' }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
@@ -385,12 +396,12 @@ const HomePage = (): JSX.Element => {
               />
             </motion.div>
 
-            <div className="relative min-h-[400px] mb-8 overflow-hidden">
+            <div className="relative mb-8">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={testimonialIndex}
                   custom={direction}
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                   variants={{
                     enter: (dir: 'left' | 'right') => ({
                       opacity: 0,
@@ -410,64 +421,70 @@ const HomePage = (): JSX.Element => {
                   {currentTestimonials.map((testimonial, index) => (
                     <motion.div
                       key={`${testimonial.name}-${testimonialIndex}-${index}`}
-                      custom={direction}
-                      variants={{
-                        enter: (dir: 'left' | 'right') => ({
-                          opacity: 0,
-                          x: dir === 'right' ? 50 : -50,
-                        }),
-                        center: { opacity: 1, x: 0 },
-                        exit: (dir: 'left' | 'right') => ({
-                          opacity: 0,
-                          x: dir === 'right' ? -50 : 50,
-                        }),
+                      className="bg-white p-8 rounded-2xl shadow-lg text-left"
+                      style={{ backgroundColor: 'var(--surface-color)' }}
+                      whileHover={{
+                        y: -8,
+                        boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 20%, transparent)',
                       }}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      transition={{ delay: index * 0.1, duration: 0.3 }}
-                      whileHover={{ scale: 1.05 }}
-                      className="w-full"
+                      transition={{ delay: index * 0.1 }}
                     >
-                      <div className="bg-white p-8 rounded-2xl shadow-lg text-left">
-                        {/* Header with Image and Rating */}
-                        <div className="flex items-center justify-between mb-6">
-                          <img
-                            src={testimonial.image}
-                            alt={testimonial.name}
-                            className="w-16 h-16 rounded-full object-cover border-2 border-[#e95001]/20"
-                            loading="lazy"
-                          />
-                          <div className="flex space-x-1">
-                            {Array.from({ length: 5 }).map((_, starIndex) => (
-                              <Star
-                                key={starIndex}
-                                className={`w-4 h-4 ${
-                                  starIndex < testimonial.rating
-                                    ? 'text-yellow-400 fill-yellow-400'
-                                    : 'text-gray-300 fill-gray-300'
-                                }`}
-                              />
-                            ))}
-                          </div>
+                      {/* Header with Image and Rating */}
+                      <div className="flex items-center justify-between mb-6">
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-16 h-16 rounded-full object-cover border-2"
+                          style={{ borderColor: 'var(--accent-color)33' }}
+                          loading="lazy"
+                        />
+                        <div className="flex space-x-1">
+                          {Array.from({ length: 5 }).map((_, starIndex) => (
+                            <Star
+                              key={starIndex}
+                              className={`w-4 h-4 ${
+                                starIndex < testimonial.rating
+                                  ? 'text-yellow-400 fill-yellow-400'
+                                  : ''
+                              }`}
+                              style={starIndex < testimonial.rating ? undefined : { color: 'var(--default-color)', fill: 'var(--default-color)' }}
+                            />
+                          ))}
                         </div>
+                      </div>
 
-                        {/* Testimonial Text */}
-                        <p className="text-gray-700 text-base leading-relaxed mb-6 italic">
-                          &ldquo;{testimonial.testimonial}&rdquo;
-                        </p>
+                      {/* Testimonial Text */}
+                      <p
+                        className="text-base leading-relaxed mb-6 italic"
+                        style={{ color: 'var(--default-color)' }}
+                      >
+                        &ldquo;{testimonial.testimonial}&rdquo;
+                      </p>
 
-                        {/* Footer with Name and Role */}
-                        <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-                          <div>
-                            <h5 className="font-bold text-gray-900 text-base">
-                              {testimonial.name}
-                            </h5>
-                            <span className="text-sm text-gray-500">{testimonial.position}</span>
-                          </div>
-                          <div className="w-10 h-10 bg-[#e95001]/10 rounded-full flex items-center justify-center">
-                            <Quote className="w-5 h-5 text-[#e95001]" />
-                          </div>
+                      {/* Footer with Name and Role */}
+                      <div
+                        className="flex items-center justify-between border-t pt-4"
+                        style={{ borderColor: 'var(--border-color)' }}
+                      >
+                        <div>
+                          <h5
+                            className="font-bold text-base"
+                            style={{ color: 'var(--heading-color)' }}
+                          >
+                            {testimonial.name}
+                          </h5>
+                          <span className="text-sm" style={{ color: 'var(--default-color)' }}>
+                            {testimonial.position}
+                          </span>
+                        </div>
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center"
+                          style={{ backgroundColor: 'var(--accent-color)1a' }}
+                        >
+                          <Quote
+                            className="w-5 h-5"
+                            style={{ color: 'var(--accent-color)' }}
+                          />
                         </div>
                       </div>
                     </motion.div>
@@ -477,19 +494,49 @@ const HomePage = (): JSX.Element => {
             </div>
 
             {/* Navigation Buttons */}
-            <div className="flex justify-end gap-3 mt-6">
+            <div className="flex items-center justify-center gap-4">
               <motion.button
                 onClick={handlePrevious}
-                className="w-12 h-12 rounded-full bg-[#e95001] text-white shadow-lg hover:bg-[#d14801] transition-colors flex items-center justify-center"
+                className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
+                style={{
+                  backgroundColor: 'var(--accent-color)',
+                  color: 'var(--contrast-color)',
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Previous testimonials"
               >
                 <ChevronLeft className="w-6 h-6" />
               </motion.button>
+
+              {/* Dots */}
+              <div className="flex gap-2">
+                {Array.from({ length: totalPages }).map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setDirection(idx > testimonialIndex ? 'right' : 'left');
+                      setTestimonialIndex(idx);
+                    }}
+                    className="w-3 h-3 rounded-full transition-all duration-300"
+                    style={{
+                      backgroundColor:
+                        idx === testimonialIndex ? 'var(--accent-color)' : 'var(--default-color)',
+                      opacity: idx === testimonialIndex ? 1 : 0.3,
+                      width: idx === testimonialIndex ? '24px' : '12px',
+                    }}
+                    aria-label={`Go to testimonial page ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
               <motion.button
                 onClick={handleNext}
-                className="w-12 h-12 rounded-full bg-[#e95001] text-white shadow-lg hover:bg-[#d14801] transition-colors flex items-center justify-center"
+                className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
+                style={{
+                  backgroundColor: 'var(--accent-color)',
+                  color: 'var(--contrast-color)',
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Next testimonials"

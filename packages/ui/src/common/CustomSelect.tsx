@@ -52,7 +52,7 @@ export const CustomSelect: React.FC<ICustomSelectProps> = ({
   return (
     <div className={`relative ${className}`} ref={selectRef}>
       {label && (
-        <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+        <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--default-color)' }}>
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
@@ -61,13 +61,14 @@ export const CustomSelect: React.FC<ICustomSelectProps> = ({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg flex items-center justify-between hover:border-[#e95001] focus:outline-none focus:ring-2 focus:ring-[#e95001] focus:border-transparent transition-all duration-200 text-sm"
+        className="w-full px-3 py-2 bg-white border rounded-lg flex items-center justify-between hover:border-becc-accent focus:outline-none focus:ring-2 focus:ring-becc-accent focus:border-transparent transition-all duration-200 text-sm"
+        style={{ borderColor: 'var(--border-color)' }}
       >
-        <span className={selectedOption ? 'text-gray-900' : 'text-gray-400'}>
+        <span style={{ color: selectedOption ? 'var(--heading-color)' : 'var(--default-color)' }}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-          <ChevronDown className="w-4 h-4 text-[#e95001]" />
+          <ChevronDown className="w-4 h-4 text-becc-accent" />
         </motion.div>
       </button>
 
@@ -81,9 +82,10 @@ export const CustomSelect: React.FC<ICustomSelectProps> = ({
               duration: 0.2,
               ease: [0.4, 0, 0.2, 1],
             }}
-            className="absolute z-[100] w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-48 overflow-hidden"
+            className="absolute z-[100] w-full mt-1 bg-white border rounded-lg shadow-xl max-h-48 overflow-hidden"
+            style={{ borderColor: 'var(--border-color)' }}
           >
-            <div className="overflow-y-auto max-h-48 scrollbar-thin scrollbar-thumb-[#e95001] scrollbar-track-gray-100">
+            <div className="overflow-y-auto max-h-48 scrollbar-thin scrollbar-thumb-becc-accent scrollbar-track-gray-100">
               {options.map((option, index) => (
                 <motion.button
                   key={option.value}
@@ -94,9 +96,10 @@ export const CustomSelect: React.FC<ICustomSelectProps> = ({
                   transition={{ delay: index * 0.03 }}
                   className={`w-full px-3 py-2.5 text-left text-sm transition-all duration-200 ${
                     option.value === value
-                      ? 'bg-gradient-to-r from-[#e95001] to-[#d14801] text-white font-semibold'
-                      : 'text-gray-700 hover:bg-orange-50 hover:text-[#e95001]'
-                  } ${index === 0 ? 'rounded-t-lg' : ''} ${index === options.length - 1 ? 'rounded-b-lg' : ''}`}
+                      ? 'bg-gradient-to-r from-becc-accent to-becc-accent text-white font-semibold'
+                      : 'hover:bg-becc-surface hover:text-becc-accent'
+                    } ${index === 0 ? 'rounded-t-lg' : ''} ${index === options.length - 1 ? 'rounded-b-lg' : ''}`}
+                    style={option.value === value ? undefined : { color: 'var(--default-color)' }}
                 >
                   {option.label}
                 </motion.button>
