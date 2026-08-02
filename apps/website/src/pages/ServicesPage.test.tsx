@@ -5,14 +5,12 @@ import ServicesPage from './ServicesPage';
 
 // Mock framer-motion to avoid animation issues in tests
 vi.mock('framer-motion', () => {
-  const actual = { motion: new Proxy({}, { get: () => (props: any) => props?.children ?? null }) };
   return {
     motion: new Proxy(
       {},
       {
         get: () => {
           const Component = ({ children, ...props }: any) => {
-            const tag = Object.keys(props).length > 0 ? 'div' : 'div';
             const { initial, animate, exit, variants, whileHover, whileTap, whileInView, viewport, transition, layout, ...validProps } = props;
             return <div {...validProps}>{children}</div>;
           };

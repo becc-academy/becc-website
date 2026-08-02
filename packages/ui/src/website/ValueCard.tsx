@@ -19,7 +19,7 @@ export const ValueCard: React.FC<IValueCardProps> = ({
   return (
     <div
       className={cn(
-        'p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-left',
+        'h-full p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-left',
         className,
       )}
       style={{ backgroundColor: 'var(--surface-color)' }}

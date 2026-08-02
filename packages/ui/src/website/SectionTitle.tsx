@@ -10,6 +10,7 @@ export interface ISectionTitleProps {
   description?: string;
   centered?: boolean;
   className?: string;
+  descriptionClassName?: string;
 }
 
 export const SectionTitle: React.FC<ISectionTitleProps> = ({
@@ -18,6 +19,7 @@ export const SectionTitle: React.FC<ISectionTitleProps> = ({
   description,
   centered = true,
   className = '',
+  descriptionClassName = '',
 }) => {
   return (
     <motion.div
@@ -29,7 +31,7 @@ export const SectionTitle: React.FC<ISectionTitleProps> = ({
     >
       {subtitle && (
         <motion.span
-          className="inline-block text-becc-accent font-semibold text-sm uppercase tracking-wider mb-2"
+          className="mb-1 inline-block text-sm font-semibold uppercase tracking-wider text-becc-accent"
           variants={fadeInDown}
           animate={{
             backgroundImage: [
@@ -46,8 +48,8 @@ export const SectionTitle: React.FC<ISectionTitleProps> = ({
         </motion.span>
       )}
       <motion.h2
-        className="text-3xl md:text-4xl font-bold mb-4"
-        style={{ color: 'var(--heading-color)' }}
+        className={cn('mt-0 text-3xl font-bold md:text-4xl', description ? 'mb-4' : 'mb-0')}
+        style={{ color: 'var(--heading-color)', marginTop: 0 }}
         variants={fadeInUp}
         transition={{ delay: 0.1 }}
       >
@@ -58,6 +60,7 @@ export const SectionTitle: React.FC<ISectionTitleProps> = ({
           className={cn(
             'leading-relaxed',
             centered ? 'max-w-3xl mx-auto' : 'max-w-2xl',
+            descriptionClassName,
           )}
           style={{ color: 'var(--default-color)' }}
           variants={fadeInUp}

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
 import * as yup from 'yup';
 
-import { BeccFooter, Header, PageTitle, ScrollToTop } from '@becc/ui';
+import { PageTitle } from '@becc/ui';
 
 // Validation schema
 const contactSchema = yup.object().shape({
@@ -84,23 +84,7 @@ const ContactPage = (): JSX.Element => {
   };
 
   return (
-    <>
-      <Header
-        siteName="BECC Academy"
-        navLinks={[
-          { label: 'Home', href: '/', active: false },
-          { label: 'About', href: '/about', active: false },
-          { label: 'Services', href: '/services', active: false },
-          { label: 'Programs', href: '/programs', active: false },
-          { label: 'Events', href: '/events', active: false },
-          { label: 'Contact', href: '/contact', active: true },
-        ]}
-        logo={{
-          src: '/assets/img/logo.png',
-          alt: 'BECC Academy Logo',
-        }}
-      />
-      <main className="min-h-screen" style={{ background: 'linear-gradient(to bottom, var(--background-color), var(--surface-color))' }}>
+    <main className="min-h-screen" style={{ backgroundColor: 'var(--background-color)' }}>
         {/* Page Title Section */}
         <PageTitle
           title="Contact"
@@ -152,18 +136,16 @@ const ContactPage = (): JSX.Element => {
                   }}
                 >
                   <motion.div
-                    className="relative flex items-center gap-4 p-6 rounded-xl shadow-lg overflow-hidden group" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 5%, white))', border: '2px solid color-mix(in srgb, var(--accent-color) 20%, transparent)' }}
+                    className="group flex items-center gap-4 rounded-xl border border-black/10 bg-white p-6 shadow-sm"
                     variants={fadeInUp}
                     whileHover={{
-                      y: -8,
-                      scale: 1.03,
-                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
+                      y: -3,
+                      boxShadow: '0 12px 28px rgba(20, 24, 32, 0.10)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
-                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-becc-accent rounded-xl text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-                      <MapPin size={24} className="drop-shadow-md" />
+                    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-becc-accent text-white transition-transform duration-300 group-hover:scale-105">
+                      <MapPin size={24} />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
                       <h4 className="font-bold text-lg mb-1 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
@@ -174,18 +156,16 @@ const ContactPage = (): JSX.Element => {
                   </motion.div>
 
                   <motion.div
-                    className="relative flex items-center gap-4 p-6 rounded-xl shadow-lg overflow-hidden group" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 5%, white))', border: '2px solid color-mix(in srgb, var(--accent-color) 20%, transparent)' }}
+                    className="group flex items-center gap-4 rounded-xl border border-black/10 bg-white p-6 shadow-sm"
                     variants={fadeInUp}
                     whileHover={{
-                      y: -8,
-                      scale: 1.03,
-                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
+                      y: -3,
+                      boxShadow: '0 12px 28px rgba(20, 24, 32, 0.10)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
-                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-becc-accent rounded-xl text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-                      <Mail size={24} className="drop-shadow-md" />
+                    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-becc-accent text-white transition-transform duration-300 group-hover:scale-105">
+                      <Mail size={24} />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
                       <h4 className="font-bold text-lg mb-1 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
@@ -196,18 +176,16 @@ const ContactPage = (): JSX.Element => {
                   </motion.div>
 
                   <motion.div
-                    className="relative flex items-center gap-4 p-6 rounded-xl shadow-lg overflow-hidden group" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 5%, white))', border: '2px solid color-mix(in srgb, var(--accent-color) 20%, transparent)' }}
+                    className="group flex items-center gap-4 rounded-xl border border-black/10 bg-white p-6 shadow-sm"
                     variants={fadeInUp}
                     whileHover={{
-                      y: -8,
-                      scale: 1.03,
-                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
+                      y: -3,
+                      boxShadow: '0 12px 28px rgba(20, 24, 32, 0.10)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
-                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-becc-accent rounded-xl text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-                      <Phone size={24} className="drop-shadow-md" />
+                    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-becc-accent text-white transition-transform duration-300 group-hover:scale-105">
+                      <Phone size={24} />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
                       <h4 className="font-bold text-lg mb-1 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
@@ -218,18 +196,16 @@ const ContactPage = (): JSX.Element => {
                   </motion.div>
 
                   <motion.div
-                    className="relative flex items-center gap-4 p-6 rounded-xl shadow-lg overflow-hidden group" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 5%, white))', border: '2px solid color-mix(in srgb, var(--accent-color) 20%, transparent)' }}
+                    className="group flex items-center gap-4 rounded-xl border border-black/10 bg-white p-6 shadow-sm"
                     variants={fadeInUp}
                     whileHover={{
-                      y: -8,
-                      scale: 1.03,
-                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
+                      y: -3,
+                      boxShadow: '0 12px 28px rgba(20, 24, 32, 0.10)',
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
-                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-becc-accent rounded-xl text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-                      <Clock size={24} className="drop-shadow-md" />
+                    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-becc-accent text-white transition-transform duration-300 group-hover:scale-105">
+                      <Clock size={24} />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
                       <h4 className="font-bold text-lg mb-1 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
@@ -242,15 +218,13 @@ const ContactPage = (): JSX.Element => {
 
                 {/* Contact Form */}
                 <motion.div
-                  className="relative p-8 rounded-2xl shadow-2xl overflow-hidden" style={{ background: 'linear-gradient(to bottom right, white, color-mix(in srgb, var(--accent-color) 15%, white), white)', border: '2px solid color-mix(in srgb, var(--accent-color) 40%, transparent)' }}
+                  className="rounded-2xl border border-black/10 bg-white p-8 shadow-sm"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   <div className="absolute top-0 left-0 w-full h-1 bg-becc-accent" />
-                  <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl" style={{ backgroundColor: 'color-mix(in srgb, var(--accent-color) 10%, transparent)' }} />
-                  <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full blur-3xl" style={{ backgroundColor: 'color-mix(in srgb, var(--accent-color) 10%, transparent)' }} />
                   <div className="relative z-10">
                     <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-becc-accent mb-3">
                       Get in Touch
@@ -388,7 +362,7 @@ const ContactPage = (): JSX.Element => {
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4">
                       <button
                         type="submit"
-                        className="relative w-full sm:w-auto px-12 py-4 bg-gradient-to-r from-becc-accent to-becc-accent text-white font-semibold text-base rounded-full disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 overflow-hidden group hover:-translate-y-0.5"
+                        className="w-full rounded-full bg-becc-accent px-12 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-becc-accent/90 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                         disabled={isSubmitting || submitStatus === 'submitting'}
                       >
                         <span className="relative z-10">
@@ -406,37 +380,33 @@ const ContactPage = (): JSX.Element => {
                           href="https://x.com/BECCAcademy"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-becc-accent to-becc-accent rounded-full text-white transition-all duration-300 "
+                          className="flex h-11 w-11 items-center justify-center rounded-full bg-becc-accent text-white transition-colors duration-200 hover:bg-becc-accent/90"
                         >
-                          <Twitter size={20} className="relative z-10" />
-                          <span className="absolute -inset-[3px] bg-gradient-to-br from-becc-accent to-becc-accent rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
+                          <Twitter size={20} />
                         </a>
                         <a
                           href="https://www.facebook.com/beccacademy"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-becc-accent to-becc-accent rounded-full text-white transition-all duration-300 "
+                          className="flex h-11 w-11 items-center justify-center rounded-full bg-becc-accent text-white transition-colors duration-200 hover:bg-becc-accent/90"
                         >
-                          <Facebook size={20} className="relative z-10" />
-                          <span className="absolute -inset-[3px] bg-gradient-to-br from-becc-accent to-becc-accent rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
+                          <Facebook size={20} />
                         </a>
                         <a
                           href="https://www.instagram.com/beccacademy/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-becc-accent to-becc-accent rounded-full text-white transition-all duration-300 "
+                          className="flex h-11 w-11 items-center justify-center rounded-full bg-becc-accent text-white transition-colors duration-200 hover:bg-becc-accent/90"
                         >
-                          <Instagram size={20} className="relative z-10" />
-                          <span className="absolute -inset-[3px] bg-gradient-to-br from-becc-accent to-becc-accent rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
+                          <Instagram size={20} />
                         </a>
                         <a
                           href="https://www.linkedin.com/company/beccacademy/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-becc-accent to-becc-accent rounded-full text-white transition-all duration-300 "
+                          className="flex h-11 w-11 items-center justify-center rounded-full bg-becc-accent text-white transition-colors duration-200 hover:bg-becc-accent/90"
                         >
-                          <Linkedin size={20} className="relative z-10" />
-                          <span className="absolute -inset-[3px] bg-gradient-to-br from-becc-accent to-becc-accent rounded-full opacity-0 blur-[8px] -z-10 transition-opacity duration-300 hover:opacity-60" />
+                          <Linkedin size={20} />
                         </a>
                       </div>
                     </div>
@@ -446,10 +416,7 @@ const ContactPage = (): JSX.Element => {
             </div>
           </div>
         </section>
-      </main>
-      <BeccFooter />
-      <ScrollToTop />
-    </>
+    </main>
   );
 };
 
