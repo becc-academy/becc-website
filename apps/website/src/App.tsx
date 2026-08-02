@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { CustomScrollbar } from '@becc/ui';
 
+import WebsiteLayout from '@/layouts/WebsiteLayout';
 import NotFoundPage from '@/pages/404Page';
 import AboutPage from '@/pages/AboutPage';
 import ContactPage from '@/pages/ContactPage';
@@ -17,14 +18,16 @@ const App = (): JSX.Element => {
     <>
       <CustomScrollbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/events" element={<EventsPage />} />
-        <Route path="/events/:eventId" element={<EventDetailsPage />} />
-        <Route path="/programs" element={<ProgramsPage />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route element={<WebsiteLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="events" element={<EventsPage />} />
+          <Route path="events/:eventId" element={<EventDetailsPage />} />
+          <Route path="programs" element={<ProgramsPage />} />
+          <Route path="services" element={<ServicesPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </>
   );

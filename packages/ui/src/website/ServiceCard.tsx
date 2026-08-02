@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle, LucideIcon } from 'lucide-react';
 
-import { fadeInUp, glowHover, staggerItem } from '../lib/animations';
+import { fadeInUp, staggerItem } from '../lib/animations';
 import { cn } from '../lib/utils';
 
 export interface IServiceCardProps {
@@ -29,7 +29,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={cn('p-8 rounded-2xl shadow-lg group text-left', className)}
+      className={cn('group flex h-full flex-col rounded-2xl p-7 text-left shadow-lg', className)}
       style={{ backgroundColor: 'var(--surface-color)' }}
       initial="hidden"
       whileInView="visible"
@@ -37,13 +37,13 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
       variants={fadeInUp}
       transition={{ delay }}
       whileHover={{
-        y: -8,
-        ...glowHover.hover,
+        y: -4,
+        boxShadow: '0 14px 30px rgba(20, 24, 32, 0.10)',
       }}
     >
       {/* Icon */}
       <motion.div
-        className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
+        className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl"
         style={{
           background: 'var(--accent-color)',
         }}
@@ -55,14 +55,14 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
 
       {/* Content */}
       <motion.h3
-        className="text-2xl font-bold mb-3"
+        className="mb-2 text-2xl font-bold"
         style={{ color: 'var(--heading-color)' }}
         variants={staggerItem}
       >
         {title}
       </motion.h3>
       <motion.p
-        className="text-base leading-relaxed mb-4"
+        className="mb-3 text-base leading-relaxed"
         style={{ color: 'var(--default-color)' }}
         variants={staggerItem}
       >
@@ -72,7 +72,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
       {/* Features List */}
       {features && features.length > 0 && (
         <motion.ul
-          className="space-y-2 mb-6"
+          className="mb-4 space-y-2"
           initial="hidden"
           whileInView="visible"
           variants={{
@@ -100,7 +100,7 @@ export const ServiceCard: React.FC<IServiceCardProps> = ({
       {link && (
         <motion.a
           href={link.href}
-          className="inline-flex items-center font-semibold transition-colors group"
+          className="group mt-auto inline-flex items-center self-start pt-2 font-semibold transition-colors"
           style={{ color: 'var(--accent-color)' }}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = 'var(--accent-color)';

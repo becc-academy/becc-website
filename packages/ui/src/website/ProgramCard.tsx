@@ -35,7 +35,7 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={cn('rounded-2xl shadow-lg overflow-hidden', className)}
+      className={cn('flex h-full flex-col overflow-hidden rounded-2xl shadow-lg', className)}
       style={{ backgroundColor: 'var(--surface-color)' }}
       initial="hidden"
       whileInView="visible"
@@ -68,7 +68,7 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
       </div>
 
       {/* Content Section */}
-      <div className="p-6 text-left">
+      <div className="flex flex-1 flex-col p-6 text-left">
         {/* Program Header */}
         <div className="mb-4">
           <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--heading-color)' }}>
@@ -100,7 +100,7 @@ export const ProgramCard: React.FC<IProgramCardProps> = ({
 
         {/* Meta Information */}
         <div
-          className="flex items-center space-x-4 text-sm mb-4"
+          className="mt-auto mb-4 flex items-center space-x-4 text-sm"
           style={{ color: 'var(--default-color)' }}
         >
           <div className="flex items-center">
