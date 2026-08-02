@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LucideIcon, Mail, MapPin, Phone } from 'lucide-react';
+import { ChevronRight, LucideIcon, Mail, MapPin, Phone } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -53,7 +53,7 @@ export const Footer: React.FC<IFooterProps> = ({
   className = '',
 }) => {
   const currentYear = copyright.year ?? new Date().getFullYear();
-  const navigationLinks = sections[0]?.links ?? [];
+  const serviceLinks = sections.find((section) => section.title === 'Our Services')?.links ?? [];
   const scrollToTop = (): void => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
@@ -69,54 +69,78 @@ export const Footer: React.FC<IFooterProps> = ({
       }}
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-9 py-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="max-w-sm">
+        <div className="grid gap-10 py-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8 lg:py-12">
+          <div className="max-w-sm lg:col-span-5 lg:border-r lg:border-black/10 lg:pr-12">
             {logo && (
               <Link to="/" onClick={scrollToTop} className="inline-block rounded-lg bg-white p-2">
-                <img src={logo.src} alt={logo.alt} className="h-10 w-auto" />
+                <img src={logo.src} alt={logo.alt} className="h-12 w-auto" />
               </Link>
             )}
-            <p className="mt-4 text-sm leading-6 text-black/60">
+            <p className="mt-5 text-base leading-7 text-black/60">
               Practical digital, creative, and entrepreneurial education for learners ready to
               shape what comes next.
             </p>
           </div>
 
-          <div className="lg:justify-self-end">
-            <nav aria-label="Footer navigation">
-              <ul className="flex flex-wrap gap-x-6 gap-y-3">
-                {navigationLinks.map((link) => (
-                  <li key={link.href}>
+          <div className="lg:col-span-4 lg:px-3">
+            <div className="mb-6">
+              <h3 className="text-xl font-bold" style={{ color: 'var(--heading-color)' }}>
+                Our Services
+              </h3>
+              <span className="mt-2 block h-0.5 w-12 bg-becc-accent" />
+            </div>
+            <nav aria-label="Services navigation">
+              <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-1">
+                {serviceLinks.map((link) => (
+                  <li key={link.label}>
                     <Link
                       to={link.href}
                       onClick={scrollToTop}
-                      className="text-sm font-semibold transition-colors hover:text-becc-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-becc-accent"
+                      className="group inline-flex items-center gap-3 text-sm font-semibold transition-colors hover:text-becc-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-becc-accent"
                       style={{ color: 'var(--heading-color)' }}
                     >
+                      <ChevronRight className="h-4 w-4 text-black/55 transition-transform group-hover:translate-x-0.5 group-hover:text-becc-accent" />
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </nav>
+          </div>
 
-            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-black/60">
+          <div className="md:col-span-2 lg:col-span-3">
+            <div className="mb-6">
+              <h3 className="text-xl font-bold" style={{ color: 'var(--heading-color)' }}>
+                Reach Us
+              </h3>
+              <span className="mt-2 block h-0.5 w-12 bg-becc-accent" />
+            </div>
+            <div className="space-y-4 text-sm text-black/60">
               {contact.location && (
-                <span className="inline-flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-becc-accent" />
-                  {contact.location}
+                <span className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-becc-accent">
+                    <MapPin className="h-4 w-4" />
+                  </span>
+                  <span>{contact.location}</span>
                 </span>
               )}
               {contact.phone && (
-                <a className="inline-flex items-center gap-2 hover:text-becc-accent" href="tel:+233201233215">
-                  <Phone className="h-4 w-4 text-becc-accent" />
-                  {contact.phone}
+                <a className="flex items-center gap-3 hover:text-becc-accent" href="tel:+233201233215">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-becc-accent">
+                    <Phone className="h-4 w-4" />
+                  </span>
+                  <span>{contact.phone}</span>
                 </a>
               )}
               {contact.email && (
-                <a className="inline-flex items-center gap-2 hover:text-becc-accent" href={`mailto:${contact.email}`}>
-                  <Mail className="h-4 w-4 text-becc-accent" />
-                  {contact.email}
+                <a
+                  className="flex items-center gap-3 hover:text-becc-accent"
+                  href={`mailto:${contact.email}`}
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-becc-accent">
+                    <Mail className="h-4 w-4" />
+                  </span>
+                  <span className="break-all">{contact.email}</span>
                 </a>
               )}
             </div>
