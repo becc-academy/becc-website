@@ -26,8 +26,8 @@ const App = (): JSX.Element => {
           <Route path="events/:eventId" element={<EventDetailsPage />} />
           <Route path="programs" element={<ProgramsPage />} />
           <Route path="services" element={<ServicesPage />} />
-          <Route path="*" element={<NotFoundPage />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
