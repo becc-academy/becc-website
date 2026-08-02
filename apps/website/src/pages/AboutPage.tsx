@@ -225,23 +225,31 @@ const AboutPage = (): JSX.Element => {
                 {/* Mission & Vision Cards */}
                 <div className="grid grid-cols-1 gap-4">
                   <motion.div
-                    className="rounded-2xl bg-[#6f2c32] p-5 text-left text-white"
+                    className="rounded-2xl border border-black/10 bg-white p-5 text-left"
                     whileHover={{
                       y: -3,
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
                     <div className="mb-4 flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase tracking-widest text-white/70">
+                      <span className="text-xs font-bold uppercase tracking-widest text-becc-accent">
                         Why we exist
                       </span>
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-becc-accent/10 text-becc-accent">
                         <Target className="h-5 w-5" aria-hidden="true" />
                       </span>
                     </div>
                     <div>
-                      <h3 className="mb-3 text-2xl font-bold text-white">Our Mission</h3>
-                      <p className="text-base leading-relaxed text-white/80">
+                      <h3
+                        className="mb-3 text-2xl font-bold"
+                        style={{ color: 'var(--heading-color)' }}
+                      >
+                        Our Mission
+                      </h3>
+                      <p
+                        className="text-base leading-relaxed"
+                        style={{ color: 'var(--default-color)' }}
+                      >
                         To provide accessible, high-quality learning experiences that empower
                         individuals of all ages to develop the skills and confidence needed to
                         succeed in the digital age.

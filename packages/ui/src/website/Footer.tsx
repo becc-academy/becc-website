@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, LucideIcon, Mail, MapPin, Phone } from 'lucide-react';
+import { LucideIcon, Mail, MapPin, Phone } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -53,6 +53,10 @@ export const Footer: React.FC<IFooterProps> = ({
   className = '',
 }) => {
   const currentYear = copyright.year ?? new Date().getFullYear();
+  const navigationLinks = sections[0]?.links ?? [];
+  const scrollToTop = (): void => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
 
   return (
     <footer
@@ -64,138 +68,97 @@ export const Footer: React.FC<IFooterProps> = ({
         borderColor: 'var(--border-color)',
       }}
     >
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* About Section - Takes up 4 columns */}
-          <div className="lg:col-span-4">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-9 py-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div className="max-w-sm">
             {logo && (
-              <Link to="/" className="inline-block mb-6">
-                <img src={logo.src} alt={logo.alt} className="h-12 w-auto" />
+              <Link to="/" onClick={scrollToTop} className="inline-block rounded-lg bg-white p-2">
+                <img src={logo.src} alt={logo.alt} className="h-10 w-auto" />
               </Link>
             )}
+            <p className="mt-4 text-sm leading-6 text-black/60">
+              Practical digital, creative, and entrepreneurial education for learners ready to
+              shape what comes next.
+            </p>
+          </div>
 
-            <div className="space-y-3 mb-6">
+          <div className="lg:justify-self-end">
+            <nav aria-label="Footer navigation">
+              <ul className="flex flex-wrap gap-x-6 gap-y-3">
+                {navigationLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      to={link.href}
+                      onClick={scrollToTop}
+                      className="text-sm font-semibold transition-colors hover:text-becc-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-becc-accent"
+                      style={{ color: 'var(--heading-color)' }}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-black/60">
               {contact.location && (
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--default-color)' }} />
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--default-color)' }}>
-                    {contact.location}
-                  </p>
-                </div>
+                <span className="inline-flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-becc-accent" />
+                  {contact.location}
+                </span>
               )}
               {contact.phone && (
-                <div className="flex items-start space-x-3">
-                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--default-color)' }} />
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--default-color)' }}>
-                    {contact.phone}
-                  </p>
-                </div>
+                <a className="inline-flex items-center gap-2 hover:text-becc-accent" href="tel:+233201233215">
+                  <Phone className="h-4 w-4 text-becc-accent" />
+                  {contact.phone}
+                </a>
               )}
               {contact.email && (
-                <div className="flex items-start space-x-3">
-                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--default-color)' }} />
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--default-color)' }}>
-                    {contact.email}
-                  </p>
-                </div>
+                <a className="inline-flex items-center gap-2 hover:text-becc-accent" href={`mailto:${contact.email}`}>
+                  <Mail className="h-4 w-4 text-becc-accent" />
+                  {contact.email}
+                </a>
               )}
-            </div>
-
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => {
-                const IconComponent = social.icon;
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 text-lg hover:shadow-lg"
-                    style={{
-                      backgroundColor: 'var(--accent-color)',
-                      color: 'var(--contrast-color)',
-                    }}
-                  >
-                    <IconComponent className="w-5 h-5" />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Vertical Separator */}
-          <div className="hidden lg:block lg:col-span-1 relative opacity-20">
-            <div
-              className="absolute left-1/2 top-0 bottom-0 w-px"
-              style={{
-                background: `linear-gradient(to bottom, transparent, var(--default-color), transparent)`,
-              }}
-            />
-          </div>
-
-          {/* Footer Sections - Takes up remaining columns */}
-          <div className="lg:col-span-7">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {sections.map((section, index) => (
-                <div key={index}>
-                  <h4
-                    className="text-lg font-bold mb-6 relative inline-block"
-                    style={{ color: 'var(--heading-color)' }}
-                  >
-                    {section.title}
-                    <div
-                      className="absolute bottom-0 left-0 w-12 h-0.5 -mb-2"
-                      style={{ backgroundColor: 'var(--accent-color)' }}
-                    />
-                  </h4>
-                  <ul className="space-y-3 mt-4">
-                    {section.links.map((link, linkIndex) => (
-                      <li key={linkIndex}>
-                        <Link
-                          to={link.href}
-                          className="text-sm transition-all duration-200 flex items-center space-x-2 group"
-                          style={{ color: 'var(--default-color)' }}
-                        >
-                          <ChevronRight
-                            className="w-3 h-3 transition-transform group-hover:translate-x-1"
-                            style={{ color: 'var(--default-color)' }}
-                          />
-                          <span className="group-hover:pl-2 transition-all duration-200" style={{ color: 'var(--default-color)' }}>
-                            {link.label}
-                          </span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Copyright */}
-      <div className="py-6 relative z-10 border-t" style={{ borderColor: 'var(--border-color)' }}>
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm" style={{ color: 'var(--default-color)' }}>
-            &copy; {currentYear} <strong>{copyright.text}</strong> All Rights Reserved
-          </p>
-          {credits && (
-            <p className="text-sm mt-2" style={{ color: 'var(--default-color)' }}>
-              {credits.link ? (
-                <>
-                  Designed by{' '}
-                  <a href={credits.link} className="hover:underline" style={{ color: 'var(--accent-color)' }}>
-                    {credits.text}
-                  </a>
-                </>
-              ) : (
-                `Designed by ${credits.text}`
-              )}
-            </p>
-          )}
+        <div className="flex flex-col-reverse gap-5 border-t border-black/10 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="text-xs text-black/50">
+            <span>&copy; {currentYear} {copyright.text}. All rights reserved.</span>
+            {credits && (
+              <span className="ml-1">
+                {credits.link ? (
+                  <>
+                    Designed by{' '}
+                    <a href={credits.link} className="hover:text-becc-accent hover:underline">
+                      {credits.text}
+                    </a>
+                  </>
+                ) : (
+                  `Designed by ${credits.text}`
+                )}
+              </span>
+            )}
+          </div>
+
+          <div className="flex gap-2">
+            {socialLinks.map((social) => {
+              const IconComponent = social.icon;
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/60 transition-colors hover:border-becc-accent hover:bg-becc-accent hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-becc-accent"
+                >
+                  <IconComponent className="h-4 w-4" />
+                </a>
+              );
+            })}
+          </div>
         </div>
       </div>
     </footer>

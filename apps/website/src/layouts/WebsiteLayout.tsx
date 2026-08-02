@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Toaster } from 'sonner';
 
@@ -15,6 +16,10 @@ const navigation = [
 
 const WebsiteLayout = (): JSX.Element => {
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [pathname]);
 
   const navLinks = navigation.map((link) => ({
     ...link,
