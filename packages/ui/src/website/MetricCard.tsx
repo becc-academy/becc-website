@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
 
-import { fadeInUp, glowPulse } from '../lib/animations';
+import { fadeInUp } from '../lib/animations';
 import { cn } from '../lib/utils';
 
 export interface IMetricCardProps {
@@ -65,10 +65,9 @@ export const MetricCard: React.FC<IMetricCardProps> = ({
       variants={fadeInUp}
       transition={{ delay }}
       whileHover={{
-        y: -8,
-        boxShadow: '0 20px 40px var(--accent-color)',
+        y: -3,
+        boxShadow: '0 14px 30px rgba(20, 24, 32, 0.10)',
       }}
-      {...(animated && glowPulse)}
     >
       {/* Header Section */}
       <div className="flex items-center justify-between mb-4">

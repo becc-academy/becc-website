@@ -12,8 +12,8 @@ import {
   Share2,
   Users,
 } from 'lucide-react';
+import { toast } from 'sonner';
 
-import { BeccFooter, Header, ScrollToTop } from '@becc/ui';
 
 interface IEventDetails {
   id: string;
@@ -191,20 +191,7 @@ const EventDetailsPage = (): JSX.Element => {
 
   if (!event) {
     return (
-      <>
-        <Header
-          logo={{ src: '/assets/img/logo.png', alt: 'BECC Academy' }}
-          siteName="BECC Academy"
-          navLinks={[
-            { label: 'Home', href: '/' },
-            { label: 'About', href: '/about' },
-            { label: 'Services', href: '/services' },
-            { label: 'Programs', href: '/programs' },
-            { label: 'Events', href: '/events', active: true },
-            { label: 'Contact', href: '/contact' },
-          ]}
-        />
-        <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--background-color)' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--background-color)' }}>
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>Event Not Found</h2>
             <p className="mb-6" style={{ color: 'var(--default-color)' }}>
@@ -222,271 +209,241 @@ const EventDetailsPage = (): JSX.Element => {
               Back to Events
             </motion.button>
           </div>
-        </div>
-        <BeccFooter />
-      </>
+      </div>
     );
   }
-
-  const categoryColors = {
-    academic: 'bg-blue-500',
-    sports: 'bg-green-500',
-    arts: 'bg-purple-500',
-    community: 'bg-becc-accent',
-  };
 
   const handleRegister = (): void => {
     window.open(event.registrationLink, '_blank', 'noopener,noreferrer');
   };
 
   const handleShare = async (): Promise<void> => {
-    if (navigator.share) {
-      try {
+    try {
+      if (navigator.share) {
         await navigator.share({
           title: event.title,
           text: event.description,
           url: window.location.href,
         });
-      } catch (err) {
-        console.warn('Error sharing:', err);
+        toast.success('Event shared successfully');
+      } else if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success('Event link copied');
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = window.location.href;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+        const copied = document.execCommand('copy');
+        textArea.remove();
+
+        if (!copied) {
+          throw new Error('Unable to copy event link');
+        }
+
+        toast.success('Event link copied');
       }
-    } else {
-      void navigator.clipboard.writeText(window.location.href);
-      alert('Link copied to clipboard!');
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        return;
+      }
+
+      toast.error('Unable to share this event. Please try again.');
     }
   };
 
   return (
-    <>
-      <Header
-        logo={{ src: '/assets/img/logo.png', alt: 'BECC Academy' }}
-        siteName="BECC Academy"
-        navLinks={[
-          { label: 'Home', href: '/' },
-          { label: 'About', href: '/about' },
-          { label: 'Services', href: '/services' },
-          { label: 'Programs', href: '/programs' },
-          { label: 'Events', href: '/events', active: true },
-          { label: 'Contact', href: '/contact' },
-        ]}
-      />
-      <main className="min-h-screen" style={{ background: 'linear-gradient(to bottom, var(--background-color), var(--surface-color))' }}>
-        {/* Back Button */}
-        <div className="container mx-auto max-w-7xl px-4 pt-24 pb-8">
-          <motion.button
-            onClick={() => {
-              void navigate('/events');
-            }}
-            className="flex items-center hover:text-becc-accent transition-colors font-medium" style={{ color: 'var(--default-color)' }}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            whileHover={{ x: -5 }}
-          >
-            <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to Events
-          </motion.button>
-        </div>
+    <main className="relative min-h-screen overflow-hidden bg-white pb-20">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[32rem] overflow-hidden sm:h-[36rem]"
+        aria-hidden="true"
+      >
+        <img
+          src={event.image}
+          alt=""
+          className="h-full w-full scale-105 object-cover opacity-60 blur-md"
+        />
+        <div className="absolute inset-0 bg-white/35" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-white" />
+      </div>
 
-        {/* Hero Section */}
-        <section className="container mx-auto max-w-7xl px-4 pb-12">
-          <div className="grid lg:grid-cols-5 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-3">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
+      <div className="relative mx-auto w-full max-w-5xl px-4 pb-10 pt-10 sm:px-6 lg:px-8">
+        <button
+          type="button"
+          onClick={() => {
+            void navigate('/events');
+          }}
+          className="mb-6 inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-becc-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-becc-accent"
+          style={{ color: 'var(--heading-color)' }}
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to events
+        </button>
+
+        <motion.article
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+        >
+          <div className="relative overflow-hidden rounded-[1.75rem] border-4 border-white bg-gray-100 shadow-[0_18px_50px_rgba(20,24,32,0.14)]">
+            <img
+              src={event.image}
+              alt={event.title}
+              className="h-[18rem] w-full object-cover sm:h-[25rem]"
+            />
+            <span className="absolute right-4 top-4 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-becc-accent shadow-sm sm:right-5 sm:top-5">
+              {event.category.label}
+            </span>
+          </div>
+
+          <header className="px-1 pb-6 pt-7 sm:px-0">
+            <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-black/55">
+              <span className="inline-flex items-center gap-1.5">
+                <Calendar className="h-4 w-4 text-becc-accent" />
+                {event.date.month} {event.date.day}, {event.date.year}
+              </span>
+              <span aria-hidden="true">•</span>
+              <span className="inline-flex items-center gap-1.5">
+                <Clock className="h-4 w-4 text-becc-accent" />
+                {event.time}
+              </span>
+              <span aria-hidden="true">•</span>
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="h-4 w-4 text-becc-accent" />
+                {event.location}
+              </span>
+            </div>
+
+            <h1
+              className="mb-3 max-w-4xl text-3xl font-bold leading-tight sm:text-4xl"
+              style={{ color: 'var(--heading-color)' }}
+            >
+              {event.title}
+            </h1>
+            <p className="mb-0 max-w-3xl text-base leading-relaxed text-black/65 sm:text-lg">
+              {event.description}
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={handleRegister}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-becc-accent px-6 text-sm font-bold text-white transition-colors hover:bg-becc-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-becc-accent"
               >
-                {/* Event Image */}
-                <div className="relative h-96 overflow-hidden">
-                  <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
-                  <div className="absolute top-6 left-6 bg-white rounded-lg p-4 text-center shadow-lg">
-                    <div className="text-3xl font-bold text-becc-accent">{event.date.day}</div>
-                    <div className="text-sm font-semibold uppercase" style={{ color: 'var(--default-color)' }}>
-                      {event.date.month}
-                    </div>
-                    <div className="text-xs" style={{ color: 'var(--default-color)' }}>{event.date.year}</div>
-                  </div>
-                  <span
-                    className={`absolute top-6 right-6 px-4 py-2 rounded-full text-white text-sm font-semibold ${categoryColors[event.category.type]}`}
-                  >
-                    {event.category.label}
+                Register now
+                <ExternalLink className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  void handleShare();
+                }}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-5 text-sm font-semibold text-black/70 transition-colors hover:border-becc-accent/30 hover:text-becc-accent"
+              >
+                <Share2 className="h-4 w-4" />
+                Share
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsSaved((saved) => !saved)}
+                className={`inline-flex h-11 items-center justify-center gap-2 rounded-full border px-5 text-sm font-semibold transition-colors ${
+                  isSaved
+                    ? 'border-becc-accent bg-becc-accent/5 text-becc-accent'
+                    : 'border-black/10 bg-white text-black/70 hover:border-becc-accent/30 hover:text-becc-accent'
+                }`}
+              >
+                <Heart className={`h-4 w-4 ${isSaved ? 'fill-current' : ''}`} />
+                {isSaved ? 'Saved' : 'Save'}
+              </button>
+            </div>
+          </header>
+
+          <nav className="flex gap-7 border-b border-black/10" aria-label="Event details sections">
+            <a className="border-b-2 border-becc-accent pb-3 text-sm font-bold text-becc-accent" href="#details">
+              Details
+            </a>
+            <a className="pb-3 text-sm font-medium text-black/45 transition-colors hover:text-becc-accent" href="#highlights">
+              Highlights
+            </a>
+            <a className="pb-3 text-sm font-medium text-black/45 transition-colors hover:text-becc-accent" href="#requirements">
+              Requirements
+            </a>
+          </nav>
+
+          <section id="details" className="scroll-mt-28 border-b border-black/10 py-8">
+            <span className="mb-2 block text-xs font-bold uppercase tracking-[0.16em] text-becc-accent">
+              Description
+            </span>
+            <p className="mb-0 max-w-4xl text-base leading-8 text-black/70">
+              {event.fullDescription}
+            </p>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { icon: Calendar, label: 'Date', value: `${event.date.month} ${event.date.day}, ${event.date.year}` },
+                { icon: Clock, label: 'Time', value: event.time },
+                { icon: MapPin, label: 'Location', value: event.location },
+                { icon: Users, label: 'Attendance', value: event.participants },
+              ].map(({ icon: Icon, label, value }) => (
+                <div key={label} className="rounded-xl border border-black/[0.07] bg-[#f7f7f5] p-4">
+                  <Icon className="mb-3 h-5 w-5 text-becc-accent" />
+                  <span className="block text-xs font-semibold uppercase tracking-wide text-black/40">
+                    {label}
+                  </span>
+                  <span className="mt-1 block text-sm font-semibold" style={{ color: 'var(--heading-color)' }}>
+                    {value}
                   </span>
                 </div>
-
-                {/* Event Content */}
-                <div className="p-8">
-                  <h1 className="text-4xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>{event.title}</h1>
-
-                  {/* Event Meta Info */}
-                  <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-center" style={{ color: 'var(--default-color)' }}>
-                      <Clock className="w-5 h-5 text-becc-accent mr-3" />
-                      <span>{event.time}</span>
-                    </div>
-                    <div className="flex items-center" style={{ color: 'var(--default-color)' }}>
-                      <MapPin className="w-5 h-5 text-becc-accent mr-3" />
-                      <span>{event.location}</span>
-                    </div>
-                    <div className="flex items-center" style={{ color: 'var(--default-color)' }}>
-                      <Users className="w-5 h-5 text-becc-accent mr-3" />
-                      <span>{event.participants}</span>
-                    </div>
-                    <div className="flex items-center" style={{ color: 'var(--default-color)' }}>
-                      <Calendar className="w-5 h-5 text-becc-accent mr-3" />
-                      <span>
-                        {event.date.month} {event.date.day}, {event.date.year}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <div className="mb-8">
-                    <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>About This Event</h2>
-                    <p className="leading-relaxed mb-4" style={{ color: 'var(--default-color)' }}>{event.fullDescription}</p>
-                  </div>
-
-                  {/* Highlights */}
-                  <div className="mb-8">
-                    <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>Event Highlights</h3>
-                    <ul className="space-y-2">
-                      {event.highlights.map((highlight, index) => (
-                        <motion.li
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex items-start"
-                        >
-                          <span className="inline-block w-2 h-2 bg-becc-accent rounded-full mt-2 mr-3 flex-shrink-0" />
-                          <span style={{ color: 'var(--default-color)' }}>{highlight}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Requirements */}
-                  <div>
-                    <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>Requirements</h3>
-                    <ul className="space-y-2">
-                      {event.requirements.map((requirement, index) => (
-                        <motion.li
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex items-start"
-                        >
-                          <span className="inline-block w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0" style={{ backgroundColor: 'var(--default-color)' }} />
-                          <span style={{ color: 'var(--default-color)' }}>{requirement}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
+              ))}
             </div>
+          </section>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-2">
-              <div className="space-y-6 sticky top-24">
-                {/* Registration Card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="bg-white rounded-2xl shadow-lg p-6"
-                >
-                  <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--heading-color)' }}>Register Now</h3>
-                  <p className="mb-6" style={{ color: 'var(--default-color)' }}>
-                    Secure your spot for this amazing event. Registration is quick and easy!
-                  </p>
-                  <motion.button
-                    onClick={handleRegister}
-                    className="w-full px-6 py-4 bg-becc-accent text-white rounded-lg font-bold text-lg transition-colors flex items-center justify-center"
-                    whileHover={{ scale: 1.02, boxShadow: '0 0 30px color-mix(in srgb, var(--accent-color) 40%, transparent)' }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Register Now
-                    <ExternalLink className="w-5 h-5 ml-2" />
-                  </motion.button>
+          <div className="grid gap-10 py-8 md:grid-cols-2">
+            <section id="highlights" className="scroll-mt-28">
+              <h2 className="mb-5 text-xl font-bold" style={{ color: 'var(--heading-color)' }}>
+                Event highlights
+              </h2>
+              <ul className="space-y-3">
+                {event.highlights.map((highlight) => (
+                  <li key={highlight} className="flex items-start gap-3 text-sm leading-relaxed text-black/70">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-becc-accent" />
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+            </section>
 
-                  <div className="flex gap-3 mt-4">
-                    <motion.button
-                      onClick={() => {
-                        void handleShare();
-                      }}
-                      className="flex-1 px-4 py-2 border-2 rounded-lg font-semibold hover:border-becc-accent hover:text-becc-accent transition-colors flex items-center justify-center"
-                      style={{ borderColor: 'var(--border-color)', color: 'var(--default-color)' }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Share2 className="w-4 h-4 mr-2" />
-                      Share
-                    </motion.button>
-                    <motion.button
-                      onClick={() => setIsSaved(!isSaved)}
-                      className={`flex-1 px-4 py-2 border-2 rounded-lg font-semibold transition-colors flex items-center justify-center ${
-                        isSaved
-                          ? 'border-becc-accent text-becc-accent bg-becc-accent/5'
-                          : 'hover:border-becc-accent hover:text-becc-accent'
-                      }`}
-                      style={!isSaved ? { borderColor: 'var(--border-color)', color: 'var(--default-color)' } : undefined}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Heart className={`w-4 h-4 mr-2 ${isSaved ? 'fill-current' : ''}`} />
-                      {isSaved ? 'Saved' : 'Save'}
-                    </motion.button>
-                  </div>
-                </motion.div>
-
-                {/* Organizer Card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="bg-white rounded-2xl shadow-lg p-6"
-                >
-                  <h4 className="text-lg font-bold mb-3" style={{ color: 'var(--heading-color)' }}>Organized By</h4>
-                  <p style={{ color: 'var(--default-color)' }}>{event.organizer}</p>
-                </motion.div>
-
-                {/* Event Info Card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="rounded-2xl shadow-lg p-6 text-white" style={{ background: 'linear-gradient(to bottom right, var(--accent-color), color-mix(in srgb, var(--accent-color) 80%, black))' }}
-                >
-                  <h4 className="text-lg font-bold mb-4">Event Information</h4>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-white/80">Category:</span>
-                      <span className="font-semibold">{event.category.label}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-white/80">Duration:</span>
-                      <span className="font-semibold">{event.time}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-white/80">Venue:</span>
-                      <span className="font-semibold">{event.location}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-white/80">Expected:</span>
-                      <span className="font-semibold">{event.participants}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
+            <section id="requirements" className="scroll-mt-28">
+              <h2 className="mb-5 text-xl font-bold" style={{ color: 'var(--heading-color)' }}>
+                What to know
+              </h2>
+              <ul className="space-y-3">
+                {event.requirements.map((requirement) => (
+                  <li key={requirement} className="flex items-start gap-3 text-sm leading-relaxed text-black/70">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-becc-accent" />
+                    {requirement}
+                  </li>
+                ))}
+              </ul>
+            </section>
           </div>
-        </section>
-      </main>
-      <BeccFooter />
-      <ScrollToTop />
-    </>
+
+          <footer className="flex flex-col gap-2 rounded-xl border border-black/[0.07] bg-[#f7f7f5] p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <span className="block text-xs font-semibold uppercase tracking-wide text-black/40">
+                Organized by
+              </span>
+              <span className="mt-1 block font-bold" style={{ color: 'var(--heading-color)' }}>
+                {event.organizer}
+              </span>
+            </div>
+            <span className="text-sm font-semibold text-becc-accent">BECC Academy Event</span>
+          </footer>
+        </motion.article>
+      </div>
+    </main>
   );
 };
 

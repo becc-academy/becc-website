@@ -58,3 +58,6 @@ becc-website-html/
 # PR and temporary files
 pr_body.txt
 pr-body.md
+
+# Package manager lockfile
+pnpm-lock.yaml

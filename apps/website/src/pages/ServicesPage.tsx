@@ -1,7 +1,8 @@
+import type { JSX } from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, Code, Lightbulb, Palette, Sparkles, Users } from 'lucide-react';
 
-import { BeccFooter, CTASection, Header, PageTitle, ScrollToTop, ServiceCard } from '@becc/ui';
+import { CTASection, PageTitle, ServiceCard } from '@becc/ui';
 
 // Animation variants
 const fadeInUp = {
@@ -29,7 +30,7 @@ const staggerContainer = {
   },
 };
 
-const ServicesPage = () => {
+const ServicesPage = (): JSX.Element => {
   const services = [
     {
       icon: Code,
@@ -137,20 +138,6 @@ const ServicesPage = () => {
 
   return (
     <>
-      {/* Header */}
-      <Header
-        logo={{ src: '/assets/img/logo.png', alt: 'BECC Academy' }}
-        siteName="BECC Academy"
-        navLinks={[
-          { label: 'Home', href: '/' },
-          { label: 'About', href: '/about' },
-          { label: 'Services', href: '/services', active: true },
-          { label: 'Programs', href: '/programs' },
-          { label: 'Events', href: '/events' },
-          { label: 'Contact', href: '/contact' },
-        ]}
-      />
-
       <main className="main">
         {/* Page Title */}
         <PageTitle
@@ -164,7 +151,7 @@ const ServicesPage = () => {
         {/* Services Introduction Section */}
         <section className="py-20" style={{ backgroundColor: 'var(--surface-color)' }}>
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="grid items-center gap-12 lg:grid-cols-2">
               {/* Image */}
               <motion.div
                 initial="hidden"
@@ -227,7 +214,7 @@ const ServicesPage = () => {
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {services.map((service, index) => (
-                <motion.div key={index} variants={fadeInUp}>
+                <motion.div key={index} variants={fadeInUp} className="h-full">
                   <ServiceCard {...service} />
                 </motion.div>
               ))}
@@ -243,11 +230,6 @@ const ServicesPage = () => {
         primaryButton={{ label: 'Contact Us', href: '/contact' }}
       />
 
-      {/* Footer */}
-      <BeccFooter />
-
-      {/* Scroll to Top */}
-      <ScrollToTop />
     </>
   );
 };

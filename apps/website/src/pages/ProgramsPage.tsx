@@ -3,15 +3,7 @@ import { motion } from 'framer-motion';
 import { Award, GraduationCap, TrendingUp, Users } from 'lucide-react';
 import type { JSX } from 'react';
 
-import {
-  BeccFooter,
-  Header,
-  MetricCard,
-  PageTitle,
-  ProgramCard,
-  ScrollToTop,
-  SectionTitle,
-} from '@becc/ui';
+import { MetricCard, PageTitle, ProgramCard, SectionTitle } from '@becc/ui';
 
 // Animation variants
 const fadeInUp = {
@@ -114,24 +106,7 @@ const ProgramsPage = (): JSX.Element => {
   ];
 
   return (
-    <>
-      <ScrollToTop />
-
-      {/* Header */}
-      <Header
-        logo={{ src: '/assets/img/logo.png', alt: 'BECC Academy' }}
-        siteName="BECC Academy"
-        navLinks={[
-          { label: 'Home', href: '/' },
-          { label: 'About', href: '/about' },
-          { label: 'Services', href: '/services' },
-          { label: 'Programs', href: '/programs', active: true },
-          { label: 'Events', href: '/events' },
-          { label: 'Contact', href: '/contact' },
-        ]}
-      />
-
-      <main>
+    <main>
         {/* Page Title */}
         <PageTitle
           title="Our Programs"
@@ -212,10 +187,11 @@ const ProgramsPage = (): JSX.Element => {
             </div>
 
             {/* Programs Grid */}
-            <div className="mb-12">
+            <div className="pt-8">
               <SectionTitle
                 title="Our Academic Programs"
                 subtitle="Explore our diverse range of programs designed to unlock your potential"
+                className="mb-8"
               />
             </div>
 
@@ -227,7 +203,7 @@ const ProgramsPage = (): JSX.Element => {
               variants={staggerContainer}
             >
               {programs.map((program, index) => (
-                <motion.div key={index} variants={fadeInUp}>
+                <motion.div key={index} variants={fadeInUp} className="h-full">
                   <ProgramCard
                     image={program.image}
                     title={program.title}
@@ -251,11 +227,7 @@ const ProgramsPage = (): JSX.Element => {
             </motion.div>
           </div>
         </section>
-      </main>
-
-      {/* Footer */}
-      <BeccFooter />
-    </>
+    </main>
   );
 };
 

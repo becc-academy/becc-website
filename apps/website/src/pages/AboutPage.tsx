@@ -1,8 +1,19 @@
 import type { JSX } from 'react';
 import { motion } from 'framer-motion';
-import { Lightbulb, Linkedin, Mail, Shield, Star, TrendingUp, Twitter, Users } from 'lucide-react';
+import {
+  Lightbulb,
+  Linkedin,
+  Mail,
+  Shield,
+  Star,
+  Target,
+  Telescope,
+  TrendingUp,
+  Twitter,
+  Users,
+} from 'lucide-react';
 
-import { BeccFooter, Header, PageTitle, ScrollToTop } from '@becc/ui';
+import { PageTitle } from '@becc/ui';
 
 interface ILeadershipMember {
   name: string;
@@ -112,24 +123,12 @@ const AboutPage = (): JSX.Element => {
   };
 
   return (
-    <>
-      <Header
-        siteName="BECC Academy"
-        navLinks={[
-          { label: 'Home', href: '/', active: false },
-          { label: 'About', href: '/about', active: true },
-          { label: 'Services', href: '/services', active: false },
-          { label: 'Programs', href: '/programs', active: false },
-          { label: 'Events', href: '/events', active: false },
-          { label: 'Contact', href: '/contact', active: false },
-        ]}
-        logo={{
-          src: '/assets/img/logo.png',
-          alt: 'BECC Academy Logo',
+    <main
+        className="min-h-screen"
+        style={{
+          background: 'linear-gradient(to bottom, var(--background-color), var(--surface-color))',
         }}
-      />
-
-      <main className="min-h-screen" style={{ background: 'linear-gradient(to bottom, var(--background-color), var(--surface-color))' }}>
+      >
         {/* Page Title */}
         <PageTitle
           title="About"
@@ -142,7 +141,7 @@ const AboutPage = (): JSX.Element => {
         {/* Our Story Section */}
         <section className="py-20 px-4">
           <div className="container mx-auto max-w-7xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid items-start gap-12 lg:grid-cols-2">
               {/* Left Column - Content */}
               <motion.div
                 className="text-left"
@@ -155,10 +154,16 @@ const AboutPage = (): JSX.Element => {
                 <span className="text-becc-accent font-semibold text-sm uppercase tracking-wider">
                   Our Story
                 </span>
-                <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-6" style={{ color: 'var(--heading-color)' }}>
+                <h2
+                  className="text-4xl md:text-5xl font-bold mt-3 mb-6"
+                  style={{ color: 'var(--heading-color)' }}
+                >
                   Educating Minds, Inspiring Hearts
                 </h2>
-                <div className="space-y-4 leading-relaxed text-base" style={{ color: 'var(--default-color)' }}>
+                <div
+                  className="space-y-4 leading-relaxed text-base"
+                  style={{ color: 'var(--default-color)' }}
+                >
                   <p>
                     BECC Academy was founded with a vision to transform education through hands-on,
                     project-based learning experiences. We believe that learning should be engaging,
@@ -176,26 +181,26 @@ const AboutPage = (): JSX.Element => {
                 </div>
 
                 {/* Timeline */}
-                <div className="mt-10 space-y-6">
+                <div className="relative ml-2 mt-6 border-l border-black/15">
                   {timeline.map((item, index) => (
                     <motion.div
                       key={index}
-                      className="flex gap-4"
+                      className="relative pb-4 pl-8 last:pb-0"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
                     >
-                      <div className="flex flex-col items-center">
-                        <div className="w-4 h-4 rounded-full bg-becc-accent flex-shrink-0" />
-                        {index < timeline.length - 1 && (
-                          <div className="w-0.5 h-full bg-becc-accent/20 mt-2" />
-                        )}
-                      </div>
-                      <div className="flex-1 pb-8 text-left">
-                        <h4 className="text-xl font-bold mb-2" style={{ color: 'var(--heading-color)' }}>{item.year}</h4>
-                        <p className="text-base" style={{ color: 'var(--default-color)' }}>{item.description}</p>
-                      </div>
+                      <span className="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full border-[3px] border-white bg-becc-accent ring-1 ring-becc-accent" />
+                      <h4 className="mb-1.5 text-sm font-bold uppercase tracking-widest text-becc-accent">
+                        {item.year}
+                      </h4>
+                      <p
+                        className="max-w-xl text-base leading-relaxed"
+                        style={{ color: 'var(--default-color)' }}
+                      >
+                        {item.description}
+                      </p>
                     </motion.div>
                   ))}
                 </div>
@@ -209,7 +214,7 @@ const AboutPage = (): JSX.Element => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="rounded-2xl overflow-hidden shadow-2xl mb-8">
+                <div className="mb-6 overflow-hidden rounded-2xl border border-black/10">
                   <img
                     src="/assets/img/IMG_1154_Original.JPG"
                     alt="BECC Academy Campus"
@@ -218,22 +223,25 @@ const AboutPage = (): JSX.Element => {
                 </div>
 
                 {/* Mission & Vision Cards */}
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 gap-4">
                   <motion.div
-                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 overflow-hidden group text-left" style={{ borderLeftColor: 'var(--accent-color)' }}
+                    className="rounded-2xl bg-[#6f2c32] p-5 text-left text-white"
                     whileHover={{
-                      x: 10,
-                      scale: 1.02,
-                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
+                      y: -3,
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
-                    <div className="relative z-10">
-                      <h3 className="text-2xl font-bold mb-3 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
-                        Our Mission
-                      </h3>
-                      <p className="text-base leading-relaxed" style={{ color: 'var(--default-color)' }}>
+                    <div className="mb-4 flex items-center justify-between">
+                      <span className="text-xs font-bold uppercase tracking-widest text-white/70">
+                        Why we exist
+                      </span>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
+                        <Target className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="mb-3 text-2xl font-bold text-white">Our Mission</h3>
+                      <p className="text-base leading-relaxed text-white/80">
                         To provide accessible, high-quality learning experiences that empower
                         individuals of all ages to develop the skills and confidence needed to
                         succeed in the digital age.
@@ -242,20 +250,31 @@ const AboutPage = (): JSX.Element => {
                   </motion.div>
 
                   <motion.div
-                    className="relative bg-white p-6 rounded-xl shadow-lg border-l-4 overflow-hidden group text-left" style={{ borderLeftColor: 'var(--accent-color)' }}
+                    className="rounded-2xl border border-black/10 bg-white p-5 text-left"
                     whileHover={{
-                      x: 10,
-                      scale: 1.02,
-                      boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
+                      y: -3,
                     }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
-                    <div className="relative z-10">
-                      <h3 className="text-2xl font-bold mb-3 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
+                    <div className="mb-4 flex items-center justify-between">
+                      <span className="text-xs font-bold uppercase tracking-widest text-becc-accent">
+                        Where we&apos;re going
+                      </span>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-becc-accent/10 text-becc-accent">
+                        <Telescope className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                    </div>
+                    <div>
+                      <h3
+                        className="mb-3 text-2xl font-bold"
+                        style={{ color: 'var(--heading-color)' }}
+                      >
                         Our Vision
                       </h3>
-                      <p className="text-base leading-relaxed" style={{ color: 'var(--default-color)' }}>
+                      <p
+                        className="text-base leading-relaxed"
+                        style={{ color: 'var(--default-color)' }}
+                      >
                         To be the leading provider of experiential learning programs in Africa,
                         creating a generation of innovative thinkers and problem solvers who drive
                         positive change in their communities.
@@ -275,7 +294,9 @@ const AboutPage = (): JSX.Element => {
               variants={staggerContainer}
             >
               <div className="text-center mb-12">
-                <h3 className="text-4xl font-bold" style={{ color: 'var(--heading-color)' }}>Core Values</h3>
+                <h3 className="text-4xl font-bold" style={{ color: 'var(--heading-color)' }}>
+                  Core Values
+                </h3>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -284,24 +305,38 @@ const AboutPage = (): JSX.Element => {
                   return (
                     <motion.div
                       key={index}
-                      className="relative bg-white p-8 rounded-xl shadow-lg border-t-4 overflow-hidden group text-left" style={{ borderTopColor: 'var(--accent-color)' }}
+                      className="relative bg-white p-8 rounded-xl shadow-lg border-t-4 overflow-hidden group text-left"
+                      style={{ borderTopColor: 'var(--accent-color)' }}
                       variants={fadeInUp}
                       whileHover={{
-                        y: -8,
-                        scale: 1.03,
-                        boxShadow: '0 20px 40px color-mix(in srgb, var(--accent-color) 30%, transparent)',
+                        y: -4,
+                        scale: 1.01,
+                        boxShadow:
+                          '0 14px 30px rgba(20, 24, 32, 0.10)',
                       }}
                       transition={{ type: 'spring', stiffness: 300 }}
                     >
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 5%, transparent), color-mix(in srgb, var(--accent-color) 5%, transparent))' }} />
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{
+                          background:
+                            'linear-gradient(to bottom right, color-mix(in srgb, var(--accent-color) 2%, transparent), color-mix(in srgb, var(--accent-color) 2%, transparent))',
+                        }}
+                      />
                       <div className="relative z-10">
                         <div className="w-14 h-14 bg-gradient-to-br from-becc-accent to-becc-accent rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                           <Icon className="w-7 h-7 text-white" />
                         </div>
-                        <h4 className="text-xl font-bold mb-3 group-hover:text-becc-accent transition-colors duration-300" style={{ color: 'var(--heading-color)' }}>
+                        <h4
+                          className="text-xl font-bold mb-3 group-hover:text-becc-accent transition-colors duration-300"
+                          style={{ color: 'var(--heading-color)' }}
+                        >
                           {value.title}
                         </h4>
-                        <p className="text-base leading-relaxed" style={{ color: 'var(--default-color)' }}>
+                        <p
+                          className="text-base leading-relaxed"
+                          style={{ color: 'var(--default-color)' }}
+                        >
                           {value.description}
                         </p>
                       </div>
@@ -314,8 +349,13 @@ const AboutPage = (): JSX.Element => {
         </section>
 
         {/* Leadership Section */}
-        <section className="py-20 px-4" style={{ background: 'linear-gradient(to bottom, var(--surface-color), var(--background-color))' }}>
-          <div className="container mx-auto max-w-7xl">
+        <section
+          className="py-20 px-4"
+          style={{
+            background: 'linear-gradient(to bottom, var(--surface-color), var(--background-color))',
+          }}
+        >
+          <div className="container mx-auto max-w-6xl">
             <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 20 }}
@@ -326,10 +366,16 @@ const AboutPage = (): JSX.Element => {
               <span className="text-becc-accent font-semibold text-sm uppercase tracking-wider">
                 Our Team
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-6" style={{ color: 'var(--heading-color)' }}>
+              <h2
+                className="text-4xl md:text-5xl font-bold mt-3 mb-6"
+                style={{ color: 'var(--heading-color)' }}
+              >
                 Meet Our Distinguished Leadership
               </h2>
-              <p className="max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--default-color)' }}>
+              <p
+                className="max-w-3xl mx-auto leading-relaxed"
+                style={{ color: 'var(--default-color)' }}
+              >
                 Our leadership team brings together diverse expertise in education, technology, and
                 business to drive innovation in experiential learning across Africa. Each member is
                 committed to our mission of transforming education through practical, hands-on
@@ -337,7 +383,7 @@ const AboutPage = (): JSX.Element => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 ">
               {leadershipTeam.map((member, index) => (
                 <motion.div
                   key={index}
@@ -345,33 +391,46 @@ const AboutPage = (): JSX.Element => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
-                  whileHover={{ y: -10 }}
+                  whileHover={{ y: -6 }}
+                  className="mx-auto h-full"
                 >
-                  <div className="bg-white rounded-2xl shadow-xl overflow-hidden min-h-[450px] group cursor-pointer text-left flex flex-col">
-                    <div className="h-56 flex-shrink-0 overflow-hidden">
+                  <article className="group flex h-full flex-col rounded-[2rem] border border-black/5 bg-white p-2.5 text-left shadow-[0_18px_45px_rgba(20,24,32,0.10)] transition-shadow duration-300 hover:shadow-[0_22px_55px_rgba(20,24,32,0.16)]">
+                    <div className="h-64 overflow-hidden rounded-[1.55rem] bg-gray-100">
                       <motion.img
                         src={member.image}
                         alt={member.name}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.1 }}
+                        className="h-full w-full object-cover object-top"
+                        whileHover={{ scale: 1.06 }}
                         transition={{ duration: 0.4 }}
                       />
                     </div>
-                    <div className="p-6 flex flex-col flex-1 min-h-0">
-                      <h4 className="text-xl font-bold mb-2" style={{ color: 'var(--heading-color)' }}>{member.name}</h4>
-                      <p className="text-becc-accent font-medium mb-3 text-base">
+                    <div className="flex flex-col px-3.5 pb-3 pt-3.5">
+                      <h4
+                        className="text-xl font-bold leading-tight"
+                        style={{ color: 'var(--heading-color)' }}
+                      >
+                        {member.name}
+                      </h4>
+                      <p className="mb-0 mt-2 text-sm font-semibold leading-snug text-becc-accent">
                         {member.position}
                       </p>
-                      <p className="text-base leading-relaxed line-clamp-3" style={{ color: 'var(--default-color)' }}>
+                      <p
+                        className="mb-0 mt-3 line-clamp-2 text-sm leading-relaxed opacity-80"
+                        style={{ color: 'var(--default-color)' }}
+                      >
                         {member.bio}
                       </p>
-                      <div className="mt-auto mb-2">
-                        <div className="flex justify-center gap-3 pt-2">
+                      <div className="pt-3">
+                        <div className="flex justify-center gap-2.5">
                           {member.linkedin && (
                             <motion.a
                               href={member.linkedin}
-                              className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
-                              whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)', color: 'var(--contrast-color)' }}
+                              className="flex h-8 w-8 items-center justify-center rounded-full bg-becc-accent/10 text-becc-accent"
+                              whileHover={{
+                                scale: 1.15,
+                                backgroundColor: 'var(--accent-color)',
+                                color: 'var(--contrast-color)',
+                              }}
                               transition={{ type: 'spring', stiffness: 400 }}
                             >
                               <Linkedin className="w-4 h-4" />
@@ -379,8 +438,12 @@ const AboutPage = (): JSX.Element => {
                           )}
                           <motion.a
                             href="#"
-                            className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
-                            whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)', color: 'var(--contrast-color)' }}
+                            className="flex h-8 w-8 items-center justify-center rounded-full bg-becc-accent/10 text-becc-accent"
+                            whileHover={{
+                              scale: 1.15,
+                              backgroundColor: 'var(--accent-color)',
+                              color: 'var(--contrast-color)',
+                            }}
                             transition={{ type: 'spring', stiffness: 400 }}
                           >
                             <Twitter className="w-4 h-4" />
@@ -388,8 +451,12 @@ const AboutPage = (): JSX.Element => {
                           {member.email && (
                             <motion.a
                               href={`mailto:${member.email}`}
-                              className="w-9 h-9 bg-becc-accent/10 rounded-full flex items-center justify-center text-becc-accent"
-                              whileHover={{ scale: 1.15, backgroundColor: 'var(--accent-color)', color: 'var(--contrast-color)' }}
+                              className="flex h-8 w-8 items-center justify-center rounded-full bg-becc-accent/10 text-becc-accent"
+                              whileHover={{
+                                scale: 1.15,
+                                backgroundColor: 'var(--accent-color)',
+                                color: 'var(--contrast-color)',
+                              }}
                               transition={{ type: 'spring', stiffness: 400 }}
                             >
                               <Mail className="w-4 h-4" />
@@ -398,17 +465,13 @@ const AboutPage = (): JSX.Element => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </article>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
-      </main>
-
-      <BeccFooter />
-      <ScrollToTop />
-    </>
+    </main>
   );
 };
 
